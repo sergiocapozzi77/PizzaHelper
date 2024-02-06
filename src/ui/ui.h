@@ -23,21 +23,72 @@ extern "C" {
 #endif
 
 #include "ui_helpers.h"
+#include "components/ui_comp.h"
+#include "components/ui_comp_hook.h"
 #include "ui_events.h"
-// SCREEN: ui_Screen1
-void ui_Screen1_screen_init(void);
-extern lv_obj_t * ui_Screen1;
-extern lv_obj_t * ui_Panel1;
-extern lv_obj_t * ui_DoughBallsTa;
-extern lv_obj_t * ui_BallWieghtTa;
-extern lv_obj_t * ui_WaterTa;
-extern lv_obj_t * ui_LeaveningTimeTa;
-extern lv_obj_t * ui_RoomTemperatureTa;
-extern lv_obj_t * ui_Keyboard1;
+// SCREEN: ui_PizzaType
+void ui_PizzaType_screen_init(void);
+extern lv_obj_t * ui_PizzaType;
+extern lv_obj_t * ui_MainContainer;
+void ui_event_RoundPnl(lv_event_t * e);
+extern lv_obj_t * ui_RoundPnl;
+extern lv_obj_t * ui_PizzaTypeImg;
+extern lv_obj_t * ui_PizzaTypeLbl;
+extern lv_obj_t * ui_GrandmaPnl;
+extern lv_obj_t * ui_PizzaTypeImg1;
+extern lv_obj_t * ui_PizzaTypeLbl1;
+extern lv_obj_t * ui_FocacciaPnl;
+extern lv_obj_t * ui_PizzaTypeImg2;
+extern lv_obj_t * ui_PizzaTypeLbl2;
+extern lv_obj_t * ui_DetroitPnl;
+extern lv_obj_t * ui_PizzaTypeImg3;
+extern lv_obj_t * ui_PizzaTypeLbl3;
+extern lv_obj_t * ui_BreadPnl;
+extern lv_obj_t * ui_PizzaTypeImg4;
+extern lv_obj_t * ui_PizzaTypeLbl4;
+// SCREEN: ui_Method
+void ui_Method_screen_init(void);
+extern lv_obj_t * ui_Method;
+extern lv_obj_t * ui_Container5;
+extern lv_obj_t * ui_DirectPnl;
+extern lv_obj_t * ui_PizzaTypeImg6;
+extern lv_obj_t * ui_PizzaTypeLbl6;
+extern lv_obj_t * ui_BigaPnl;
+extern lv_obj_t * ui_PizzaTypeImg5;
+extern lv_obj_t * ui_PizzaTypeLbl5;
+extern lv_obj_t * ui_PoolishPnl;
+extern lv_obj_t * ui_PizzaTypeImg7;
+extern lv_obj_t * ui_PizzaTypeLbl7;
+extern lv_obj_t * ui_BigaPolishPnl;
+extern lv_obj_t * ui_PizzaTypeImg8;
+extern lv_obj_t * ui_PizzaTypeLbl8;
+// SCREEN: ui_Ingredients
+void ui_Ingredients_screen_init(void);
+extern lv_obj_t * ui_Ingredients;
 extern lv_obj_t * ui_Roller1;
-extern lv_obj_t * ui_Roller2;
+extern lv_obj_t * ui_Container4;
+extern lv_obj_t * ui_DoughballsCntExt4;
+extern lv_obj_t * ui_DoughballsCntExt3;
+extern lv_obj_t * ui_DoughballsCntExt2;
+extern lv_obj_t * ui_DoughballsCntExt1;
+extern lv_obj_t * ui_DoughballsCntExt;
 extern lv_obj_t * ui____initial_actions0;
 
+LV_IMG_DECLARE(ui_img_pizza_png);    // assets\pizza.png
+LV_IMG_DECLARE(ui_img_grandma_png);    // assets\grandma.png
+LV_IMG_DECLARE(ui_img_direct_png);    // assets\direct.png
+LV_IMG_DECLARE(ui_img_biga_png);    // assets\biga.png
+LV_IMG_DECLARE(ui_img_poolish_png);    // assets\poolish.png
+LV_IMG_DECLARE(
+    ui_img_3558094_bake_bread_fast_food_pizza_icon_png);    // assets\3558094_bake_bread_fast_food_pizza_icon.png
+LV_IMG_DECLARE(
+    ui_img_2995004_rain_water_drop_weather_cloud_icon_png);    // assets\2995004_rain_water_drop_weather_cloud_icon.png
+LV_IMG_DECLARE(
+    ui_img_2824441_clock_stopwatch_time_timer_icon_png);    // assets\2824441_clock_stopwatch_time_timer_icon.png
+LV_IMG_DECLARE(
+    ui_img_3856401_celsius_degrees_temperature_thermometer_weather_icon_png);    // assets\3856401_celsius_degrees_temperature_thermometer_weather_icon.png
+LV_IMG_DECLARE(
+    ui_img_7450398_kitchen_utensils_scale_appliance_weight_icon_png);    // assets\7450398_kitchen_utensils_scale_appliance_weight_icon.png
 
 
 

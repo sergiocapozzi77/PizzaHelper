@@ -1,7 +1,21 @@
-SET(SOURCES screens/ui_Screen1.c
+SET(SOURCES components/ui_comp_doughballscntext.c
+    components/ui_comp.c
+    screens/ui_PizzaType.c
+    screens/ui_Method.c
+    screens/ui_Ingredients.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
-    ui_events.c)
+    ui_events.c
+    images/ui_img_pizza_png.c
+    images/ui_img_grandma_png.c
+    images/ui_img_direct_png.c
+    images/ui_img_biga_png.c
+    images/ui_img_poolish_png.c
+    images/ui_img_3558094_bake_bread_fast_food_pizza_icon_png.c
+    images/ui_img_2995004_rain_water_drop_weather_cloud_icon_png.c
+    images/ui_img_2824441_clock_stopwatch_time_timer_icon_png.c
+    images/ui_img_3856401_celsius_degrees_temperature_thermometer_weather_icon_png.c
+    images/ui_img_7450398_kitchen_utensils_scale_appliance_weight_icon_png.c)
 
 add_library(ui ${SOURCES})

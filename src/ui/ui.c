@@ -9,18 +9,56 @@
 ///////////////////// VARIABLES ////////////////////
 
 
-// SCREEN: ui_Screen1
-void ui_Screen1_screen_init(void);
-lv_obj_t * ui_Screen1;
-lv_obj_t * ui_Panel1;
-lv_obj_t * ui_DoughBallsTa;
-lv_obj_t * ui_BallWieghtTa;
-lv_obj_t * ui_WaterTa;
-lv_obj_t * ui_LeaveningTimeTa;
-lv_obj_t * ui_RoomTemperatureTa;
-lv_obj_t * ui_Keyboard1;
+// SCREEN: ui_PizzaType
+void ui_PizzaType_screen_init(void);
+lv_obj_t * ui_PizzaType;
+lv_obj_t * ui_MainContainer;
+void ui_event_RoundPnl(lv_event_t * e);
+lv_obj_t * ui_RoundPnl;
+lv_obj_t * ui_PizzaTypeImg;
+lv_obj_t * ui_PizzaTypeLbl;
+lv_obj_t * ui_GrandmaPnl;
+lv_obj_t * ui_PizzaTypeImg1;
+lv_obj_t * ui_PizzaTypeLbl1;
+lv_obj_t * ui_FocacciaPnl;
+lv_obj_t * ui_PizzaTypeImg2;
+lv_obj_t * ui_PizzaTypeLbl2;
+lv_obj_t * ui_DetroitPnl;
+lv_obj_t * ui_PizzaTypeImg3;
+lv_obj_t * ui_PizzaTypeLbl3;
+lv_obj_t * ui_BreadPnl;
+lv_obj_t * ui_PizzaTypeImg4;
+lv_obj_t * ui_PizzaTypeLbl4;
+
+
+// SCREEN: ui_Method
+void ui_Method_screen_init(void);
+lv_obj_t * ui_Method;
+lv_obj_t * ui_Container5;
+lv_obj_t * ui_DirectPnl;
+lv_obj_t * ui_PizzaTypeImg6;
+lv_obj_t * ui_PizzaTypeLbl6;
+lv_obj_t * ui_BigaPnl;
+lv_obj_t * ui_PizzaTypeImg5;
+lv_obj_t * ui_PizzaTypeLbl5;
+lv_obj_t * ui_PoolishPnl;
+lv_obj_t * ui_PizzaTypeImg7;
+lv_obj_t * ui_PizzaTypeLbl7;
+lv_obj_t * ui_BigaPolishPnl;
+lv_obj_t * ui_PizzaTypeImg8;
+lv_obj_t * ui_PizzaTypeLbl8;
+
+
+// SCREEN: ui_Ingredients
+void ui_Ingredients_screen_init(void);
+lv_obj_t * ui_Ingredients;
 lv_obj_t * ui_Roller1;
-lv_obj_t * ui_Roller2;
+lv_obj_t * ui_Container4;
+lv_obj_t * ui_DoughballsCntExt4;
+lv_obj_t * ui_DoughballsCntExt3;
+lv_obj_t * ui_DoughballsCntExt2;
+lv_obj_t * ui_DoughballsCntExt1;
+lv_obj_t * ui_DoughballsCntExt;
 lv_obj_t * ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -34,16 +72,28 @@ lv_obj_t * ui____initial_actions0;
 ///////////////////// ANIMATIONS ////////////////////
 
 ///////////////////// FUNCTIONS ////////////////////
+void ui_event_RoundPnl(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, &ui_Ingredients_screen_init);
+    }
+}
 
 ///////////////////// SCREENS ////////////////////
 
 void ui_init(void)
 {
+    LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
+
     lv_disp_t * dispp = lv_disp_get_default();
     lv_theme_t * theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
                                                false, LV_FONT_DEFAULT);
     lv_disp_set_theme(dispp, theme);
-    ui_Screen1_screen_init();
+    ui_PizzaType_screen_init();
+    ui_Method_screen_init();
+    ui_Ingredients_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
-    lv_disp_load_scr(ui_Screen1);
+    lv_disp_load_scr(ui_PizzaType);
 }

@@ -6,6 +6,7 @@
 
 #include "../ui/ui.h"
 #include "../gfx/LGFX_ESP32S3_RGB_MakerfabsParallelTFTwithTouch70.h"
+#include "recipe.hpp"
 
 static const char *TAG = "gui";
 
@@ -45,15 +46,39 @@ void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)
   }
 }
 
-static void ta_event_cb(lv_event_t *e)
+// static void ta_event_cb(lv_event_t *e)
+// {
+//   lv_event_code_t code = lv_event_get_code(e);
+//   lv_obj_t *ta = lv_event_get_target(e);
+//   if (code == LV_EVENT_CLICKED || code == LV_EVENT_FOCUSED)
+//   {
+//     /*Focus on the clicked text area*/
+//     if (ui_Keyboard1 != NULL)
+//       lv_keyboard_set_textarea(ui_Keyboard1, ta);
+//   }
+// }
+
+void ui_event_PizzaType(lv_event_t *e)
 {
-  lv_event_code_t code = lv_event_get_code(e);
-  lv_obj_t *ta = lv_event_get_target(e);
-  if (code == LV_EVENT_CLICKED || code == LV_EVENT_FOCUSED)
+  lv_event_code_t event_code = lv_event_get_code(e);
+  lv_obj_t *target = lv_event_get_target(e);
+
+  recipe.selectedType = String((char *)lv_event_get_user_data(e));
+  if (event_code == LV_EVENT_CLICKED)
   {
-    /*Focus on the clicked text area*/
-    if (ui_Keyboard1 != NULL)
-      lv_keyboard_set_textarea(ui_Keyboard1, ta);
+    _ui_screen_change(&ui_Method, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, &ui_Method_screen_init);
+  }
+}
+
+void ui_event_PizzaMethod(lv_event_t *e)
+{
+  lv_event_code_t event_code = lv_event_get_code(e);
+  lv_obj_t *target = lv_event_get_target(e);
+
+  recipe.selectedMethod = String((char *)lv_event_get_user_data(e));
+  if (event_code == LV_EVENT_CLICKED)
+  {
+    _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, &ui_Ingredients_screen_init);
   }
 }
 
@@ -90,9 +115,19 @@ void gui_start()
 
   ui_init();
 
-  lv_obj_add_event_cb(ui_DoughBallsTa, ta_event_cb, LV_EVENT_ALL, NULL);
-  lv_obj_add_event_cb(ui_BallWieghtTa, ta_event_cb, LV_EVENT_ALL, NULL);
-  lv_obj_add_event_cb(ui_WaterTa, ta_event_cb, LV_EVENT_ALL, NULL);
-  lv_obj_add_event_cb(ui_LeaveningTimeTa, ta_event_cb, LV_EVENT_ALL, NULL);
-  lv_obj_add_event_cb(ui_RoomTemperatureTa, ta_event_cb, LV_EVENT_ALL, NULL);
+  // lv_obj_add_event_cb(ui_DoughBallsTa, ta_event_cb, LV_EVENT_ALL, NULL);
+  // lv_obj_add_event_cb(ui_BallWieghtTa, ta_event_cb, LV_EVENT_ALL, NULL);
+  // lv_obj_add_event_cb(ui_LeaveningTimeTa, ta_event_cb, LV_EVENT_ALL, NULL);
+  // lv_obj_add_event_cb(ui_RoomTemperatureTa, ta_event_cb, LV_EVENT_ALL, NULL);
+
+  lv_obj_add_event_cb(ui_RoundPnl, ui_event_PizzaType, LV_EVENT_CLICKED, (void *)"Round");
+  lv_obj_add_event_cb(ui_GrandmaPnl, ui_event_PizzaType, LV_EVENT_CLICKED, (void *)"Grandma");
+  lv_obj_add_event_cb(ui_DetroitPnl, ui_event_PizzaType, LV_EVENT_CLICKED, (void *)"Detroit");
+  lv_obj_add_event_cb(ui_BreadPnl, ui_event_PizzaType, LV_EVENT_CLICKED, (void *)"Bread");
+  lv_obj_add_event_cb(ui_FocacciaPnl, ui_event_PizzaType, LV_EVENT_CLICKED, (void *)"Focaccia");
+
+  lv_obj_add_event_cb(ui_DirectPnl, ui_event_PizzaMethod, LV_EVENT_CLICKED, (void *)"Direct");
+  lv_obj_add_event_cb(ui_BigaPnl, ui_event_PizzaMethod, LV_EVENT_CLICKED, (void *)"Biga");
+  lv_obj_add_event_cb(ui_PoolishPnl, ui_event_PizzaMethod, LV_EVENT_CLICKED, (void *)"Poolish");
+  lv_obj_add_event_cb(ui_BigaPolishPnl, ui_event_PizzaMethod, LV_EVENT_CLICKED, (void *)"BigaPoolish");
 }
