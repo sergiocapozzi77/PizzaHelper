@@ -30,7 +30,6 @@ extern "C" {
 void ui_PizzaType_screen_init(void);
 extern lv_obj_t * ui_PizzaType;
 extern lv_obj_t * ui_MainContainer;
-void ui_event_RoundPnl(lv_event_t * e);
 extern lv_obj_t * ui_RoundPnl;
 extern lv_obj_t * ui_PizzaTypeImg;
 extern lv_obj_t * ui_PizzaTypeLbl;
@@ -62,16 +61,51 @@ extern lv_obj_t * ui_PizzaTypeLbl7;
 extern lv_obj_t * ui_BigaPolishPnl;
 extern lv_obj_t * ui_PizzaTypeImg8;
 extern lv_obj_t * ui_PizzaTypeLbl8;
+// SCREEN: ui_Yeast
+void ui_Yeast_screen_init(void);
+extern lv_obj_t * ui_Yeast;
+extern lv_obj_t * ui_Container1;
+extern lv_obj_t * ui_YeastFreshPnl;
+extern lv_obj_t * ui_YeastImg;
+extern lv_obj_t * ui_YeastLbl;
+extern lv_obj_t * ui_YeastDryPnl;
+extern lv_obj_t * ui_YeastImg1;
+extern lv_obj_t * ui_YeastLbl1;
+extern lv_obj_t * ui_YeastSourdoughPnl;
+extern lv_obj_t * ui_YeastImg2;
+extern lv_obj_t * ui_YeastLbl2;
 // SCREEN: ui_Ingredients
 void ui_Ingredients_screen_init(void);
+void ui_event_Ingredients(lv_event_t * e);
 extern lv_obj_t * ui_Ingredients;
-extern lv_obj_t * ui_Roller1;
 extern lv_obj_t * ui_Container4;
-extern lv_obj_t * ui_DoughballsCntExt4;
-extern lv_obj_t * ui_DoughballsCntExt3;
-extern lv_obj_t * ui_DoughballsCntExt2;
-extern lv_obj_t * ui_DoughballsCntExt1;
-extern lv_obj_t * ui_DoughballsCntExt;
+extern lv_obj_t * ui_WaterCmp;
+extern lv_obj_t * ui_LeaveningCmp;
+extern lv_obj_t * ui_RoomTempCmp;
+extern lv_obj_t * ui_DoughballWeightCmp;
+extern lv_obj_t * ui_DoughballQtyCmp;
+extern lv_obj_t * ui_Panel1;
+extern lv_obj_t * ui_Label1;
+extern lv_obj_t * ui_Container2;
+extern lv_obj_t * ui_Label2;
+extern lv_obj_t * ui_FlourQ;
+extern lv_obj_t * ui_Label6;
+extern lv_obj_t * ui_Container3;
+extern lv_obj_t * ui_Label7;
+extern lv_obj_t * ui_WaterQ;
+extern lv_obj_t * ui_Label8;
+extern lv_obj_t * ui_Container8;
+extern lv_obj_t * ui_Label4;
+extern lv_obj_t * ui_YeastQ;
+extern lv_obj_t * ui_Label5;
+extern lv_obj_t * ui_Container6;
+extern lv_obj_t * ui_Label3;
+extern lv_obj_t * ui_SaltQ;
+extern lv_obj_t * ui_Label9;
+extern lv_obj_t * ui_Container7;
+extern lv_obj_t * ui_Label10;
+extern lv_obj_t * ui_OilQ;
+extern lv_obj_t * ui_Label11;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_pizza_png);    // assets\pizza.png
@@ -79,6 +113,9 @@ LV_IMG_DECLARE(ui_img_grandma_png);    // assets\grandma.png
 LV_IMG_DECLARE(ui_img_direct_png);    // assets\direct.png
 LV_IMG_DECLARE(ui_img_biga_png);    // assets\biga.png
 LV_IMG_DECLARE(ui_img_poolish_png);    // assets\poolish.png
+LV_IMG_DECLARE(ui_img_fresh_png);    // assets\fresh.png
+LV_IMG_DECLARE(ui_img_dry_png);    // assets\dry.png
+LV_IMG_DECLARE(ui_img_sourdough_png);    // assets\sourdough.png
 LV_IMG_DECLARE(
     ui_img_3558094_bake_bread_fast_food_pizza_icon_png);    // assets\3558094_bake_bread_fast_food_pizza_icon.png
 LV_IMG_DECLARE(

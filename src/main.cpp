@@ -4,13 +4,19 @@
 
 #include "gui/gui.h"
 
-void setup() {
+void setup()
+{
+  Serial.begin(115200);
+  Serial.println();
+
+  Serial.println(F("Tft starting"));
+
   gui_start();
 }
 
-void loop() {
+void loop()
+{
   lv_timer_handler();
 
   delay(5);
 }
-

@@ -138,6 +138,4 @@ void ui_PizzaType_screen_init(void)
     lv_obj_set_align(ui_PizzaTypeLbl4, LV_ALIGN_CENTER);
     lv_label_set_text(ui_PizzaTypeLbl4, "Bread");
 
-    lv_obj_add_event_cb(ui_RoundPnl, ui_event_RoundPnl, LV_EVENT_ALL, NULL);
-
 }

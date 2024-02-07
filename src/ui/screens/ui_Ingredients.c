@@ -10,14 +10,6 @@ void ui_Ingredients_screen_init(void)
     ui_Ingredients = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_Ingredients, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_Roller1 = lv_roller_create(ui_Ingredients);
-    lv_roller_set_options(ui_Roller1, "Dried\nFresh\nSourdough", LV_ROLLER_MODE_NORMAL);
-    lv_obj_set_height(ui_Roller1, 99);
-    lv_obj_set_width(ui_Roller1, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_x(ui_Roller1, 221);
-    lv_obj_set_y(ui_Roller1, 57);
-    lv_obj_set_align(ui_Roller1, LV_ALIGN_CENTER);
-
     ui_Container4 = lv_obj_create(ui_Ingredients);
     lv_obj_remove_style_all(ui_Container4);
     lv_obj_set_width(ui_Container4, lv_pct(100));
@@ -31,88 +23,325 @@ void ui_Ingredients_screen_init(void)
     lv_obj_set_style_pad_top(ui_Container4, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui_Container4, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_DoughballsCntExt4 = ui_DoughballsCntExt_create(ui_Container4);
-    lv_obj_set_x(ui_DoughballsCntExt4, -184);
-    lv_obj_set_y(ui_DoughballsCntExt4, 97);
+    ui_WaterCmp = ui_IngredientCmp_create(ui_Container4);
+    lv_obj_set_x(ui_WaterCmp, -184);
+    lv_obj_set_y(ui_WaterCmp, 97);
 
-    lv_img_set_src(ui_comp_get_child(ui_DoughballsCntExt4, UI_COMP_DOUGHBALLSCNTEXT_DOUGHBALLSQTYIMG),
+    lv_img_set_src(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_DOUGHBALLSQTYIMG),
                    &ui_img_2995004_rain_water_drop_weather_cloud_icon_png);
 
 
-    lv_label_set_text(ui_comp_get_child(ui_DoughballsCntExt4, UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_LABEL1),
-                      "Water percentage");
+
+    lv_label_set_text(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP),
+                      "Water");
 
 
 
-    lv_slider_set_range(ui_comp_get_child(ui_DoughballsCntExt4,
-                                          UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_DOUGHBALLSQTYCNT_DOUGHBALLSQTYSLI), 50, 100);
 
 
-    ui_DoughballsCntExt3 = ui_DoughballsCntExt_create(ui_Container4);
-    lv_obj_set_x(ui_DoughballsCntExt3, -186);
-    lv_obj_set_y(ui_DoughballsCntExt3, 190);
+    lv_slider_set_range(ui_comp_get_child(ui_WaterCmp,
+                                          UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), 50, 100);
 
-    lv_img_set_src(ui_comp_get_child(ui_DoughballsCntExt3, UI_COMP_DOUGHBALLSCNTEXT_DOUGHBALLSQTYIMG),
+
+
+
+
+
+
+    ui_LeaveningCmp = ui_IngredientCmp_create(ui_Container4);
+    lv_obj_set_x(ui_LeaveningCmp, -186);
+    lv_obj_set_y(ui_LeaveningCmp, 190);
+
+    lv_img_set_src(ui_comp_get_child(ui_LeaveningCmp, UI_COMP_INGREDIENTCMP_DOUGHBALLSQTYIMG),
                    &ui_img_2824441_clock_stopwatch_time_timer_icon_png);
 
 
-    lv_label_set_text(ui_comp_get_child(ui_DoughballsCntExt3, UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_LABEL1),
-                      "Livening time");
+
+    lv_label_set_text(ui_comp_get_child(ui_LeaveningCmp,
+                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Levening time");
 
 
 
-    lv_slider_set_range(ui_comp_get_child(ui_DoughballsCntExt3,
-                                          UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_DOUGHBALLSQTYCNT_DOUGHBALLSQTYSLI), 2, 50);
 
 
-    ui_DoughballsCntExt2 = ui_DoughballsCntExt_create(ui_Container4);
-    lv_obj_set_x(ui_DoughballsCntExt2, -182);
-    lv_obj_set_y(ui_DoughballsCntExt2, 1);
+    lv_slider_set_range(ui_comp_get_child(ui_LeaveningCmp,
+                                          UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), 4, 48);
 
-    lv_img_set_src(ui_comp_get_child(ui_DoughballsCntExt2, UI_COMP_DOUGHBALLSCNTEXT_DOUGHBALLSQTYIMG),
+
+
+
+
+
+
+    ui_RoomTempCmp = ui_IngredientCmp_create(ui_Container4);
+    lv_obj_set_x(ui_RoomTempCmp, -182);
+    lv_obj_set_y(ui_RoomTempCmp, 1);
+
+    lv_img_set_src(ui_comp_get_child(ui_RoomTempCmp, UI_COMP_INGREDIENTCMP_DOUGHBALLSQTYIMG),
                    &ui_img_3856401_celsius_degrees_temperature_thermometer_weather_icon_png);
 
 
-    lv_label_set_text(ui_comp_get_child(ui_DoughballsCntExt2, UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_LABEL1),
-                      "Room temperature");
+
+    lv_label_set_text(ui_comp_get_child(ui_RoomTempCmp,
+                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Tempearature");
 
 
 
-    lv_slider_set_range(ui_comp_get_child(ui_DoughballsCntExt2,
-                                          UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_DOUGHBALLSQTYCNT_DOUGHBALLSQTYSLI), 0, 50);
 
 
-    ui_DoughballsCntExt1 = ui_DoughballsCntExt_create(ui_Container4);
-    lv_obj_set_x(ui_DoughballsCntExt1, -183);
-    lv_obj_set_y(ui_DoughballsCntExt1, -92);
+    lv_slider_set_range(ui_comp_get_child(ui_RoomTempCmp,
+                                          UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), 5, 45);
 
-    lv_img_set_src(ui_comp_get_child(ui_DoughballsCntExt1, UI_COMP_DOUGHBALLSCNTEXT_DOUGHBALLSQTYIMG),
+
+
+
+
+
+
+    ui_DoughballWeightCmp = ui_IngredientCmp_create(ui_Container4);
+    lv_obj_set_x(ui_DoughballWeightCmp, -183);
+    lv_obj_set_y(ui_DoughballWeightCmp, -92);
+
+    lv_img_set_src(ui_comp_get_child(ui_DoughballWeightCmp, UI_COMP_INGREDIENTCMP_DOUGHBALLSQTYIMG),
                    &ui_img_7450398_kitchen_utensils_scale_appliance_weight_icon_png);
 
 
-    lv_label_set_text(ui_comp_get_child(ui_DoughballsCntExt1, UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_LABEL1),
-                      "Dough ball weight");
+
+    lv_label_set_text(ui_comp_get_child(ui_DoughballWeightCmp,
+                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Dough balls weight");
 
 
 
 
 
-    ui_DoughballsCntExt = ui_DoughballsCntExt_create(ui_Container4);
-    lv_obj_set_x(ui_DoughballsCntExt, -182);
-    lv_obj_set_y(ui_DoughballsCntExt, -181);
+    lv_slider_set_range(ui_comp_get_child(ui_DoughballWeightCmp,
+                                          UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), 100, 1000);
 
 
 
-    lv_label_set_text(ui_comp_get_child(ui_DoughballsCntExt, UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_LABEL1),
-                      "Dough balls quantity");
 
 
 
-    lv_slider_set_range(ui_comp_get_child(ui_DoughballsCntExt,
-                                          UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_DOUGHBALLSQTYCNT_DOUGHBALLSQTYSLI), 1, 100);
-    lv_slider_set_mode(ui_comp_get_child(ui_DoughballsCntExt,
-                                         UI_COMP_DOUGHBALLSCNTEXT_MIDDLECONTAINER_DOUGHBALLSQTYCNT_DOUGHBALLSQTYSLI), LV_SLIDER_MODE_NORMAL);
+
+    ui_DoughballQtyCmp = ui_IngredientCmp_create(ui_Container4);
+    lv_obj_set_x(ui_DoughballQtyCmp, -182);
+    lv_obj_set_y(ui_DoughballQtyCmp, -181);
 
 
+
+
+
+
+
+
+
+
+    lv_slider_set_range(ui_comp_get_child(ui_DoughballQtyCmp,
+                                          UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), 1, 20);
+
+
+
+
+
+
+
+    ui_Panel1 = lv_obj_create(ui_Ingredients);
+    lv_obj_set_width(ui_Panel1, 357);
+    lv_obj_set_height(ui_Panel1, 447);
+    lv_obj_set_x(ui_Panel1, 206);
+    lv_obj_set_y(ui_Panel1, -1);
+    lv_obj_set_align(ui_Panel1, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Panel1, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_flex_align(ui_Panel1, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+    lv_obj_clear_flag(ui_Panel1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_text_font(ui_Panel1, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Label1 = lv_label_create(ui_Panel1);
+    lv_obj_set_width(ui_Label1, lv_pct(100));
+    lv_obj_set_height(ui_Label1, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label1, "INGREDIENTS");
+    lv_obj_set_style_text_align(ui_Label1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui_Label1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_Label1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_Label1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_Label1, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Container2 = lv_obj_create(ui_Panel1);
+    lv_obj_remove_style_all(ui_Container2);
+    lv_obj_set_width(ui_Container2, lv_pct(100));
+    lv_obj_set_height(ui_Container2, LV_SIZE_CONTENT);    /// 50
+    lv_obj_set_align(ui_Container2, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Container2, LV_FLEX_FLOW_ROW);
+    lv_obj_set_flex_align(ui_Container2, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+    lv_obj_clear_flag(ui_Container2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_Label2 = lv_label_create(ui_Container2);
+    lv_obj_set_width(ui_Label2, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label2, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label2, "Flour:");
+
+    ui_FlourQ = lv_label_create(ui_Container2);
+    lv_obj_set_width(ui_FlourQ, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_FlourQ, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_FlourQ, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_FlourQ, "100");
+    lv_obj_set_style_pad_left(ui_FlourQ, 40, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_FlourQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_FlourQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_FlourQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Label6 = lv_label_create(ui_Container2);
+    lv_obj_set_width(ui_Label6, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label6, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label6, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label6, "grams");
+    lv_obj_set_style_pad_left(ui_Label6, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_Label6, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_Label6, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_Label6, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Container3 = lv_obj_create(ui_Panel1);
+    lv_obj_remove_style_all(ui_Container3);
+    lv_obj_set_width(ui_Container3, lv_pct(100));
+    lv_obj_set_height(ui_Container3, LV_SIZE_CONTENT);    /// 50
+    lv_obj_set_align(ui_Container3, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Container3, LV_FLEX_FLOW_ROW);
+    lv_obj_set_flex_align(ui_Container3, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+    lv_obj_clear_flag(ui_Container3, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_Label7 = lv_label_create(ui_Container3);
+    lv_obj_set_width(ui_Label7, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label7, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label7, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label7, "Water:");
+
+    ui_WaterQ = lv_label_create(ui_Container3);
+    lv_obj_set_width(ui_WaterQ, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_WaterQ, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_WaterQ, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_WaterQ, "100");
+    lv_obj_set_style_pad_left(ui_WaterQ, 40, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_WaterQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_WaterQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_WaterQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Label8 = lv_label_create(ui_Container3);
+    lv_obj_set_width(ui_Label8, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label8, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label8, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label8, "ml");
+    lv_obj_set_style_pad_left(ui_Label8, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_Label8, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_Label8, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_Label8, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Container8 = lv_obj_create(ui_Panel1);
+    lv_obj_remove_style_all(ui_Container8);
+    lv_obj_set_width(ui_Container8, lv_pct(100));
+    lv_obj_set_height(ui_Container8, LV_SIZE_CONTENT);    /// 50
+    lv_obj_set_align(ui_Container8, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Container8, LV_FLEX_FLOW_ROW);
+    lv_obj_set_flex_align(ui_Container8, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+    lv_obj_clear_flag(ui_Container8, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_Label4 = lv_label_create(ui_Container8);
+    lv_obj_set_width(ui_Label4, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label4, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label4, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label4, "Yeast:");
+
+    ui_YeastQ = lv_label_create(ui_Container8);
+    lv_obj_set_width(ui_YeastQ, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_YeastQ, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_YeastQ, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_YeastQ, "100");
+    lv_obj_set_style_pad_left(ui_YeastQ, 40, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_YeastQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_YeastQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_YeastQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Label5 = lv_label_create(ui_Container8);
+    lv_obj_set_width(ui_Label5, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label5, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label5, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label5, "grams");
+    lv_obj_set_style_pad_left(ui_Label5, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_Label5, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_Label5, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_Label5, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Container6 = lv_obj_create(ui_Panel1);
+    lv_obj_remove_style_all(ui_Container6);
+    lv_obj_set_width(ui_Container6, lv_pct(100));
+    lv_obj_set_height(ui_Container6, LV_SIZE_CONTENT);    /// 50
+    lv_obj_set_align(ui_Container6, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Container6, LV_FLEX_FLOW_ROW);
+    lv_obj_set_flex_align(ui_Container6, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+    lv_obj_clear_flag(ui_Container6, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_Label3 = lv_label_create(ui_Container6);
+    lv_obj_set_width(ui_Label3, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label3, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label3, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label3, "Salt:");
+
+    ui_SaltQ = lv_label_create(ui_Container6);
+    lv_obj_set_width(ui_SaltQ, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_SaltQ, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_SaltQ, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_SaltQ, "100");
+    lv_obj_set_style_pad_left(ui_SaltQ, 40, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_SaltQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_SaltQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_SaltQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Label9 = lv_label_create(ui_Container6);
+    lv_obj_set_width(ui_Label9, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label9, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label9, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label9, "grams");
+    lv_obj_set_style_pad_left(ui_Label9, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_Label9, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_Label9, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_Label9, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Container7 = lv_obj_create(ui_Panel1);
+    lv_obj_remove_style_all(ui_Container7);
+    lv_obj_set_width(ui_Container7, lv_pct(100));
+    lv_obj_set_height(ui_Container7, LV_SIZE_CONTENT);    /// 50
+    lv_obj_set_align(ui_Container7, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Container7, LV_FLEX_FLOW_ROW);
+    lv_obj_set_flex_align(ui_Container7, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+    lv_obj_clear_flag(ui_Container7, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_Label10 = lv_label_create(ui_Container7);
+    lv_obj_set_width(ui_Label10, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label10, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label10, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label10, "Oil:");
+
+    ui_OilQ = lv_label_create(ui_Container7);
+    lv_obj_set_width(ui_OilQ, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_OilQ, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_OilQ, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_OilQ, "100");
+    lv_obj_set_style_pad_left(ui_OilQ, 40, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_OilQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_OilQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_OilQ, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Label11 = lv_label_create(ui_Container7);
+    lv_obj_set_width(ui_Label11, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label11, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Label11, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label11, "ml");
+    lv_obj_set_style_pad_left(ui_Label11, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_Label11, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_Label11, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_Label11, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    lv_obj_add_event_cb(ui_Ingredients, ui_event_Ingredients, LV_EVENT_ALL, NULL);
 
 }

@@ -8,3 +8,15 @@
 void ui_comp_DoughballsCntExt_create_hook(lv_obj_t * comp)
 {
 }
+
+void ui_comp_IngredientCmpSli_create_hook(lv_obj_t * comp)
+{
+}
+
+void ui_comp_IngredientCmp_compedit_create_hook(lv_obj_t * comp)
+{
+}
+
+void ui_comp_IngredientCmp_create_hook(lv_obj_t * comp)
+{
+}

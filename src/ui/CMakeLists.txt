@@ -1,7 +1,8 @@
-SET(SOURCES components/ui_comp_doughballscntext.c
+SET(SOURCES components/ui_comp_ingredientcmp.c
     components/ui_comp.c
     screens/ui_PizzaType.c
     screens/ui_Method.c
+    screens/ui_Yeast.c
     screens/ui_Ingredients.c
     ui.c
     components/ui_comp_hook.c
@@ -12,6 +13,9 @@ SET(SOURCES components/ui_comp_doughballscntext.c
     images/ui_img_direct_png.c
     images/ui_img_biga_png.c
     images/ui_img_poolish_png.c
+    images/ui_img_fresh_png.c
+    images/ui_img_dry_png.c
+    images/ui_img_sourdough_png.c
     images/ui_img_3558094_bake_bread_fast_food_pizza_icon_png.c
     images/ui_img_2995004_rain_water_drop_weather_cloud_icon_png.c
     images/ui_img_2824441_clock_stopwatch_time_timer_icon_png.c
