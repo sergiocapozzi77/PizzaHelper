@@ -9,6 +9,10 @@
         "functional": "cpp",
         "tuple": "cpp",
         "type_traits": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "ui.h": "c",
+        "ui_helpers.h": "c",
+        "ui_comp.h": "c",
+        "arduino.h": "c"
     }
 }

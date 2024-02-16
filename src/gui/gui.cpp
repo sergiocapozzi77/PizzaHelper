@@ -166,11 +166,6 @@ void gui_start()
 
   ui_init();
 
-  // lv_obj_add_event_cb(ui_DoughBallsTa, ta_event_cb, LV_EVENT_ALL, NULL);
-  // lv_obj_add_event_cb(ui_BallWieghtTa, ta_event_cb, LV_EVENT_ALL, NULL);
-  // lv_obj_add_event_cb(ui_LeaveningTimeTa, ta_event_cb, LV_EVENT_ALL, NULL);
-  // lv_obj_add_event_cb(ui_RoomTemperatureTa, ta_event_cb, LV_EVENT_ALL, NULL);
-
   lv_obj_add_event_cb(ui_RoundPnl, ui_event_PizzaType, LV_EVENT_CLICKED, (void *)"Round");
   lv_obj_add_event_cb(ui_GrandmaPnl, ui_event_PizzaType, LV_EVENT_CLICKED, (void *)"Grandma");
   lv_obj_add_event_cb(ui_DetroitPnl, ui_event_PizzaType, LV_EVENT_CLICKED, (void *)"Detroit");
