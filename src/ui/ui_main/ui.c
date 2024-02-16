@@ -3,7 +3,7 @@
 // LVGL version: 8.2.0
 // Project name: PizzaHelper
 
-#include "./ui.h"
+#include "ui.h"
 #include "ui_helpers.h"
 
 ///////////////////// VARIABLES ////////////////////
@@ -59,38 +59,13 @@ lv_obj_t *ui_YeastSourdoughPnl;
 lv_obj_t *ui_YeastImg2;
 lv_obj_t *ui_YeastLbl2;
 
+// SCREEN: ui_PreIngredients
+void ui_PreIngredients_screen_init(void);
+lv_obj_t *ui_PreIngredients;
+
 // SCREEN: ui_Ingredients
 void ui_Ingredients_screen_init(void);
-void ui_event_Ingredients(lv_event_t *e);
 lv_obj_t *ui_Ingredients;
-lv_obj_t *ui_Container4;
-lv_obj_t *ui_WaterCmp;
-lv_obj_t *ui_RoomTempCmp;
-lv_obj_t *ui_DoughballWeightCmp;
-lv_obj_t *ui_DoughballQtyCmp;
-lv_obj_t *ui_LeaveningCmp;
-lv_obj_t *ui_Panel1;
-lv_obj_t *ui_Label1;
-lv_obj_t *ui_Container2;
-lv_obj_t *ui_Label2;
-lv_obj_t *ui_FlourQ;
-lv_obj_t *ui_Label6;
-lv_obj_t *ui_Container3;
-lv_obj_t *ui_Label7;
-lv_obj_t *ui_WaterQ;
-lv_obj_t *ui_Label8;
-lv_obj_t *ui_Container8;
-lv_obj_t *ui_Label4;
-lv_obj_t *ui_YeastQ;
-lv_obj_t *ui_Label5;
-lv_obj_t *ui_Container6;
-lv_obj_t *ui_Label3;
-lv_obj_t *ui_SaltQ;
-lv_obj_t *ui_Label9;
-lv_obj_t *ui_Container7;
-lv_obj_t *ui_Label10;
-lv_obj_t *ui_OilQ;
-lv_obj_t *ui_Label11;
 lv_obj_t *ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -104,18 +79,9 @@ lv_obj_t *ui____initial_actions0;
 ///////////////////// ANIMATIONS ////////////////////
 
 ///////////////////// FUNCTIONS ////////////////////
-void ui_event_Ingredients(lv_event_t *e)
-{
-    lv_event_code_t event_code = lv_event_get_code(e);
-    lv_obj_t *target = lv_event_get_target(e);
-    if (event_code == LV_EVENT_SCREEN_LOADED)
-    {
-        IngredientsLoaded(e);
-    }
-}
 
 ///////////////////// SCREENS ////////////////////
-
+uint32_t LV_EVENT_GET_COMP_CHILD;
 void ui_init(void)
 {
     LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
@@ -127,6 +93,7 @@ void ui_init(void)
     ui_PizzaType_screen_init();
     ui_Method_screen_init();
     ui_Yeast_screen_init();
+    ui_PreIngredients_screen_init();
     ui_Ingredients_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_PizzaType);

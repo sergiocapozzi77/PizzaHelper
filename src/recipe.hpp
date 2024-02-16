@@ -44,6 +44,12 @@ public:
 
     void IntializeIngredients();
     void Recalculate();
+
+    int GetPrefWaterPercentage();
+    int GetPrefPercentage();
+
+    void SetPrefPercentage(int value);
+    void SetPrefWaterPercentage(int value);
 };
 
 extern Recipe recipe;

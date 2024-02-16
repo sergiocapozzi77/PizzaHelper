@@ -26,18 +26,41 @@ extern "C" {
 #include "components/ui_comp.h"
 #include "components/ui_comp_hook.h"
 #include "ui_events.h"
-// SCREEN: ui_Ingredients
-void ui_Ingredients_screen_init(void);
-void ui_event_Ingredients(lv_event_t * e);
-extern lv_obj_t * ui_Ingredients;
-extern lv_obj_t * ui_Container4;
+// SCREEN: ui_PreIngredients
+void ui_PreIngredients_screen_init(void);
+extern lv_obj_t * ui_PreIngredients;
+extern lv_obj_t * ui_Container9;
 extern lv_obj_t * ui_WaterCmp;
 extern lv_obj_t * ui_RoomTempCmp;
+extern lv_obj_t * ui_LeaveningCmp;
+extern lv_obj_t * ui_BtnNext;
+extern lv_obj_t * ui_Label1;
+extern lv_obj_t * ui_BtnPrev;
+extern lv_obj_t * ui_Label14;
+// SCREEN: ui_Ingredients
+void ui_Ingredients_screen_init(void);
+extern lv_obj_t * ui_Ingredients;
+extern lv_obj_t * ui_Container4;
+extern lv_obj_t * ui_PrefWaterCmp;
+extern lv_obj_t * ui_PrefPercCmp;
 extern lv_obj_t * ui_DoughballWeightCmp;
 extern lv_obj_t * ui_DoughballQtyCmp;
-extern lv_obj_t * ui_LeaveningCmp;
-extern lv_obj_t * ui_Panel1;
-extern lv_obj_t * ui_Label1;
+extern lv_obj_t * ui_PanelIngredients;
+extern lv_obj_t * ui_PrefPnl;
+extern lv_obj_t * ui_IngrLbl1;
+extern lv_obj_t * ui_Container10;
+extern lv_obj_t * ui_Label17;
+extern lv_obj_t * ui_FlourB;
+extern lv_obj_t * ui_Label15;
+extern lv_obj_t * ui_Container1;
+extern lv_obj_t * ui_Label16;
+extern lv_obj_t * ui_WaterB;
+extern lv_obj_t * ui_Label18;
+extern lv_obj_t * ui_Container11;
+extern lv_obj_t * ui_Label19;
+extern lv_obj_t * ui_YeastB;
+extern lv_obj_t * ui_Label20;
+extern lv_obj_t * ui_IngrLbl;
 extern lv_obj_t * ui_Container2;
 extern lv_obj_t * ui_Label2;
 extern lv_obj_t * ui_FlourQ;
@@ -58,6 +81,8 @@ extern lv_obj_t * ui_Container7;
 extern lv_obj_t * ui_Label10;
 extern lv_obj_t * ui_OilQ;
 extern lv_obj_t * ui_Label11;
+extern lv_obj_t * ui_BtnPrev2;
+extern lv_obj_t * ui_Label22;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(
@@ -67,9 +92,9 @@ LV_IMG_DECLARE(
 LV_IMG_DECLARE(
     ui_img_3856401_celsius_degrees_temperature_thermometer_weather_icon_png);    // assets\3856401_celsius_degrees_temperature_thermometer_weather_icon.png
 LV_IMG_DECLARE(
-    ui_img_7450398_kitchen_utensils_scale_appliance_weight_icon_png);    // assets\7450398_kitchen_utensils_scale_appliance_weight_icon.png
-LV_IMG_DECLARE(
     ui_img_2824441_clock_stopwatch_time_timer_icon_png);    // assets\2824441_clock_stopwatch_time_timer_icon.png
+LV_IMG_DECLARE(
+    ui_img_7450398_kitchen_utensils_scale_appliance_weight_icon_png);    // assets\7450398_kitchen_utensils_scale_appliance_weight_icon.png
 
 
 

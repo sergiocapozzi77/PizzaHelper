@@ -18,6 +18,8 @@ static lv_color_t buf[2][screenWidth * 10];
 
 LGFX gfx;
 
+void IngredientsLoaded();
+
 /* Display flushing */
 void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p)
 {
@@ -80,11 +82,34 @@ void ui_event_PizzaMethod(lv_event_t *e)
   Serial.print("Selected method: ");
   Serial.println(recipe.selectedMethod);
 
+  if (recipe.selectedMethod == "Direct")
+  {
+    lv_obj_add_flag(ui_PrefPnl, LV_OBJ_FLAG_HIDDEN);
+  }
+  else
+  {
+    lv_obj_clear_flag(ui_PrefPnl, LV_OBJ_FLAG_HIDDEN);
+  }
+
   if (event_code == LV_EVENT_CLICKED)
   {
-    recipe.IntializeIngredients();
-    _ui_screen_change(&ui_Yeast, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, &ui_Yeast_screen_init);
+    _ui_screen_change(&ui_Yeast, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_Yeast_screen_init);
   }
+}
+
+void ui_event_Next(lv_event_t *e)
+{
+  _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_Ingredients_screen_init);
+}
+
+void ui_event_Prev(lv_event_t *e)
+{
+  _ui_screen_change(&ui_Yeast, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_Yeast_screen_init);
+}
+
+void ui_event_Prev2(lv_event_t *e)
+{
+  _ui_screen_change(&ui_PreIngredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_PreIngredients_screen_init);
 }
 
 void ui_event_PizzaYeast(lv_event_t *e)
@@ -96,7 +121,8 @@ void ui_event_PizzaYeast(lv_event_t *e)
   if (event_code == LV_EVENT_CLICKED)
   {
     recipe.IntializeIngredients();
-    _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, &ui_Ingredients_screen_init);
+    IngredientsLoaded();
+    _ui_screen_change(&ui_PreIngredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, &ui_PreIngredients_screen_init);
   }
 }
 
@@ -128,6 +154,14 @@ void ui_event_SliderChanged(lv_event_t *e)
   else if (component == ui_DoughballQtyCmp)
   {
     recipe.DoughBalls = value;
+  }
+  else if (component == ui_PrefWaterCmp)
+  {
+    recipe.SetPrefWaterPercentage(value);
+  }
+  else if (component == ui_PrefPercCmp)
+  {
+    recipe.SetPrefPercentage(value);
   }
 
   recipe.Recalculate();
@@ -181,27 +215,39 @@ void gui_start()
   lv_obj_add_event_cb(ui_YeastDryPnl, ui_event_PizzaYeast, LV_EVENT_CLICKED, (void *)"Dry");
   lv_obj_add_event_cb(ui_YeastSourdoughPnl, ui_event_PizzaYeast, LV_EVENT_CLICKED, (void *)"Sourdough");
 
-  lv_obj_add_event_cb(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_WaterCmp);
-  lv_obj_add_event_cb(ui_comp_get_child(ui_LeaveningCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_LeaveningCmp);
-  lv_obj_add_event_cb(ui_comp_get_child(ui_RoomTempCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_RoomTempCmp);
-  lv_obj_add_event_cb(ui_comp_get_child(ui_DoughballWeightCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_DoughballWeightCmp);
-  lv_obj_add_event_cb(ui_comp_get_child(ui_DoughballQtyCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_DoughballQtyCmp);
+  lv_obj_add_event_cb(ui_BtnNext, ui_event_Next, LV_EVENT_CLICKED, NULL);
+  lv_obj_add_event_cb(ui_BtnPrev, ui_event_Prev, LV_EVENT_CLICKED, NULL);
+  lv_obj_add_event_cb(ui_BtnPrev2, ui_event_Prev2, LV_EVENT_CLICKED, NULL);
+
+  lv_obj_add_event_cb(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_WaterCmp);
+  lv_obj_add_event_cb(ui_comp_get_child(ui_LeaveningCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_LeaveningCmp);
+  lv_obj_add_event_cb(ui_comp_get_child(ui_RoomTempCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_RoomTempCmp);
+  lv_obj_add_event_cb(ui_comp_get_child(ui_DoughballWeightCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_DoughballWeightCmp);
+  lv_obj_add_event_cb(ui_comp_get_child(ui_DoughballQtyCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_DoughballQtyCmp);
+  lv_obj_add_event_cb(ui_comp_get_child(ui_PrefWaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_PrefWaterCmp);
+  lv_obj_add_event_cb(ui_comp_get_child(ui_PrefPercCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_PrefPercCmp);
 }
 
-void IngredientsLoaded(lv_event_t *e)
+void IngredientsLoaded()
 {
-  lv_slider_set_value(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), recipe.WaterPerc, LV_ANIM_ON);
-  lv_event_send(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_WaterCmp);
+  lv_slider_set_value(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), recipe.WaterPerc, LV_ANIM_ON);
+  lv_event_send(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_WaterCmp);
 
-  lv_slider_set_value(ui_comp_get_child(ui_LeaveningCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), recipe.TotalLeavening, LV_ANIM_ON);
-  lv_event_send(ui_comp_get_child(ui_LeaveningCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_LeaveningCmp);
+  lv_slider_set_value(ui_comp_get_child(ui_LeaveningCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), recipe.TotalLeavening, LV_ANIM_ON);
+  lv_event_send(ui_comp_get_child(ui_LeaveningCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_LeaveningCmp);
 
-  lv_slider_set_value(ui_comp_get_child(ui_RoomTempCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), recipe.RoomTemperature, LV_ANIM_ON);
-  lv_event_send(ui_comp_get_child(ui_RoomTempCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_RoomTempCmp);
+  lv_slider_set_value(ui_comp_get_child(ui_RoomTempCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), recipe.RoomTemperature, LV_ANIM_ON);
+  lv_event_send(ui_comp_get_child(ui_RoomTempCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_RoomTempCmp);
 
-  lv_slider_set_value(ui_comp_get_child(ui_DoughballWeightCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), recipe.BallWeight, LV_ANIM_ON);
-  lv_event_send(ui_comp_get_child(ui_DoughballWeightCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_DoughballWeightCmp);
+  lv_slider_set_value(ui_comp_get_child(ui_DoughballWeightCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), recipe.BallWeight, LV_ANIM_ON);
+  lv_event_send(ui_comp_get_child(ui_DoughballWeightCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_DoughballWeightCmp);
 
-  lv_slider_set_value(ui_comp_get_child(ui_DoughballQtyCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), recipe.DoughBalls, LV_ANIM_ON);
-  lv_event_send(ui_comp_get_child(ui_DoughballQtyCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER9_CONTAINER10_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_DoughballQtyCmp);
+  lv_slider_set_value(ui_comp_get_child(ui_DoughballQtyCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), recipe.DoughBalls, LV_ANIM_ON);
+  lv_event_send(ui_comp_get_child(ui_DoughballQtyCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_DoughballQtyCmp);
+
+  lv_slider_set_value(ui_comp_get_child(ui_PrefWaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), recipe.GetPrefWaterPercentage(), LV_ANIM_ON);
+  lv_event_send(ui_comp_get_child(ui_PrefWaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_PrefWaterCmp);
+
+  lv_slider_set_value(ui_comp_get_child(ui_PrefPercCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), recipe.GetPrefPercentage(), LV_ANIM_ON);
+  lv_event_send(ui_comp_get_child(ui_PrefPercCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_PrefPercCmp);
 }

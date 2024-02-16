@@ -6,6 +6,73 @@
 
 Recipe recipe;
 
+int Recipe::GetPrefWaterPercentage()
+{
+    if (this->selectedMethod == "Direct")
+    {
+        return 0;
+    }
+    else if (this->selectedMethod == "Biga")
+    {
+        return this->BigaWaterPercentage;
+    }
+    else if (this->selectedMethod == "Poolish")
+    {
+        return 50;
+    }
+
+    return 0;
+}
+
+void Recipe::SetPrefWaterPercentage(int value)
+{
+    if (this->selectedMethod == "Direct")
+    {
+        return;
+    }
+    else if (this->selectedMethod == "Biga")
+    {
+        this->BigaWaterPercentage = value;
+    }
+    else if (this->selectedMethod == "Poolish")
+    {
+        return;
+    }
+}
+
+int Recipe::GetPrefPercentage()
+{
+    if (this->selectedMethod == "Direct")
+    {
+        return 0;
+    }
+    else if (this->selectedMethod == "Biga")
+    {
+        return this->BigaPercentage;
+    }
+    else if (this->selectedMethod == "Poolish")
+    {
+        return this->PoolPercentage;
+    }
+    return 0;
+}
+
+void Recipe::SetPrefPercentage(int value)
+{
+    if (this->selectedMethod == "Direct")
+    {
+        return;
+    }
+    else if (this->selectedMethod == "Biga")
+    {
+        this->BigaPercentage = value;
+    }
+    else if (this->selectedMethod == "Poolish")
+    {
+        this->PoolPercentage = value;
+    }
+}
+
 void Recipe::IntializeIngredients()
 {
     TotalLeavening = 8;
@@ -120,6 +187,10 @@ void Recipe::Recalculate()
         this->Salt = x;
         this->Fat = w;
         this->Yeast = 0;
+
+        lv_label_set_text(ui_WaterB, String(WaterBiga).c_str());
+        lv_label_set_text(ui_FlourB, String(FlourBiga).c_str());
+        lv_label_set_text(ui_YeastB, String(YeastBiga).c_str());
     }
     else if (this->selectedMethod == "Poolish")
     {
@@ -131,6 +202,10 @@ void Recipe::Recalculate()
         this->Salt = x;
         this->Fat = w;
         this->Yeast = 0;
+
+        lv_label_set_text(ui_WaterB, String(WaterPool).c_str());
+        lv_label_set_text(ui_FlourB, String(FlourPool).c_str());
+        lv_label_set_text(ui_YeastB, String(YeastPool).c_str());
     }
 
     lv_label_set_text(ui_FlourQ, String(Flour).c_str());
