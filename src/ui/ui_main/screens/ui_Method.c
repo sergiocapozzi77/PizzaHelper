@@ -102,7 +102,7 @@ void ui_Method_screen_init(void)
     lv_obj_clear_flag(ui_BigaPolishPnl, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_PizzaTypeImg8 = lv_img_create(ui_BigaPolishPnl);
-    lv_img_set_src(ui_PizzaTypeImg8, &ui_img_poolish_png);
+    lv_img_set_src(ui_PizzaTypeImg8, &ui_img_bigapool_png);
     lv_obj_set_width(ui_PizzaTypeImg8, 100);
     lv_obj_set_height(ui_PizzaTypeImg8, 98);
     lv_obj_set_align(ui_PizzaTypeImg8, LV_ALIGN_CENTER);
@@ -114,5 +114,22 @@ void ui_Method_screen_init(void)
     lv_obj_set_height(ui_PizzaTypeLbl8, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_PizzaTypeLbl8, LV_ALIGN_CENTER);
     lv_label_set_text(ui_PizzaTypeLbl8, "Poolish+Biga");
+
+    ui_BtnPrev = lv_btn_create(ui_Method);
+    lv_obj_set_width(ui_BtnPrev, 100);
+    lv_obj_set_height(ui_BtnPrev, 50);
+    lv_obj_set_x(ui_BtnPrev, -340);
+    lv_obj_set_y(ui_BtnPrev, 204);
+    lv_obj_set_align(ui_BtnPrev, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_BtnPrev, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_BtnPrev, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_PrevLbl = lv_label_create(ui_BtnPrev);
+    lv_obj_set_width(ui_PrevLbl, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_PrevLbl, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_PrevLbl, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_PrevLbl, "PREV");
+
+    lv_obj_add_event_cb(ui_BtnPrev, ui_event_BtnPrev, LV_EVENT_ALL, NULL);
 
 }

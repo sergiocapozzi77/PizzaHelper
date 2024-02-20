@@ -14,7 +14,7 @@ int Recipe::GetPrefWaterPercentage()
     }
     else if (this->selectedMethod == "Biga")
     {
-        return this->BigaWaterPercentage;
+        return this->BigaWaterPerc;
     }
     else if (this->selectedMethod == "Poolish")
     {
@@ -32,7 +32,7 @@ void Recipe::SetPrefWaterPercentage(int value)
     }
     else if (this->selectedMethod == "Biga")
     {
-        this->BigaWaterPercentage = value;
+        this->BigaWaterPerc = value;
     }
     else if (this->selectedMethod == "Poolish")
     {
@@ -73,15 +73,51 @@ void Recipe::SetPrefPercentage(int value)
     }
 }
 
+void Recipe::SaveToPreferences()
+{
+    preferences.putString("selectedType", selectedType.c_str());
+    preferences.putString("selectedMethod", selectedMethod.c_str());
+    preferences.putString("selectedYeast", selectedYeast.c_str());
+
+    preferences.putInt("WaterPerc", WaterPerc);
+    preferences.putInt("TotalLeavening", TotalLeavening);
+    preferences.putInt("FridgeLeavening", FridgeLeavening);
+
+    preferences.putFloat("SaltPerc", SaltPerc);
+    preferences.putFloat("FatPerc", FatPerc);
+
+    preferences.putInt("DoughBalls", DoughBalls);
+    preferences.putInt("BallWeight", BallWeight);
+    preferences.putInt("RoomTemperature", RoomTemperature);
+
+    preferences.putBool("IsTray", IsTray);
+    preferences.putBool("UseTheFridge", UseTheFridge);
+
+    preferences.putInt("BigaPercentage", BigaPercentage);
+    preferences.putInt("BigaWaterPerc", BigaWaterPerc);
+    preferences.putInt("PoolPercentage", PoolPercentage);
+
+    Serial.print("Save BigaWaterPerc: ");
+    Serial.println(BigaWaterPerc);
+}
+
 void Recipe::IntializeIngredients()
 {
-    TotalLeavening = 8;
-    FridgeLeavening = 0;
-    SaltPerc = 2.8;
-    FatPerc = 2.7;
-    DoughBalls = 4;
-    BallWeight = 260;
-    RoomTemperature = 21;
+    UseTheFridge = preferences.getBool("UseTheFridge", false);
+    TotalLeavening = preferences.getInt("TotalLeavening", 8);
+    FridgeLeavening = preferences.getInt("FridgeLeavening", 0);
+    SaltPerc = preferences.getFloat("SaltPerc", 2.8);
+    FatPerc = preferences.getFloat("FatPerc", 2.7);
+    DoughBalls = preferences.getInt("DoughBalls", 1);
+    BallWeight = preferences.getInt("BallWeight", 270);
+    RoomTemperature = preferences.getInt("RoomTemperature", 21);
+
+    BigaPercentage = preferences.getInt("BigaPercentage", 60);
+    BigaWaterPerc = preferences.getInt("BigaWaterPerc", 45);
+    Serial.print("Init BigaWaterPercentage: ");
+    Serial.println(BigaWaterPerc);
+
+    PoolPercentage = preferences.getInt("PoolPercentage", 60);
 
     if (this->selectedType == "Round")
     {
@@ -94,23 +130,23 @@ void Recipe::IntializeIngredients()
 
     if (this->selectedType == "Round")
     {
-        WaterPerc = 65;
+        WaterPerc = preferences.getInt("WaterPerc", 65);
     }
     else if (this->selectedType == "Grandma")
     {
-        WaterPerc = 75;
+        WaterPerc = preferences.getInt("WaterPerc", 75);
     }
     else if (this->selectedType == "Detroit")
     {
-        WaterPerc = 75;
+        WaterPerc = preferences.getInt("WaterPerc", 75);
     }
     else if (this->selectedType == "Bread")
     {
-        WaterPerc = 70;
+        WaterPerc = preferences.getInt("WaterPerc", 70);
     }
     else if (this->selectedType == "Focaccia")
     {
-        WaterPerc = 75;
+        WaterPerc = preferences.getInt("WaterPerc", 75);
     }
 
     Recalculate();
@@ -132,6 +168,11 @@ void Recipe::Recalculate()
 
     Serial.print("Temperature: ");
     Serial.println(RoomTemperature);
+
+    if (UseTheFridge == true && this->TotalLeavening > 4)
+    {
+        this->FridgeLeavening = this->TotalLeavening - 4;
+    }
 
     int i = this->TotalLeavening;
     int s = this->FridgeLeavening;
@@ -180,7 +221,7 @@ void Recipe::Recalculate()
     else if (this->selectedMethod == "Biga")
     {
         this->FlourBiga = k * (this->BigaPercentage / 100.0F);
-        this->WaterBiga = this->FlourBiga * this->BigaWaterPercentage / 100.0F;
+        this->WaterBiga = this->FlourBiga * this->BigaWaterPerc / 100.0F;
         this->Water = S - this->WaterBiga;
         this->YeastBiga = AdjustYeast(this->FlourBiga * 0.01);
         this->Flour = k - this->FlourBiga;
@@ -207,6 +248,8 @@ void Recipe::Recalculate()
         lv_label_set_text(ui_FlourB, String(FlourPool).c_str());
         lv_label_set_text(ui_YeastB, String(YeastPool).c_str());
     }
+
+    SaveToPreferences();
 
     lv_label_set_text(ui_FlourQ, String(Flour).c_str());
     lv_label_set_text(ui_WaterQ, String(Water).c_str());

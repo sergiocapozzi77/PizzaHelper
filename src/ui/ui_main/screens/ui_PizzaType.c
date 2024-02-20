@@ -15,7 +15,7 @@ void ui_PizzaType_screen_init(void)
     lv_obj_set_height(ui_MainContainer, lv_pct(100));
     lv_obj_set_align(ui_MainContainer, LV_ALIGN_CENTER);
     lv_obj_set_flex_flow(ui_MainContainer, LV_FLEX_FLOW_ROW_WRAP);
-    lv_obj_set_flex_align(ui_MainContainer, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+    lv_obj_set_flex_align(ui_MainContainer, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_clear_flag(ui_MainContainer, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_RoundPnl = lv_obj_create(ui_MainContainer);
@@ -77,7 +77,7 @@ void ui_PizzaType_screen_init(void)
     lv_obj_clear_flag(ui_FocacciaPnl, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_PizzaTypeImg2 = lv_img_create(ui_FocacciaPnl);
-    lv_img_set_src(ui_PizzaTypeImg2, &ui_img_grandma_png);
+    lv_img_set_src(ui_PizzaTypeImg2, &ui_img_focaccia_png);
     lv_obj_set_width(ui_PizzaTypeImg2, 100);
     lv_obj_set_height(ui_PizzaTypeImg2, 98);
     lv_obj_set_align(ui_PizzaTypeImg2, LV_ALIGN_CENTER);
@@ -101,7 +101,7 @@ void ui_PizzaType_screen_init(void)
     lv_obj_clear_flag(ui_DetroitPnl, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_PizzaTypeImg3 = lv_img_create(ui_DetroitPnl);
-    lv_img_set_src(ui_PizzaTypeImg3, &ui_img_grandma_png);
+    lv_img_set_src(ui_PizzaTypeImg3, &ui_img_detroit_png);
     lv_obj_set_width(ui_PizzaTypeImg3, 100);
     lv_obj_set_height(ui_PizzaTypeImg3, 98);
     lv_obj_set_align(ui_PizzaTypeImg3, LV_ALIGN_CENTER);
@@ -125,7 +125,7 @@ void ui_PizzaType_screen_init(void)
     lv_obj_clear_flag(ui_BreadPnl, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_PizzaTypeImg4 = lv_img_create(ui_BreadPnl);
-    lv_img_set_src(ui_PizzaTypeImg4, &ui_img_grandma_png);
+    lv_img_set_src(ui_PizzaTypeImg4, &ui_img_bread_png);
     lv_obj_set_width(ui_PizzaTypeImg4, 100);
     lv_obj_set_height(ui_PizzaTypeImg4, 98);
     lv_obj_set_align(ui_PizzaTypeImg4, LV_ALIGN_CENTER);

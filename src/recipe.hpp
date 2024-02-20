@@ -22,6 +22,10 @@ public:
     int BallWeight;
     int RoomTemperature;
     bool IsTray;
+    bool UseTheFridge;
+    int BigaPercentage;
+    int BigaWaterPerc;
+    int PoolPercentage;
 
     int Flour;
     int Water;
@@ -29,14 +33,9 @@ public:
     int Salt;
     int Fat;
 
-    int BigaPercentage;
-    int BigaWaterPercentage;
-
     int FlourBiga;
     int WaterBiga;
     float YeastBiga;
-
-    int PoolPercentage;
 
     int FlourPool;
     int WaterPool;
@@ -50,6 +49,8 @@ public:
 
     void SetPrefPercentage(int value);
     void SetPrefWaterPercentage(int value);
+
+    void SaveToPreferences();
 };
 
 extern Recipe recipe;

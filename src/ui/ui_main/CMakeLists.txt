@@ -9,9 +9,13 @@ SET(SOURCES screens/ui_PizzaType.c
     ui_events.c
     images/ui_img_pizza_png.c
     images/ui_img_grandma_png.c
+    images/ui_img_focaccia_png.c
+    images/ui_img_detroit_png.c
+    images/ui_img_bread_png.c
     images/ui_img_direct_png.c
     images/ui_img_biga_png.c
     images/ui_img_poolish_png.c
+    images/ui_img_bigapool_png.c
     images/ui_img_fresh_png.c
     images/ui_img_dry_png.c
     images/ui_img_sourdough_png.c)

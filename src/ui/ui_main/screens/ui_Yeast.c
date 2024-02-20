@@ -91,4 +91,21 @@ void ui_Yeast_screen_init(void)
     lv_obj_set_align(ui_YeastLbl2, LV_ALIGN_CENTER);
     lv_label_set_text(ui_YeastLbl2, "Sourdough");
 
+    ui_BtnPrev2 = lv_btn_create(ui_Yeast);
+    lv_obj_set_width(ui_BtnPrev2, 100);
+    lv_obj_set_height(ui_BtnPrev2, 50);
+    lv_obj_set_x(ui_BtnPrev2, -340);
+    lv_obj_set_y(ui_BtnPrev2, 204);
+    lv_obj_set_align(ui_BtnPrev2, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_BtnPrev2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_BtnPrev2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_PrevLbl2 = lv_label_create(ui_BtnPrev2);
+    lv_obj_set_width(ui_PrevLbl2, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_PrevLbl2, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_PrevLbl2, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_PrevLbl2, "PREV");
+
+    lv_obj_add_event_cb(ui_BtnPrev2, ui_event_BtnPrev2, LV_EVENT_ALL, NULL);
+
 }

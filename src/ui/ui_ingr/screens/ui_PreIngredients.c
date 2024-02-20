@@ -29,7 +29,7 @@ void ui_PreIngredients_screen_init(void)
 
 
     lv_label_set_text(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP),
-                      "Water");
+                      "Water percentage of the final dough");
 
 
 
@@ -51,7 +51,7 @@ void ui_PreIngredients_screen_init(void)
 
 
     lv_label_set_text(ui_comp_get_child(ui_RoomTempCmp,
-                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Temperature");
+                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Temperature of your room");
 
 
 
@@ -73,7 +73,7 @@ void ui_PreIngredients_screen_init(void)
 
 
     lv_label_set_text(ui_comp_get_child(ui_LeaveningCmp,
-                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Levening time");
+                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Total leavening time");
 
 
 
@@ -84,6 +84,31 @@ void ui_PreIngredients_screen_init(void)
 
 
 
+
+    ui_Container12 = lv_obj_create(ui_Container9);
+    lv_obj_remove_style_all(ui_Container12);
+    lv_obj_set_width(ui_Container12, 369);
+    lv_obj_set_height(ui_Container12, 49);
+    lv_obj_set_align(ui_Container12, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Container12, LV_FLEX_FLOW_ROW);
+    lv_obj_set_flex_align(ui_Container12, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_END);
+    lv_obj_clear_flag(ui_Container12, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_UseTheFridgeSw = lv_switch_create(ui_Container12);
+    lv_obj_set_width(ui_UseTheFridgeSw, 50);
+    lv_obj_set_height(ui_UseTheFridgeSw, 25);
+    lv_obj_set_align(ui_UseTheFridgeSw, LV_ALIGN_CENTER);
+
+
+    ui_Label21 = lv_label_create(ui_Container12);
+    lv_obj_set_height(ui_Label21, 21);
+    lv_obj_set_width(ui_Label21, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_align(ui_Label21, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label21, "  Use the fridge");
+    lv_obj_set_style_pad_left(ui_Label21, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_Label21, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_Label21, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_Label21, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_BtnNext = lv_btn_create(ui_PreIngredients);
     lv_obj_set_width(ui_BtnNext, 100);

@@ -16,6 +16,8 @@ static const uint16_t screenHeight = 480;
 static lv_disp_draw_buf_t draw_buf;
 static lv_color_t buf[2][screenWidth * 10];
 
+Preferences preferences;
+
 LGFX gfx;
 
 void IngredientsLoaded();
@@ -85,10 +87,28 @@ void ui_event_PizzaMethod(lv_event_t *e)
   if (recipe.selectedMethod == "Direct")
   {
     lv_obj_add_flag(ui_PrefPnl, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_clear_flag(ui_RoomTempCmp, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_clear_flag(ui_LeaveningCmp, LV_OBJ_FLAG_HIDDEN);
   }
   else
   {
     lv_obj_clear_flag(ui_PrefPnl, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_add_flag(ui_RoomTempCmp, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_add_flag(ui_LeaveningCmp, LV_OBJ_FLAG_HIDDEN);
+  }
+
+  if (recipe.selectedMethod == "Poolish")
+  {
+    lv_obj_add_flag(ui_PrefWaterCmp, LV_OBJ_FLAG_HIDDEN);
+  }
+  else if (recipe.selectedMethod == "Biga" || recipe.selectedMethod == "BigaPoolish")
+  {
+    lv_obj_clear_flag(ui_PrefWaterCmp, LV_OBJ_FLAG_HIDDEN);
+  }
+  else // Direct
+  {
+    lv_obj_add_flag(ui_PrefWaterCmp, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_add_flag(ui_PrefPercCmp, LV_OBJ_FLAG_HIDDEN);
   }
 
   if (event_code == LV_EVENT_CLICKED)
@@ -250,4 +270,6 @@ void IngredientsLoaded()
 
   lv_slider_set_value(ui_comp_get_child(ui_PrefPercCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), recipe.GetPrefPercentage(), LV_ANIM_ON);
   lv_event_send(ui_comp_get_child(ui_PrefPercCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_PrefPercCmp);
+
+  recipe.UseTheFridge = lv_obj_has_state(ui_UseTheFridgeSw, LV_STATE_CHECKED);
 }

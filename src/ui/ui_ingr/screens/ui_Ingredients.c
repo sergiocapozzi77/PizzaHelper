@@ -33,7 +33,7 @@ void ui_Ingredients_screen_init(void)
 
 
     lv_label_set_text(ui_comp_get_child(ui_PrefWaterCmp,
-                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Biga water percentage");
+                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Water percentage of the starter");
 
     lv_obj_set_style_pad_left(ui_comp_get_child(ui_PrefWaterCmp,
                                                 UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER), 15, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -62,12 +62,12 @@ void ui_Ingredients_screen_init(void)
 
 
     lv_label_set_text(ui_comp_get_child(ui_PrefPercCmp,
-                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Biga percentage in dough");
+                                        UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTNAMECMP), "Starter percentage in the final dough");
 
 
 
     lv_slider_set_range(ui_comp_get_child(ui_PrefPercCmp,
-                                          UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), 50, 100);
+                                          UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), 20, 100);
 
 
 
@@ -118,7 +118,7 @@ void ui_Ingredients_screen_init(void)
     lv_obj_set_width(ui_PanelIngredients, 357);
     lv_obj_set_height(ui_PanelIngredients, 447);
     lv_obj_set_x(ui_PanelIngredients, 206);
-    lv_obj_set_y(ui_PanelIngredients, -1);
+    lv_obj_set_y(ui_PanelIngredients, -2);
     lv_obj_set_align(ui_PanelIngredients, LV_ALIGN_CENTER);
     lv_obj_set_flex_flow(ui_PanelIngredients, LV_FLEX_FLOW_COLUMN);
     lv_obj_set_flex_align(ui_PanelIngredients, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
@@ -142,7 +142,7 @@ void ui_Ingredients_screen_init(void)
     lv_obj_set_width(ui_IngrLbl1, lv_pct(100));
     lv_obj_set_height(ui_IngrLbl1, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_IngrLbl1, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_IngrLbl1, "INGREDIENTS FOR BIGA");
+    lv_label_set_text(ui_IngrLbl1, "INGREDIENTS FOR THE STARTER");
     lv_obj_set_style_text_align(ui_IngrLbl1, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui_IngrLbl1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui_IngrLbl1, 0, LV_PART_MAIN | LV_STATE_DEFAULT);

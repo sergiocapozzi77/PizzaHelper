@@ -3,6 +3,7 @@
 #include <lvgl.h>
 #include <WiFi.h>
 #include "gui/gui.h"
+#include <Preferences.h>
 
 #include "time.h"
 
@@ -56,6 +57,7 @@ void setup()
 
   Serial.println(F("Tft starting"));
 
+  preferences.begin("pizza-helper");
   gui_start();
 
   WiFi.begin(ssid, password);
