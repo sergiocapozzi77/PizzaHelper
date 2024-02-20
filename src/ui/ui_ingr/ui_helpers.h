@@ -68,7 +68,6 @@ extern "C"
     void _ui_opacity_set(lv_obj_t *target, int val);
 
     /** Describes an animation*/
-
     void _ui_anim_callback_free_user_data(lv_anim_t *a);
 
     void _ui_anim_callback_set_x(lv_anim_t *a, int32_t v);

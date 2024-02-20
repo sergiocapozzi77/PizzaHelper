@@ -33,7 +33,8 @@ extern lv_obj_t * ui_Container9;
 extern lv_obj_t * ui_WaterCmp;
 extern lv_obj_t * ui_RoomTempCmp;
 extern lv_obj_t * ui_LeaveningCmp;
-extern lv_obj_t * ui_Container12;
+extern lv_obj_t * ui_Container8;
+extern lv_obj_t * ui_Image1;
 extern lv_obj_t * ui_UseTheFridgeSw;
 extern lv_obj_t * ui_Label21;
 extern lv_obj_t * ui_BtnNext;
@@ -63,6 +64,7 @@ extern lv_obj_t * ui_Container11;
 extern lv_obj_t * ui_Label19;
 extern lv_obj_t * ui_YeastB;
 extern lv_obj_t * ui_Label20;
+extern lv_obj_t * ui_IngrPanel;
 extern lv_obj_t * ui_IngrLbl;
 extern lv_obj_t * ui_Container2;
 extern lv_obj_t * ui_Label2;
@@ -72,7 +74,7 @@ extern lv_obj_t * ui_Container3;
 extern lv_obj_t * ui_Label7;
 extern lv_obj_t * ui_WaterQ;
 extern lv_obj_t * ui_Label8;
-extern lv_obj_t * ui_Container8;
+extern lv_obj_t * ui_DoughYeast;
 extern lv_obj_t * ui_Label4;
 extern lv_obj_t * ui_YeastQ;
 extern lv_obj_t * ui_Label5;
@@ -86,6 +88,8 @@ extern lv_obj_t * ui_OilQ;
 extern lv_obj_t * ui_Label11;
 extern lv_obj_t * ui_BtnPrev2;
 extern lv_obj_t * ui_Label22;
+extern lv_obj_t * ui_BtnNextIngredients;
+extern lv_obj_t * ui_Label24;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(
@@ -96,6 +100,8 @@ LV_IMG_DECLARE(
     ui_img_3856401_celsius_degrees_temperature_thermometer_weather_icon_png);    // assets\3856401_celsius_degrees_temperature_thermometer_weather_icon.png
 LV_IMG_DECLARE(
     ui_img_2824441_clock_stopwatch_time_timer_icon_png);    // assets\2824441_clock_stopwatch_time_timer_icon.png
+LV_IMG_DECLARE(
+    ui_img_10673486_fridge_kitchen_refrigerator_food_and_icon_png);    // assets\10673486_fridge_kitchen_refrigerator_food_and_icon.png
 LV_IMG_DECLARE(
     ui_img_7450398_kitchen_utensils_scale_appliance_weight_icon_png);    // assets\7450398_kitchen_utensils_scale_appliance_weight_icon.png
 

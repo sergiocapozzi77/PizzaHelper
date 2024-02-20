@@ -84,6 +84,15 @@ extern lv_obj_t * ui_PreIngredients;
 // SCREEN: ui_Ingredients
 void ui_Ingredients_screen_init(void);
 extern lv_obj_t * ui_Ingredients;
+// SCREEN: ui_Timeline
+void ui_Timeline_screen_init(void);
+extern lv_obj_t * ui_Timeline;
+void ui_event_BtnPrev3(lv_event_t * e);
+extern lv_obj_t * ui_BtnPrev3;
+extern lv_obj_t * ui_PrevLbl3;
+extern lv_obj_t * ui_PanelTimeline;
+extern lv_obj_t * ui_TimelineCnt;
+extern lv_obj_t * ui_Checkbox1;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_pizza_png);    // assets\pizza.png

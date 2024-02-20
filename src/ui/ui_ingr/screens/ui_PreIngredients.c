@@ -85,27 +85,37 @@ void ui_PreIngredients_screen_init(void)
 
 
 
-    ui_Container12 = lv_obj_create(ui_Container9);
-    lv_obj_remove_style_all(ui_Container12);
-    lv_obj_set_width(ui_Container12, 369);
-    lv_obj_set_height(ui_Container12, 49);
-    lv_obj_set_align(ui_Container12, LV_ALIGN_CENTER);
-    lv_obj_set_flex_flow(ui_Container12, LV_FLEX_FLOW_ROW);
-    lv_obj_set_flex_align(ui_Container12, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_END);
-    lv_obj_clear_flag(ui_Container12, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_Container8 = lv_obj_create(ui_Container9);
+    lv_obj_remove_style_all(ui_Container8);
+    lv_obj_set_width(ui_Container8, 382);
+    lv_obj_set_height(ui_Container8, 69);
+    lv_obj_set_align(ui_Container8, LV_ALIGN_CENTER);
+    lv_obj_clear_flag(ui_Container8, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_UseTheFridgeSw = lv_switch_create(ui_Container12);
+    ui_Image1 = lv_img_create(ui_Container8);
+    lv_img_set_src(ui_Image1, &ui_img_10673486_fridge_kitchen_refrigerator_food_and_icon_png);
+    lv_obj_set_width(ui_Image1, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Image1, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Image1, LV_ALIGN_LEFT_MID);
+    lv_obj_add_flag(ui_Image1, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_Image1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_UseTheFridgeSw = lv_switch_create(ui_Container8);
     lv_obj_set_width(ui_UseTheFridgeSw, 50);
     lv_obj_set_height(ui_UseTheFridgeSw, 25);
+    lv_obj_set_x(ui_UseTheFridgeSw, -102);
+    lv_obj_set_y(ui_UseTheFridgeSw, -2);
     lv_obj_set_align(ui_UseTheFridgeSw, LV_ALIGN_CENTER);
 
 
-    ui_Label21 = lv_label_create(ui_Container12);
-    lv_obj_set_height(ui_Label21, 21);
+    ui_Label21 = lv_label_create(ui_Container8);
+    lv_obj_set_height(ui_Label21, 22);
     lv_obj_set_width(ui_Label21, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_x(ui_Label21, -12);
+    lv_obj_set_y(ui_Label21, -2);
     lv_obj_set_align(ui_Label21, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label21, "  Use the fridge");
-    lv_obj_set_style_pad_left(ui_Label21, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_label_set_text(ui_Label21, "Use the fridge");
+    lv_obj_set_style_pad_left(ui_Label21, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui_Label21, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui_Label21, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui_Label21, 0, LV_PART_MAIN | LV_STATE_DEFAULT);

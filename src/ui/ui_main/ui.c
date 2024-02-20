@@ -77,6 +77,17 @@ lv_obj_t * ui_PreIngredients;
 // SCREEN: ui_Ingredients
 void ui_Ingredients_screen_init(void);
 lv_obj_t * ui_Ingredients;
+
+
+// SCREEN: ui_Timeline
+void ui_Timeline_screen_init(void);
+lv_obj_t * ui_Timeline;
+void ui_event_BtnPrev3(lv_event_t * e);
+lv_obj_t * ui_BtnPrev3;
+lv_obj_t * ui_PrevLbl3;
+lv_obj_t * ui_PanelTimeline;
+lv_obj_t * ui_TimelineCnt;
+lv_obj_t * ui_Checkbox1;
 lv_obj_t * ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -106,6 +117,14 @@ void ui_event_BtnPrev2(lv_event_t * e)
         _ui_screen_change(&ui_Method, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 300, 0, &ui_Method_screen_init);
     }
 }
+void ui_event_BtnPrev3(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_CLICKED) {
+        _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 300, 0, &ui_Ingredients_screen_init);
+    }
+}
 
 ///////////////////// SCREENS ////////////////////
 
@@ -120,6 +139,7 @@ void ui_init(void)
     ui_Yeast_screen_init();
     ui_PreIngredients_screen_init();
     ui_Ingredients_screen_init();
+    ui_Timeline_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_PizzaType);
 }

@@ -132,6 +132,11 @@ void ui_event_Prev2(lv_event_t *e)
   _ui_screen_change(&ui_PreIngredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_PreIngredients_screen_init);
 }
 
+void ui_event_BtnNextIngredients(lv_event_t *e)
+{
+  _ui_screen_change(&ui_Timeline, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_Timeline_screen_init);
+}
+
 void ui_event_PizzaYeast(lv_event_t *e)
 {
   lv_event_code_t event_code = lv_event_get_code(e);
@@ -153,35 +158,40 @@ void ui_event_SliderChanged(lv_event_t *e)
 
   int value = lv_slider_get_value(target);
 
-  lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), String(value).c_str());
-
   if (component == ui_WaterCmp)
   {
     recipe.WaterPerc = value;
+    lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "%").c_str());
   }
   else if (component == ui_LeaveningCmp)
   {
     recipe.TotalLeavening = value;
+    lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "hrs").c_str());
   }
   else if (component == ui_RoomTempCmp)
   {
     recipe.RoomTemperature = value;
+    lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "C").c_str());
   }
   else if (component == ui_DoughballWeightCmp)
   {
     recipe.BallWeight = value;
+    lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "gr").c_str());
   }
   else if (component == ui_DoughballQtyCmp)
   {
     recipe.DoughBalls = value;
+    lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), String(value).c_str());
   }
   else if (component == ui_PrefWaterCmp)
   {
     recipe.SetPrefWaterPercentage(value);
+    lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "%").c_str());
   }
   else if (component == ui_PrefPercCmp)
   {
     recipe.SetPrefPercentage(value);
+    lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "%").c_str());
   }
 
   recipe.Recalculate();
@@ -238,6 +248,7 @@ void gui_start()
   lv_obj_add_event_cb(ui_BtnNext, ui_event_Next, LV_EVENT_CLICKED, NULL);
   lv_obj_add_event_cb(ui_BtnPrev, ui_event_Prev, LV_EVENT_CLICKED, NULL);
   lv_obj_add_event_cb(ui_BtnPrev2, ui_event_Prev2, LV_EVENT_CLICKED, NULL);
+  lv_obj_add_event_cb(ui_BtnNextIngredients, ui_event_BtnNextIngredients, LV_EVENT_CLICKED, NULL);
 
   lv_obj_add_event_cb(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_WaterCmp);
   lv_obj_add_event_cb(ui_comp_get_child(ui_LeaveningCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_LeaveningCmp);
