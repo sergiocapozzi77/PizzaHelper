@@ -1,8 +1,10 @@
 
 #include "recipe.hpp"
 
-#include "gui/gui.h"
 #include "ui/ui.h"
+#include "gui/gui.h"
+
+#include "time.h"
 
 Recipe recipe;
 
@@ -99,6 +101,30 @@ void Recipe::SaveToPreferences()
 
     Serial.print("Save BigaWaterPerc: ");
     Serial.println(BigaWaterPerc);
+}
+
+void Recipe::AddTimeline()
+{
+    struct tm timeinfo;
+    if (!getLocalTime(&timeinfo))
+    {
+        Serial.println("Failed to obtain time");
+        return;
+    }
+
+    time_t epoch = mktime(&timeinfo);
+
+    char buf[100];
+
+    if (this->selectedMethod == "Direct")
+    {
+        strftime(buf, 50, "Today, %H:%M:%S: Start kneading the dough", &timeinfo);
+        addTimeline(buf);
+
+        time_t nowPlus45 = epoch + 45 * 60;
+        strftime(buf, 50, "Today, %H:%M:%S: First fold", localtime(&nowPlus45));
+        addTimeline(buf);
+    }
 }
 
 void Recipe::IntializeIngredients()

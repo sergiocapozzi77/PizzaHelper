@@ -51,6 +51,7 @@ public:
     void SetPrefWaterPercentage(int value);
 
     void SaveToPreferences();
+    void AddTimeline();
 };
 
 extern Recipe recipe;

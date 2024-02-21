@@ -22,6 +22,28 @@ LGFX gfx;
 
 void IngredientsLoaded();
 
+lv_obj_t *addTimeline(const char *text)
+{
+
+  lv_obj_t *ui_TimelineCnt = lv_obj_create(ui_PanelTimeline);
+  lv_obj_remove_style_all(ui_TimelineCnt);
+  lv_obj_set_height(ui_TimelineCnt, 40);
+  lv_obj_set_width(ui_TimelineCnt, lv_pct(100));
+  lv_obj_set_align(ui_TimelineCnt, LV_ALIGN_CENTER);
+  lv_obj_set_flex_flow(ui_TimelineCnt, LV_FLEX_FLOW_ROW);
+  lv_obj_set_flex_align(ui_TimelineCnt, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER);
+  lv_obj_clear_flag(ui_TimelineCnt, LV_OBJ_FLAG_SCROLLABLE); /// Flags
+
+  lv_obj_t *ui_Checkbox1 = lv_checkbox_create(ui_TimelineCnt);
+  lv_checkbox_set_text(ui_Checkbox1, text);
+  lv_obj_set_width(ui_Checkbox1, lv_pct(100));
+  lv_obj_set_height(ui_Checkbox1, LV_SIZE_CONTENT); /// 1
+  lv_obj_set_align(ui_Checkbox1, LV_ALIGN_CENTER);
+  lv_obj_add_flag(ui_Checkbox1, LV_OBJ_FLAG_SCROLL_ON_FOCUS); /// Flags
+
+  return ui_TimelineCnt;
+}
+
 /* Display flushing */
 void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p)
 {
@@ -135,6 +157,7 @@ void ui_event_Prev2(lv_event_t *e)
 void ui_event_BtnNextIngredients(lv_event_t *e)
 {
   _ui_screen_change(&ui_Timeline, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_Timeline_screen_init);
+  recipe.AddTimeline();
 }
 
 void ui_event_PizzaYeast(lv_event_t *e)

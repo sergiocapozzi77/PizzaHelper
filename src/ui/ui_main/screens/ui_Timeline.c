@@ -45,6 +45,7 @@ void ui_Timeline_screen_init(void)
     lv_obj_clear_flag(ui_TimelineCnt, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_Checkbox1 = lv_checkbox_create(ui_TimelineCnt);
+    lv_checkbox_set_text(ui_Checkbox1, "test");
     lv_obj_set_width(ui_Checkbox1, lv_pct(100));
     lv_obj_set_height(ui_Checkbox1, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_Checkbox1, LV_ALIGN_CENTER);
