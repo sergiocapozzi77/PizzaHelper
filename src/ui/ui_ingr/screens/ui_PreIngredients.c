@@ -120,6 +120,26 @@ void ui_PreIngredients_screen_init(void)
     lv_obj_set_style_pad_top(ui_Label21, 3, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui_Label21, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    ui_StarterReadyLbl = lv_label_create(ui_Container9);
+    lv_obj_set_height(ui_StarterReadyLbl, 31);
+    lv_obj_set_width(ui_StarterReadyLbl, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_align(ui_StarterReadyLbl, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_StarterReadyLbl, "Biga ready at: ");
+    lv_obj_set_style_pad_left(ui_StarterReadyLbl, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_StarterReadyLbl, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_StarterReadyLbl, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_StarterReadyLbl, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_PizzaReadyLbl = lv_label_create(ui_Container9);
+    lv_obj_set_height(ui_PizzaReadyLbl, 31);
+    lv_obj_set_width(ui_PizzaReadyLbl, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_align(ui_PizzaReadyLbl, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_PizzaReadyLbl, "Pizza ready to bake at: ");
+    lv_obj_set_style_pad_left(ui_PizzaReadyLbl, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui_PizzaReadyLbl, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui_PizzaReadyLbl, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui_PizzaReadyLbl, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+
     ui_BtnNext = lv_btn_create(ui_PreIngredients);
     lv_obj_set_width(ui_BtnNext, 100);
     lv_obj_set_height(ui_BtnNext, 50);

@@ -91,8 +91,12 @@ void ui_event_BtnPrev3(lv_event_t * e);
 extern lv_obj_t * ui_BtnPrev3;
 extern lv_obj_t * ui_PrevLbl3;
 extern lv_obj_t * ui_PanelTimeline;
+// SCREEN: ui_Components
+void ui_Components_screen_init(void);
+extern lv_obj_t * ui_Components;
+extern lv_obj_t * ui_PanelTimeline2;
 extern lv_obj_t * ui_TimelineCnt;
-extern lv_obj_t * ui_Checkbox1;
+extern lv_obj_t * ui_TimelineCbx;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_pizza_png);    // assets\pizza.png

@@ -37,6 +37,8 @@ extern lv_obj_t * ui_Container8;
 extern lv_obj_t * ui_Image1;
 extern lv_obj_t * ui_UseTheFridgeSw;
 extern lv_obj_t * ui_Label21;
+extern lv_obj_t * ui_StarterReadyLbl;
+extern lv_obj_t * ui_PizzaReadyLbl;
 extern lv_obj_t * ui_BtnNext;
 extern lv_obj_t * ui_Label1;
 extern lv_obj_t * ui_BtnPrev;

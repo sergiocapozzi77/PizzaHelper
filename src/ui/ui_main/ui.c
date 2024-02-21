@@ -80,8 +80,13 @@ void ui_event_BtnPrev3(lv_event_t *e);
 lv_obj_t *ui_BtnPrev3;
 lv_obj_t *ui_PrevLbl3;
 lv_obj_t *ui_PanelTimeline;
+
+// SCREEN: ui_Components
+void ui_Components_screen_init(void);
+lv_obj_t *ui_Components;
+lv_obj_t *ui_PanelTimeline2;
 lv_obj_t *ui_TimelineCnt;
-lv_obj_t *ui_Checkbox1;
+lv_obj_t *ui_TimelineCbx;
 lv_obj_t *ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -124,9 +129,7 @@ void ui_event_BtnPrev3(lv_event_t *e)
 }
 
 ///////////////////// SCREENS ////////////////////
-
 uint32_t LV_EVENT_GET_COMP_CHILD;
-
 void ui_init(void)
 {
     LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
@@ -141,6 +144,7 @@ void ui_init(void)
     ui_PreIngredients_screen_init();
     ui_Ingredients_screen_init();
     ui_Timeline_screen_init();
+    ui_Components_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_PizzaType);
 }

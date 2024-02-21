@@ -33,23 +33,6 @@ void ui_Timeline_screen_init(void)
     lv_obj_set_align(ui_PanelTimeline, LV_ALIGN_CENTER);
     lv_obj_set_flex_flow(ui_PanelTimeline, LV_FLEX_FLOW_COLUMN);
     lv_obj_set_flex_align(ui_PanelTimeline, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
-    lv_obj_clear_flag(ui_PanelTimeline, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
-    ui_TimelineCnt = lv_obj_create(ui_PanelTimeline);
-    lv_obj_remove_style_all(ui_TimelineCnt);
-    lv_obj_set_height(ui_TimelineCnt, 40);
-    lv_obj_set_width(ui_TimelineCnt, lv_pct(100));
-    lv_obj_set_align(ui_TimelineCnt, LV_ALIGN_CENTER);
-    lv_obj_set_flex_flow(ui_TimelineCnt, LV_FLEX_FLOW_ROW);
-    lv_obj_set_flex_align(ui_TimelineCnt, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER);
-    lv_obj_clear_flag(ui_TimelineCnt, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
-    ui_Checkbox1 = lv_checkbox_create(ui_TimelineCnt);
-    lv_checkbox_set_text(ui_Checkbox1, "test");
-    lv_obj_set_width(ui_Checkbox1, lv_pct(100));
-    lv_obj_set_height(ui_Checkbox1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_align(ui_Checkbox1, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_Checkbox1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
 
     lv_obj_add_event_cb(ui_BtnPrev3, ui_event_BtnPrev3, LV_EVENT_ALL, NULL);
 

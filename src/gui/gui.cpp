@@ -10,6 +10,8 @@
 
 static const char *TAG = "gui";
 
+struct tm now;
+time_t epochNow;
 static const uint16_t screenWidth = 800;
 static const uint16_t screenHeight = 480;
 
@@ -92,7 +94,7 @@ void ui_event_PizzaType(lv_event_t *e)
   recipe.selectedType = String((char *)lv_event_get_user_data(e));
   if (event_code == LV_EVENT_CLICKED)
   {
-    _ui_screen_change(&ui_Method, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, &ui_Method_screen_init);
+    _ui_screen_change(&ui_Method, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, &ui_Method_screen_init);
   }
 }
 
@@ -109,13 +111,11 @@ void ui_event_PizzaMethod(lv_event_t *e)
   if (recipe.selectedMethod == "Direct")
   {
     lv_obj_add_flag(ui_PrefPnl, LV_OBJ_FLAG_HIDDEN);
-    lv_obj_clear_flag(ui_RoomTempCmp, LV_OBJ_FLAG_HIDDEN);
     lv_obj_clear_flag(ui_LeaveningCmp, LV_OBJ_FLAG_HIDDEN);
   }
   else
   {
     lv_obj_clear_flag(ui_PrefPnl, LV_OBJ_FLAG_HIDDEN);
-    lv_obj_add_flag(ui_RoomTempCmp, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(ui_LeaveningCmp, LV_OBJ_FLAG_HIDDEN);
   }
 
@@ -135,28 +135,37 @@ void ui_event_PizzaMethod(lv_event_t *e)
 
   if (event_code == LV_EVENT_CLICKED)
   {
-    _ui_screen_change(&ui_Yeast, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_Yeast_screen_init);
+    _ui_screen_change(&ui_Yeast, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, &ui_Yeast_screen_init);
   }
 }
 
 void ui_event_Next(lv_event_t *e)
 {
-  _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_Ingredients_screen_init);
+  _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, &ui_Ingredients_screen_init);
 }
 
 void ui_event_Prev(lv_event_t *e)
 {
-  _ui_screen_change(&ui_Yeast, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_Yeast_screen_init);
+  _ui_screen_change(&ui_Yeast, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 200, 0, &ui_Yeast_screen_init);
 }
 
 void ui_event_Prev2(lv_event_t *e)
 {
-  _ui_screen_change(&ui_PreIngredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_PreIngredients_screen_init);
+  _ui_screen_change(&ui_PreIngredients, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 200, 0, &ui_PreIngredients_screen_init);
 }
 
 void ui_event_BtnNextIngredients(lv_event_t *e)
 {
-  _ui_screen_change(&ui_Timeline, LV_SCR_LOAD_ANIM_OVER_LEFT, 300, 0, &ui_Timeline_screen_init);
+  _ui_screen_change(&ui_Timeline, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, &ui_Timeline_screen_init);
+}
+
+void ui_event_UseFridge(lv_event_t *e)
+{
+  recipe.UseTheFridge = lv_obj_has_state(ui_UseTheFridgeSw, LV_STATE_CHECKED);
+}
+
+void ui_event_TimelineScreenLoaded(lv_event_t *e)
+{
   recipe.AddTimeline();
 }
 
@@ -166,11 +175,20 @@ void ui_event_PizzaYeast(lv_event_t *e)
   lv_obj_t *target = lv_event_get_target(e);
 
   recipe.selectedYeast = String((char *)lv_event_get_user_data(e));
+
   if (event_code == LV_EVENT_CLICKED)
   {
     recipe.IntializeIngredients();
     IngredientsLoaded();
-    _ui_screen_change(&ui_PreIngredients, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, &ui_PreIngredients_screen_init);
+
+    if (!getLocalTime(&now))
+    {
+      Serial.println("Failed to obtain time");
+    }
+    epochNow = mktime(&now);
+
+    recipe.UpdateReadyToBakeTime(epochNow);
+    _ui_screen_change(&ui_PreIngredients, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, &ui_PreIngredients_screen_init);
   }
 }
 
@@ -189,11 +207,13 @@ void ui_event_SliderChanged(lv_event_t *e)
   else if (component == ui_LeaveningCmp)
   {
     recipe.TotalLeavening = value;
+    recipe.UpdateReadyToBakeTime(epochNow);
     lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "hrs").c_str());
   }
   else if (component == ui_RoomTempCmp)
   {
     recipe.RoomTemperature = value;
+    recipe.UpdateReadyToBakeTime(epochNow);
     lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "C").c_str());
   }
   else if (component == ui_DoughballWeightCmp)
@@ -273,6 +293,10 @@ void gui_start()
   lv_obj_add_event_cb(ui_BtnPrev2, ui_event_Prev2, LV_EVENT_CLICKED, NULL);
   lv_obj_add_event_cb(ui_BtnNextIngredients, ui_event_BtnNextIngredients, LV_EVENT_CLICKED, NULL);
 
+  lv_obj_add_event_cb(ui_UseTheFridgeSw, ui_event_UseFridge, LV_EVENT_CLICKED, NULL);
+
+  lv_obj_add_event_cb(ui_Timeline, ui_event_TimelineScreenLoaded, LV_EVENT_SCREEN_LOADED, NULL);
+
   lv_obj_add_event_cb(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_WaterCmp);
   lv_obj_add_event_cb(ui_comp_get_child(ui_LeaveningCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_LeaveningCmp);
   lv_obj_add_event_cb(ui_comp_get_child(ui_RoomTempCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_RoomTempCmp);
@@ -305,5 +329,12 @@ void IngredientsLoaded()
   lv_slider_set_value(ui_comp_get_child(ui_PrefPercCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), recipe.GetPrefPercentage(), LV_ANIM_ON);
   lv_event_send(ui_comp_get_child(ui_PrefPercCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), LV_EVENT_VALUE_CHANGED, ui_PrefPercCmp);
 
-  recipe.UseTheFridge = lv_obj_has_state(ui_UseTheFridgeSw, LV_STATE_CHECKED);
+  if (recipe.UseTheFridge)
+  {
+    lv_obj_add_state(ui_UseTheFridgeSw, LV_STATE_CHECKED);
+  }
+  else
+  {
+    lv_obj_clear_state(ui_UseTheFridgeSw, LV_STATE_CHECKED);
+  }
 }

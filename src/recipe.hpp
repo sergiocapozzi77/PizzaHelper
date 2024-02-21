@@ -52,6 +52,7 @@ public:
 
     void SaveToPreferences();
     void AddTimeline();
+    void UpdateReadyToBakeTime(time_t epochNow);
 };
 
 extern Recipe recipe;

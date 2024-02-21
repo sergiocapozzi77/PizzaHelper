@@ -6,6 +6,8 @@
 
 #include "time.h"
 
+#include <Arduino.h>
+
 Recipe recipe;
 
 int Recipe::GetPrefWaterPercentage()
@@ -105,25 +107,89 @@ void Recipe::SaveToPreferences()
 
 void Recipe::AddTimeline()
 {
+    lv_obj_clean(ui_PanelTimeline);
+
     struct tm timeinfo;
     if (!getLocalTime(&timeinfo))
     {
         Serial.println("Failed to obtain time");
-        return;
     }
 
-    time_t epoch = mktime(&timeinfo);
+    time_t epochNow = mktime(&timeinfo);
 
     char buf[100];
 
+    Serial.println("Add timeline");
     if (this->selectedMethod == "Direct")
     {
-        strftime(buf, 50, "Today, %H:%M:%S: Start kneading the dough", &timeinfo);
+        Serial.println("Add timeline 1");
+        strftime(buf, 100, "Today, %H:%M:%S: Start kneading the dough", &timeinfo);
         addTimeline(buf);
 
-        time_t nowPlus45 = epoch + 45 * 60;
-        strftime(buf, 50, "Today, %H:%M:%S: First fold", localtime(&nowPlus45));
+        time_t firstFold = epochNow + 45 * 60;
+        strftime(buf, 100, "Today, %H:%M:%S: First fold", localtime(&firstFold));
         addTimeline(buf);
+
+        time_t secondFold = firstFold + 25 * 60;
+        strftime(buf, 100, "Today, %H:%M:%S: Second fold", localtime(&secondFold));
+        addTimeline(buf);
+
+        time_t thirdFold = secondFold + 25 * 60;
+        strftime(buf, 100, "Today, %H:%M:%S: Third fold", localtime(&thirdFold));
+        addTimeline(buf);
+
+        time_t puntataStart = thirdFold + 5 * 60;
+        strftime(buf, 100, "Today, %H:%M:%S: Leave the mass to rest", localtime(&puntataStart));
+        addTimeline(buf);
+
+        time_t puntataEnd = puntataStart + 60 * 60;
+
+        time_t split = puntataEnd;
+        if (UseTheFridge)
+        {
+            strftime(buf, 100, "Today, %H:%M:%S: Put the mass in the fridge", localtime(&puntataEnd));
+            addTimeline(buf);
+
+            time_t fridgeEnd = puntataStart + ((TotalLeavening - 4) * 60 * 60);
+            strftime(buf, 100, "%A, %H:%M:%S: Remove from the fridge", localtime(&fridgeEnd));
+            addTimeline(buf);
+            split = fridgeEnd + 5 * 60;
+        }
+
+        strftime(buf, 100, "%A, %H:%M:%S: Split the dough", localtime(&split));
+        addTimeline(buf);
+
+        time_t ready = puntataEnd + (TotalLeavening * 60 * 60);
+        strftime(buf, 100, "%A, %H:%M:%S: Ready to bake!", localtime(&ready));
+        addTimeline(buf);
+    }
+}
+
+void Recipe::UpdateReadyToBakeTime(time_t epochNow)
+{
+    char buf[50];
+
+    if (this->selectedMethod == "Direct")
+    {
+        time_t ready = epochNow + (recipe.TotalLeavening * 60 * 60);
+        strftime(buf, 50, "Pizza ready to bake on: %A, %H:%M", localtime(&ready));
+        lv_label_set_text(ui_PizzaReadyLbl, buf);
+        lv_obj_add_flag(ui_StarterReadyLbl, LV_OBJ_FLAG_HIDDEN);
+    }
+    else if (this->selectedMethod == "Biga")
+    {
+        int minutesBiga = 18 * 60 + (18 - RoomTemperature) * 35;
+        time_t bigaReady = epochNow + minutesBiga * 60;
+        strftime(buf, 50, "Biga ready on: %A, %H:%M", localtime(&bigaReady));
+        lv_label_set_text(ui_StarterReadyLbl, buf);
+
+        time_t ready = bigaReady + (4 * 60 * 60);
+        strftime(buf, 50, "Pizza ready to bake on: %A, %H:%M", localtime(&ready));
+        lv_label_set_text(ui_PizzaReadyLbl, buf);
+        lv_obj_clear_flag(ui_StarterReadyLbl, LV_OBJ_FLAG_HIDDEN);
+    }
+    else if (this->selectedMethod == "Poolish")
+    {
     }
 }
 
@@ -194,6 +260,9 @@ void Recipe::Recalculate()
 
     Serial.print("Temperature: ");
     Serial.println(RoomTemperature);
+
+    Serial.print("UseTheFridge: ");
+    Serial.println(UseTheFridge);
 
     if (UseTheFridge == true && this->TotalLeavening > 4)
     {

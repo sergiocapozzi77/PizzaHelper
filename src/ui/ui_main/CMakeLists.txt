@@ -4,6 +4,7 @@ SET(SOURCES screens/ui_PizzaType.c
     screens/ui_PreIngredients.c
     screens/ui_Ingredients.c
     screens/ui_Timeline.c
+    screens/ui_Components.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
