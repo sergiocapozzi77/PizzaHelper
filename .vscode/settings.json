@@ -13,6 +13,8 @@
         "ui.h": "c",
         "ui_helpers.h": "c",
         "ui_comp.h": "c",
-        "arduino.h": "c"
+        "arduino.h": "c",
+        "chrono": "cpp",
+        "string_view": "cpp"
     }
 }

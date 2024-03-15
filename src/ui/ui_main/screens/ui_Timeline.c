@@ -34,6 +34,22 @@ void ui_Timeline_screen_init(void)
     lv_obj_set_flex_flow(ui_PanelTimeline, LV_FLEX_FLOW_COLUMN);
     lv_obj_set_flex_align(ui_PanelTimeline, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
 
+    ui_DoughMachine = lv_switch_create(ui_Timeline);
+    lv_obj_set_width(ui_DoughMachine, 50);
+    lv_obj_set_height(ui_DoughMachine, 25);
+    lv_obj_set_x(ui_DoughMachine, -219);
+    lv_obj_set_y(ui_DoughMachine, 200);
+    lv_obj_set_align(ui_DoughMachine, LV_ALIGN_CENTER);
+
+
+    ui_Label1 = lv_label_create(ui_Timeline);
+    lv_obj_set_width(ui_Label1, LV_SIZE_CONTENT);   /// 1
+    lv_obj_set_height(ui_Label1, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_x(ui_Label1, -96);
+    lv_obj_set_y(ui_Label1, 201);
+    lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_Label1, "I have a dough machine");
+
     lv_obj_add_event_cb(ui_BtnPrev3, ui_event_BtnPrev3, LV_EVENT_ALL, NULL);
 
 }

@@ -20490,7 +20490,7 @@
                   {
                     "nid": -1434095955,
                     "strtype": "LABEL/Text",
-                    "strval": "Biga ready to bake at: ",
+                    "strval": "Biga ready at: ",
                     "InheritedType": 10
                   },
                   {
@@ -20538,7 +20538,7 @@
                   {
                     "nid": -238161423,
                     "strtype": "OBJECT/Name",
-                    "strval": "PizzaReadyLbl1",
+                    "strval": "PizzaReadyLbl",
                     "InheritedType": 10
                   },
                   {
@@ -60519,7 +60519,7 @@
     "theme_color2": 0,
     "uiExportFolderPath": "C:\\Users\\sergi\\source\\repos\\PizzaHelper\\src\\ui\\ui_ingr",
     "projectExportFolderPath": "C:\\Users\\sergi\\source\\repos\\PizzaHelper\\",
-    "backup_cnt": 299,
+    "backup_cnt": 415,
     "autosave_cnt": 0,
     "lvgl_version": "8.2.0",
     "callfuncsexport": "C_FILE",

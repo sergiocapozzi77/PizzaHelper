@@ -80,6 +80,8 @@ void ui_event_BtnPrev3(lv_event_t *e);
 lv_obj_t *ui_BtnPrev3;
 lv_obj_t *ui_PrevLbl3;
 lv_obj_t *ui_PanelTimeline;
+lv_obj_t *ui_DoughMachine;
+lv_obj_t *ui_Label1;
 
 // SCREEN: ui_Components
 void ui_Components_screen_init(void);
@@ -133,7 +135,6 @@ uint32_t LV_EVENT_GET_COMP_CHILD;
 void ui_init(void)
 {
     LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
-
     lv_disp_t *dispp = lv_disp_get_default();
     lv_theme_t *theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
                                               false, LV_FONT_DEFAULT);

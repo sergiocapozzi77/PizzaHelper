@@ -7,6 +7,8 @@ class Recipe
 {
 private:
     double AdjustYeast(double yeast);
+    int CalculateBigaTimeMinutes();
+    String GetPreferenceKey(const char *key);
 
 public:
     String selectedType;
@@ -23,6 +25,7 @@ public:
     int RoomTemperature;
     bool IsTray;
     bool UseTheFridge;
+    bool UseDoughMachine;
     int BigaPercentage;
     int BigaWaterPerc;
     int PoolPercentage;
@@ -52,7 +55,8 @@ public:
 
     void SaveToPreferences();
     void AddTimeline();
-    void UpdateReadyToBakeTime(time_t epochNow);
+    void UpdateReadyToBakeTime();
+    void SetUseDoughMachine(boolean value);
 };
 
 extern Recipe recipe;

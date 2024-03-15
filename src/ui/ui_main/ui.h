@@ -91,6 +91,8 @@ void ui_event_BtnPrev3(lv_event_t * e);
 extern lv_obj_t * ui_BtnPrev3;
 extern lv_obj_t * ui_PrevLbl3;
 extern lv_obj_t * ui_PanelTimeline;
+extern lv_obj_t * ui_DoughMachine;
+extern lv_obj_t * ui_Label1;
 // SCREEN: ui_Components
 void ui_Components_screen_init(void);
 extern lv_obj_t * ui_Components;

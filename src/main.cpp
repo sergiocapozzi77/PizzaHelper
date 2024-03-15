@@ -4,24 +4,31 @@
 #include <WiFi.h>
 #include "gui/gui.h"
 #include <Preferences.h>
-
+#include <Timezone.h>
 #include "time.h"
 
 const char *ssid = "TP-Link_8724";
 const char *password = "40950211";
 
-const char *ntpServer = "pool.ntp.org";
+const char *ntpServer = "uk.pool.ntp.org";
 const long gmtOffset_sec = 0;
 const int daylightOffset_sec = 3600;
 
 void printLocalTime()
 {
+  // Timezone rules for United Kingdom (London, Belfast)
+  TimeChangeRule BST = {"BST", Last, Sun, Mar, 1, 60}; // British Summer Time
+  TimeChangeRule GMT = {"GMT", Last, Sun, Oct, 2, 0};  // Standard Time
+  Timezone UK(BST, GMT);
+
   struct tm timeinfo;
   if (!getLocalTime(&timeinfo))
   {
     Serial.println("Failed to obtain time");
     return;
   }
+
+
   Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
   Serial.print("Day of week: ");
   Serial.println(&timeinfo, "%A");

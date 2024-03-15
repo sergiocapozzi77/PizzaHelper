@@ -4,11 +4,12 @@
 #include "ui/ui.h"
 #include "gui/gui.h"
 
-#include "time.h"
-
+#include "timehelper.hpp"
 #include <Arduino.h>
 
 Recipe recipe;
+
+#define WATERPERCMACHINE 0.6F
 
 int Recipe::GetPrefWaterPercentage()
 {
@@ -77,114 +78,187 @@ void Recipe::SetPrefPercentage(int value)
     }
 }
 
+void Recipe::SetUseDoughMachine(boolean value)
+{
+    UseDoughMachine = value;
+    preferences.putBool("UseMachine", UseDoughMachine);
+    AddTimeline();
+}
+
 void Recipe::SaveToPreferences()
 {
-    preferences.putString("selectedType", selectedType.c_str());
-    preferences.putString("selectedMethod", selectedMethod.c_str());
-    preferences.putString("selectedYeast", selectedYeast.c_str());
+    preferences.putString("selType", selectedType.c_str());
+    preferences.putString(GetPreferenceKey("selMethod").c_str(), selectedMethod.c_str());
+    preferences.putString(GetPreferenceKey("selYeast").c_str(), selectedYeast.c_str());
 
-    preferences.putInt("WaterPerc", WaterPerc);
-    preferences.putInt("TotalLeavening", TotalLeavening);
-    preferences.putInt("FridgeLeavening", FridgeLeavening);
+    preferences.putInt(GetPreferenceKey("WaterPerc").c_str(), WaterPerc);
+    preferences.putInt(GetPreferenceKey("TotalLeave").c_str(), TotalLeavening);
+    preferences.putInt(GetPreferenceKey("FridgeLeave").c_str(), FridgeLeavening);
 
-    preferences.putFloat("SaltPerc", SaltPerc);
-    preferences.putFloat("FatPerc", FatPerc);
+    preferences.putFloat(GetPreferenceKey("SaltPerc").c_str(), SaltPerc);
+    preferences.putFloat(GetPreferenceKey("FatPerc").c_str(), FatPerc);
 
-    preferences.putInt("DoughBalls", DoughBalls);
-    preferences.putInt("BallWeight", BallWeight);
-    preferences.putInt("RoomTemperature", RoomTemperature);
+    preferences.putInt(GetPreferenceKey("DoughBalls").c_str(), DoughBalls);
+    Serial.print("Set DoughBalls key: ");
+    Serial.println(GetPreferenceKey("DoughBalls"));
 
-    preferences.putBool("IsTray", IsTray);
-    preferences.putBool("UseTheFridge", UseTheFridge);
+    preferences.putInt(GetPreferenceKey("BallWeight").c_str(), BallWeight);
+    preferences.putInt(GetPreferenceKey("RoomTemp").c_str(), RoomTemperature);
 
-    preferences.putInt("BigaPercentage", BigaPercentage);
-    preferences.putInt("BigaWaterPerc", BigaWaterPerc);
-    preferences.putInt("PoolPercentage", PoolPercentage);
+    preferences.putBool(GetPreferenceKey("IsTray").c_str(), IsTray);
+    preferences.putBool(GetPreferenceKey("UseTheFridge").c_str(), UseTheFridge);
+    preferences.putBool("UseMachine", UseDoughMachine);
 
-    Serial.print("Save BigaWaterPerc: ");
-    Serial.println(BigaWaterPerc);
+    preferences.putInt(GetPreferenceKey("BigaPerc").c_str(), BigaPercentage);
+    preferences.putInt(GetPreferenceKey("BigaWtrPrc").c_str(), BigaWaterPerc);
+    preferences.putInt(GetPreferenceKey("PoolPerc").c_str(), PoolPercentage);
 }
 
 void Recipe::AddTimeline()
 {
     lv_obj_clean(ui_PanelTimeline);
 
-    struct tm timeinfo;
-    if (!getLocalTime(&timeinfo))
+    time_t localTimeNow = getTime();
+    if (localTimeNow == NULL)
     {
         Serial.println("Failed to obtain time");
     }
 
-    time_t epochNow = mktime(&timeinfo);
+    tm *localTmNow = gmtime(&localTimeNow);
 
     char buf[100];
 
     Serial.println("Add timeline");
     if (this->selectedMethod == "Direct")
     {
-        Serial.println("Add timeline 1");
-        strftime(buf, 100, "Today, %H:%M:%S: Start kneading the dough", &timeinfo);
+        strftime(buf, 100, "%A, %H:%M Start kneading the dough", localTmNow);
+        addTimeline(buf);
+        int doughPrepTimeMinutes;
+
+        time_t lastFold;
+        if (this->UseDoughMachine)
+        {
+
+            int water = this->Flour * WATERPERCMACHINE;
+            if (water > this->Water)
+            {
+                addTimeline(String("Add all flour and all water in the machine and knead until the \"pumpkin\" is formed").c_str());
+            }
+            else
+            {
+                addTimeline((String("Add all flour and ") + String(water) + "gr of water and start the machine").c_str());
+                addTimeline((String("When the \"pumpkin\" is formed, add the remaining ") + String(Water - water) + "gr of water slowly").c_str());
+            }
+
+            lastFold = AddMinutes(localTimeNow, 15);
+
+            doughPrepTimeMinutes - 15;
+        }
+        else
+        {
+
+            time_t firstFold = AddMinutes(localTimeNow, 45);
+            strftime(buf, 100, "%A, %H:%M First fold", gmtime(&firstFold));
+            addTimeline(buf);
+
+            time_t secondFold = AddMinutes(firstFold, 25);
+            strftime(buf, 100, "%A, %H:%M Second fold", gmtime(&secondFold));
+            addTimeline(buf);
+
+            lastFold = AddMinutes(secondFold, 25);
+            strftime(buf, 100, "%A, %H:%M Third fold", gmtime(&lastFold));
+            addTimeline(buf);
+
+            doughPrepTimeMinutes = 45 + 25 + 25;
+        }
+
+        time_t puntataStart = AddMinutes(lastFold, 5);
+        strftime(buf, 100, "%A, %H:%M Leave the mass to rest", gmtime(&puntataStart));
         addTimeline(buf);
 
-        time_t firstFold = epochNow + 45 * 60;
-        strftime(buf, 100, "Today, %H:%M:%S: First fold", localtime(&firstFold));
-        addTimeline(buf);
-
-        time_t secondFold = firstFold + 25 * 60;
-        strftime(buf, 100, "Today, %H:%M:%S: Second fold", localtime(&secondFold));
-        addTimeline(buf);
-
-        time_t thirdFold = secondFold + 25 * 60;
-        strftime(buf, 100, "Today, %H:%M:%S: Third fold", localtime(&thirdFold));
-        addTimeline(buf);
-
-        time_t puntataStart = thirdFold + 5 * 60;
-        strftime(buf, 100, "Today, %H:%M:%S: Leave the mass to rest", localtime(&puntataStart));
-        addTimeline(buf);
-
-        time_t puntataEnd = puntataStart + 60 * 60;
+        time_t puntataEnd = AddMinutes(puntataStart, 60);
 
         time_t split = puntataEnd;
         if (UseTheFridge)
         {
-            strftime(buf, 100, "Today, %H:%M:%S: Put the mass in the fridge", localtime(&puntataEnd));
+            strftime(buf, 100, "%A, %H:%M Put the mass in the fridge", gmtime(&puntataEnd));
             addTimeline(buf);
 
-            time_t fridgeEnd = puntataStart + ((TotalLeavening - 4) * 60 * 60);
-            strftime(buf, 100, "%A, %H:%M:%S: Remove from the fridge", localtime(&fridgeEnd));
+            time_t fridgeEnd = AddHours(TotalLeavening - 4, puntataStart);
+            strftime(buf, 100, "%A, %H:%M Remove from the fridge", gmtime(&fridgeEnd));
             addTimeline(buf);
-            split = fridgeEnd + 5 * 60;
+            split = AddMinutes(fridgeEnd, 5);
         }
 
-        strftime(buf, 100, "%A, %H:%M:%S: Split the dough", localtime(&split));
+        strftime(buf, 100, "%A, %H:%M Split the dough", gmtime(&split));
         addTimeline(buf);
 
-        time_t ready = puntataEnd + (TotalLeavening * 60 * 60);
-        strftime(buf, 100, "%A, %H:%M:%S: Ready to bake!", localtime(&ready));
+        time_t ready = AddHours(localTimeNow, recipe.TotalLeavening);
+        strftime(buf, 100, "%A, %H:%M Ready to bake!", gmtime(&ready));
         addTimeline(buf);
+    }
+    else if (this->selectedMethod == "Biga")
+    {
+        strftime(buf, 100, "%A, %H:%M Start making the biga", localTmNow);
+        addTimeline(buf);
+
+        int minutesBiga = CalculateBigaTimeMinutes();
+        time_t bigaReady = AddMinutes(localTimeNow, minutesBiga);
+        if (this->UseDoughMachine)
+        {
+            strftime(buf, 100, "%A, %H:%M Start kneading the dough", gmtime(&bigaReady));
+            addTimeline(buf);
+
+            int allFlour = this->Flour + this->FlourBiga;
+            int allWater = this->Water + this->WaterBiga;
+            int waterForZucca = allFlour * WATERPERCMACHINE;
+
+            if (waterForZucca < this->WaterBiga)
+            {
+                addTimeline((String("Add all the biga and all the flour in the machine and knead until the \"pumpkin\" is formed").c_str()));
+            }
+            else
+            {
+                addTimeline((String("Add all the biga, all the flour and ") + String(waterForZucca - this->WaterBiga) + "gr of water and start the machine").c_str());
+            }
+
+            addTimeline((String("When the \"pumpkin\" is formed, add the remaining ") + String(allWater - waterForZucca) + "gr of water slowly").c_str());
+        }
+        else
+        {
+            strftime(buf, 100, "%A, %H:%M Biga is ready, add the other ingredients and make the dough", gmtime(&bigaReady));
+            addTimeline(buf);
+        }
+
+        time_t ready = AddHours(bigaReady, 4);
+        strftime(buf, 50, "Pizza ready to bake on: %A, %H:%M", gmtime(&ready));
+    }
+    else if (this->selectedMethod == "Poolish")
+    {
     }
 }
 
-void Recipe::UpdateReadyToBakeTime(time_t epochNow)
+void Recipe::UpdateReadyToBakeTime()
 {
+    time_t localTimeNow = getTime();
     char buf[50];
 
     if (this->selectedMethod == "Direct")
     {
-        time_t ready = epochNow + (recipe.TotalLeavening * 60 * 60);
-        strftime(buf, 50, "Pizza ready to bake on: %A, %H:%M", localtime(&ready));
+        time_t ready = AddHours(localTimeNow, recipe.TotalLeavening);
+        strftime(buf, 50, "Pizza ready to bake on: %A, %H:%M", gmtime(&ready));
         lv_label_set_text(ui_PizzaReadyLbl, buf);
         lv_obj_add_flag(ui_StarterReadyLbl, LV_OBJ_FLAG_HIDDEN);
     }
     else if (this->selectedMethod == "Biga")
     {
-        int minutesBiga = 18 * 60 + (18 - RoomTemperature) * 35;
-        time_t bigaReady = epochNow + minutesBiga * 60;
-        strftime(buf, 50, "Biga ready on: %A, %H:%M", localtime(&bigaReady));
+        int minutesBiga = CalculateBigaTimeMinutes();
+        time_t bigaReady = AddMinutes(localTimeNow, minutesBiga);
+        strftime(buf, 50, "Biga ready on: %A, %H:%M", gmtime(&bigaReady));
         lv_label_set_text(ui_StarterReadyLbl, buf);
 
-        time_t ready = bigaReady + (4 * 60 * 60);
-        strftime(buf, 50, "Pizza ready to bake on: %A, %H:%M", localtime(&ready));
+        time_t ready = AddHours(bigaReady, 4);
+        strftime(buf, 50, "Pizza ready to bake on: %A, %H:%M", gmtime(&ready));
         lv_label_set_text(ui_PizzaReadyLbl, buf);
         lv_obj_clear_flag(ui_StarterReadyLbl, LV_OBJ_FLAG_HIDDEN);
     }
@@ -193,23 +267,37 @@ void Recipe::UpdateReadyToBakeTime(time_t epochNow)
     }
 }
 
+String Recipe::GetPreferenceKey(const char *key)
+{
+    return this->selectedType.substring(0, 1) + String(".") + String(key);
+}
+
+int Recipe::CalculateBigaTimeMinutes()
+{
+    return 18 * 60 + (18 - RoomTemperature) * 35;
+}
+
 void Recipe::IntializeIngredients()
 {
-    UseTheFridge = preferences.getBool("UseTheFridge", false);
-    TotalLeavening = preferences.getInt("TotalLeavening", 8);
-    FridgeLeavening = preferences.getInt("FridgeLeavening", 0);
-    SaltPerc = preferences.getFloat("SaltPerc", 2.8);
-    FatPerc = preferences.getFloat("FatPerc", 2.7);
-    DoughBalls = preferences.getInt("DoughBalls", 1);
-    BallWeight = preferences.getInt("BallWeight", 270);
-    RoomTemperature = preferences.getInt("RoomTemperature", 21);
+    Serial.println("Intialize Ingredients");
 
-    BigaPercentage = preferences.getInt("BigaPercentage", 60);
-    BigaWaterPerc = preferences.getInt("BigaWaterPerc", 45);
-    Serial.print("Init BigaWaterPercentage: ");
-    Serial.println(BigaWaterPerc);
+    UseTheFridge = preferences.getBool(GetPreferenceKey("UseTheFridge").c_str(), false);
+    UseDoughMachine = preferences.getBool("UseMachine", false);
+    TotalLeavening = preferences.getInt(GetPreferenceKey("TotalLeave").c_str(), 8);
+    FridgeLeavening = preferences.getInt(GetPreferenceKey("FridgeLeave").c_str(), 0);
+    SaltPerc = preferences.getFloat(GetPreferenceKey("SaltPerc").c_str(), 2.8);
+    FatPerc = preferences.getFloat(GetPreferenceKey("FatPerc").c_str(), 2.7);
+    DoughBalls = preferences.getInt(GetPreferenceKey("DoughBalls").c_str(), 1);
+    Serial.print("DoughBalls key: ");
+    Serial.println(GetPreferenceKey("DoughBalls"));
+    Serial.println(DoughBalls);
+    BallWeight = preferences.getInt(GetPreferenceKey("BallWeight").c_str(), 270);
+    RoomTemperature = preferences.getInt(GetPreferenceKey("RoomTemp").c_str(), 21);
 
-    PoolPercentage = preferences.getInt("PoolPercentage", 60);
+    BigaPercentage = preferences.getInt(GetPreferenceKey("BigaPerc").c_str(), 60);
+    BigaWaterPerc = preferences.getInt(GetPreferenceKey("BigaWtrPrc").c_str(), 45);
+
+    PoolPercentage = preferences.getInt(GetPreferenceKey("PoolPerc").c_str(), 60);
 
     if (this->selectedType == "Round")
     {
@@ -222,23 +310,23 @@ void Recipe::IntializeIngredients()
 
     if (this->selectedType == "Round")
     {
-        WaterPerc = preferences.getInt("WaterPerc", 65);
+        WaterPerc = preferences.getInt(GetPreferenceKey("WaterPerc").c_str(), 65);
     }
     else if (this->selectedType == "Grandma")
     {
-        WaterPerc = preferences.getInt("WaterPerc", 75);
+        WaterPerc = preferences.getInt(GetPreferenceKey("WaterPerc").c_str(), 75);
     }
     else if (this->selectedType == "Detroit")
     {
-        WaterPerc = preferences.getInt("WaterPerc", 75);
+        WaterPerc = preferences.getInt(GetPreferenceKey("WaterPerc").c_str(), 75);
     }
     else if (this->selectedType == "Bread")
     {
-        WaterPerc = preferences.getInt("WaterPerc", 70);
+        WaterPerc = preferences.getInt(GetPreferenceKey("WaterPerc").c_str(), 70);
     }
     else if (this->selectedType == "Focaccia")
     {
-        WaterPerc = preferences.getInt("WaterPerc", 75);
+        WaterPerc = preferences.getInt(GetPreferenceKey("WaterPerc").c_str(), 75);
     }
 
     Recalculate();

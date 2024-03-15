@@ -10,8 +10,6 @@
 
 static const char *TAG = "gui";
 
-struct tm now;
-time_t epochNow;
 static const uint16_t screenWidth = 800;
 static const uint16_t screenHeight = 480;
 
@@ -164,6 +162,11 @@ void ui_event_UseFridge(lv_event_t *e)
   recipe.UseTheFridge = lv_obj_has_state(ui_UseTheFridgeSw, LV_STATE_CHECKED);
 }
 
+void ui_event_DoughMachine(lv_event_t *e)
+{
+  recipe.SetUseDoughMachine(lv_obj_has_state(ui_DoughMachine, LV_STATE_CHECKED));
+}
+
 void ui_event_TimelineScreenLoaded(lv_event_t *e)
 {
   recipe.AddTimeline();
@@ -181,13 +184,7 @@ void ui_event_PizzaYeast(lv_event_t *e)
     recipe.IntializeIngredients();
     IngredientsLoaded();
 
-    if (!getLocalTime(&now))
-    {
-      Serial.println("Failed to obtain time");
-    }
-    epochNow = mktime(&now);
-
-    recipe.UpdateReadyToBakeTime(epochNow);
+    recipe.UpdateReadyToBakeTime();
     _ui_screen_change(&ui_PreIngredients, LV_SCR_LOAD_ANIM_MOVE_LEFT, 200, 0, &ui_PreIngredients_screen_init);
   }
 }
@@ -207,13 +204,13 @@ void ui_event_SliderChanged(lv_event_t *e)
   else if (component == ui_LeaveningCmp)
   {
     recipe.TotalLeavening = value;
-    recipe.UpdateReadyToBakeTime(epochNow);
+    recipe.UpdateReadyToBakeTime();
     lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "hrs").c_str());
   }
   else if (component == ui_RoomTempCmp)
   {
     recipe.RoomTemperature = value;
-    recipe.UpdateReadyToBakeTime(epochNow);
+    recipe.UpdateReadyToBakeTime();
     lv_label_set_text(ui_comp_get_child(component, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE), (String(value) + "C").c_str());
   }
   else if (component == ui_DoughballWeightCmp)
@@ -295,6 +292,8 @@ void gui_start()
 
   lv_obj_add_event_cb(ui_UseTheFridgeSw, ui_event_UseFridge, LV_EVENT_CLICKED, NULL);
 
+  lv_obj_add_event_cb(ui_DoughMachine, ui_event_DoughMachine, LV_EVENT_CLICKED, NULL);
+
   lv_obj_add_event_cb(ui_Timeline, ui_event_TimelineScreenLoaded, LV_EVENT_SCREEN_LOADED, NULL);
 
   lv_obj_add_event_cb(ui_comp_get_child(ui_WaterCmp, UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), ui_event_SliderChanged, LV_EVENT_VALUE_CHANGED, ui_WaterCmp);
@@ -336,5 +335,14 @@ void IngredientsLoaded()
   else
   {
     lv_obj_clear_state(ui_UseTheFridgeSw, LV_STATE_CHECKED);
+  }
+
+  if (recipe.UseDoughMachine)
+  {
+    lv_obj_add_state(ui_DoughMachine, LV_STATE_CHECKED);
+  }
+  else
+  {
+    lv_obj_clear_state(ui_DoughMachine, LV_STATE_CHECKED);
   }
 }
