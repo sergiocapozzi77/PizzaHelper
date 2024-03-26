@@ -9,6 +9,7 @@ SET(SOURCES screens/ui_PizzaType.c
     components/ui_comp_hook.c
     ui_helpers.c
     ui_events.c
+    images/ui_img_pizza_back01_png.c
     images/ui_img_pizza_png.c
     images/ui_img_grandma_png.c
     images/ui_img_focaccia_png.c

@@ -89,7 +89,9 @@ lv_obj_t *ui_Components;
 lv_obj_t *ui_PanelTimeline2;
 lv_obj_t *ui_TimelineCnt;
 lv_obj_t *ui_TimelineCbx;
+lv_obj_t *ui_TimelineTxt;
 lv_obj_t *ui____initial_actions0;
+const lv_img_dsc_t *ui_imgset_pizza_back[1] = {&ui_img_pizza_back01_png};
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16
@@ -131,10 +133,12 @@ void ui_event_BtnPrev3(lv_event_t *e)
 }
 
 ///////////////////// SCREENS ////////////////////
+
 uint32_t LV_EVENT_GET_COMP_CHILD;
 void ui_init(void)
 {
     LV_EVENT_GET_COMP_CHILD = lv_event_register_id();
+
     lv_disp_t *dispp = lv_disp_get_default();
     lv_theme_t *theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
                                               false, LV_FONT_DEFAULT);

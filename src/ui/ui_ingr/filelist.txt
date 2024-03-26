@@ -6,6 +6,7 @@ ui.c
 components/ui_comp_hook.c
 ui_helpers.c
 ui_events.c
+images/ui_img_pizza_back01_png.c
 images/ui_img_3558094_bake_bread_fast_food_pizza_icon_png.c
 images/ui_img_2995004_rain_water_drop_weather_cloud_icon_png.c
 images/ui_img_3856401_celsius_degrees_temperature_thermometer_weather_icon_png.c

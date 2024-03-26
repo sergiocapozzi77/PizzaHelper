@@ -99,8 +99,10 @@ extern lv_obj_t * ui_Components;
 extern lv_obj_t * ui_PanelTimeline2;
 extern lv_obj_t * ui_TimelineCnt;
 extern lv_obj_t * ui_TimelineCbx;
+extern lv_obj_t * ui_TimelineTxt;
 extern lv_obj_t * ui____initial_actions0;
 
+LV_IMG_DECLARE(ui_img_pizza_back01_png);    // assets\pizza_back01.png
 LV_IMG_DECLARE(ui_img_pizza_png);    // assets\pizza.png
 LV_IMG_DECLARE(ui_img_grandma_png);    // assets\grandma.png
 LV_IMG_DECLARE(ui_img_focaccia_png);    // assets\focaccia.png

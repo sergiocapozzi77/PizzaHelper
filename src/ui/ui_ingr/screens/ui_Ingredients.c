@@ -15,15 +15,30 @@ void ui_Ingredients_screen_init(void)
     lv_obj_set_width(ui_Container4, lv_pct(100));
     lv_obj_set_height(ui_Container4, lv_pct(100));
     lv_obj_set_align(ui_Container4, LV_ALIGN_CENTER);
-    lv_obj_set_flex_flow(ui_Container4, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_flex_flow(ui_Container4, LV_FLEX_FLOW_ROW);
     lv_obj_set_flex_align(ui_Container4, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
     lv_obj_clear_flag(ui_Container4, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_img_src(ui_Container4, &ui_img_pizza_back01_png, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui_Container4, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui_Container4, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui_Container4, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui_Container4, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_row(ui_Container4, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_column(ui_Container4, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-    ui_PrefWaterCmp = ui_IngredientCmp_create(ui_Container4);
+    ui_Panel2 = lv_obj_create(ui_Container4);
+    lv_obj_set_width(ui_Panel2, 407);
+    lv_obj_set_height(ui_Panel2, 350);
+    lv_obj_set_x(ui_Panel2, -185);
+    lv_obj_set_y(ui_Panel2, -10);
+    lv_obj_set_align(ui_Panel2, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Panel2, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_flex_align(ui_Panel2, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+    lv_obj_clear_flag(ui_Panel2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_Panel2, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Panel2, 180, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_PrefWaterCmp = ui_IngredientCmp_create(ui_Panel2);
     lv_obj_set_x(ui_PrefWaterCmp, -183);
     lv_obj_set_y(ui_PrefWaterCmp, -92);
 
@@ -52,7 +67,7 @@ void ui_Ingredients_screen_init(void)
 
 
 
-    ui_PrefPercCmp = ui_IngredientCmp_create(ui_Container4);
+    ui_PrefPercCmp = ui_IngredientCmp_create(ui_Panel2);
     lv_obj_set_x(ui_PrefPercCmp, -183);
     lv_obj_set_y(ui_PrefPercCmp, -92);
 
@@ -74,7 +89,7 @@ void ui_Ingredients_screen_init(void)
 
 
 
-    ui_DoughballWeightCmp = ui_IngredientCmp_create(ui_Container4);
+    ui_DoughballWeightCmp = ui_IngredientCmp_create(ui_Panel2);
     lv_obj_set_x(ui_DoughballWeightCmp, -183);
     lv_obj_set_y(ui_DoughballWeightCmp, -92);
 
@@ -96,7 +111,7 @@ void ui_Ingredients_screen_init(void)
 
 
 
-    ui_DoughballQtyCmp = ui_IngredientCmp_create(ui_Container4);
+    ui_DoughballQtyCmp = ui_IngredientCmp_create(ui_Panel2);
     lv_obj_set_x(ui_DoughballQtyCmp, -182);
     lv_obj_set_y(ui_DoughballQtyCmp, -181);
 
@@ -114,15 +129,17 @@ void ui_Ingredients_screen_init(void)
 
 
 
-    ui_PanelIngredients = lv_obj_create(ui_Ingredients);
+    ui_PanelIngredients = lv_obj_create(ui_Container4);
     lv_obj_set_width(ui_PanelIngredients, 357);
-    lv_obj_set_height(ui_PanelIngredients, 340);
+    lv_obj_set_height(ui_PanelIngredients, 350);
     lv_obj_set_x(ui_PanelIngredients, 205);
     lv_obj_set_y(ui_PanelIngredients, -12);
     lv_obj_set_align(ui_PanelIngredients, LV_ALIGN_CENTER);
     lv_obj_set_flex_flow(ui_PanelIngredients, LV_FLEX_FLOW_COLUMN);
     lv_obj_set_flex_align(ui_PanelIngredients, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
     lv_obj_clear_flag(ui_PanelIngredients, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_color(ui_PanelIngredients, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_PanelIngredients, 180, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_left(ui_PanelIngredients, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui_PanelIngredients, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui_PanelIngredients, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -264,7 +281,7 @@ void ui_Ingredients_screen_init(void)
 
     ui_IngrPanel = lv_obj_create(ui_PanelIngredients);
     lv_obj_remove_style_all(ui_IngrPanel);
-    lv_obj_set_height(ui_IngrPanel, 212);
+    lv_obj_set_height(ui_IngrPanel, 173);
     lv_obj_set_width(ui_IngrPanel, lv_pct(100));
     lv_obj_set_align(ui_IngrPanel, LV_ALIGN_CENTER);
     lv_obj_set_flex_flow(ui_IngrPanel, LV_FLEX_FLOW_COLUMN);

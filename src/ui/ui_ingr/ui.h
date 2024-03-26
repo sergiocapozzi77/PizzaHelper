@@ -30,6 +30,7 @@ extern "C" {
 void ui_PreIngredients_screen_init(void);
 extern lv_obj_t * ui_PreIngredients;
 extern lv_obj_t * ui_Container9;
+extern lv_obj_t * ui_Panel1;
 extern lv_obj_t * ui_WaterCmp;
 extern lv_obj_t * ui_RoomTempCmp;
 extern lv_obj_t * ui_LeaveningCmp;
@@ -47,6 +48,7 @@ extern lv_obj_t * ui_Label14;
 void ui_Ingredients_screen_init(void);
 extern lv_obj_t * ui_Ingredients;
 extern lv_obj_t * ui_Container4;
+extern lv_obj_t * ui_Panel2;
 extern lv_obj_t * ui_PrefWaterCmp;
 extern lv_obj_t * ui_PrefPercCmp;
 extern lv_obj_t * ui_DoughballWeightCmp;
@@ -94,6 +96,7 @@ extern lv_obj_t * ui_BtnNextIngredients;
 extern lv_obj_t * ui_Label24;
 extern lv_obj_t * ui____initial_actions0;
 
+LV_IMG_DECLARE(ui_img_pizza_back01_png);    // assets\pizza_back01.png
 LV_IMG_DECLARE(
     ui_img_3558094_bake_bread_fast_food_pizza_icon_png);    // assets\3558094_bake_bread_fast_food_pizza_icon.png
 LV_IMG_DECLARE(

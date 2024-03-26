@@ -222,7 +222,11 @@ void Recipe::AddTimeline()
                 addTimeline((String("Add all the biga, all the flour and ") + String(waterForZucca - this->WaterBiga) + "gr of water and start the machine").c_str());
             }
 
-            addTimeline((String("When the \"pumpkin\" is formed, add the remaining ") + String(allWater - waterForZucca) + "gr of water slowly").c_str());
+            int remainingWater = allWater - waterForZucca;
+            if (remainingWater > 0)
+            {
+                addTimeline((String("When the \"pumpkin\" is formed, add the remaining ") + String(remainingWater) + "gr of water slowly").c_str());
+            }
         }
         else
         {
@@ -249,7 +253,7 @@ void Recipe::AddTimeline()
             int allWater = this->Water + this->WaterPool;
             int waterForZucca = allFlour * WATERPERCMACHINE;
 
-            if (waterForZucca < this->WaterBiga)
+            if (waterForZucca < this->WaterPool)
             {
                 addTimeline((String("Add all the poolish and all the flour in the machine and knead until the \"pumpkin\" is formed").c_str()));
             }
@@ -258,7 +262,11 @@ void Recipe::AddTimeline()
                 addTimeline((String("Add all the poolish, all the flour and ") + String(waterForZucca - this->WaterPool) + "gr of water and start the machine").c_str());
             }
 
-            addTimeline((String("When the \"pumpkin\" is formed, add the remaining ") + String(allWater - waterForZucca) + "gr of water slowly").c_str());
+            int remainingWater = allWater - waterForZucca;
+            if (remainingWater > 0)
+            {
+                addTimeline((String("When the \"pumpkin\" is formed, add the remaining ") + String(remainingWater) + "gr of water slowly").c_str());
+            }
         }
         else
         {

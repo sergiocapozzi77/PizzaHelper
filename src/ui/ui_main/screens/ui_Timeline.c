@@ -9,6 +9,7 @@ void ui_Timeline_screen_init(void)
 {
     ui_Timeline = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_Timeline, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_img_src(ui_Timeline, &ui_img_pizza_back01_png, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_BtnPrev3 = lv_btn_create(ui_Timeline);
     lv_obj_set_width(ui_BtnPrev3, 100);
@@ -31,8 +32,11 @@ void ui_Timeline_screen_init(void)
     lv_obj_set_x(ui_PanelTimeline, 0);
     lv_obj_set_y(ui_PanelTimeline, -18);
     lv_obj_set_align(ui_PanelTimeline, LV_ALIGN_CENTER);
-    lv_obj_set_flex_flow(ui_PanelTimeline, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_flex_flow(ui_PanelTimeline, LV_FLEX_FLOW_COLUMN_WRAP);
     lv_obj_set_flex_align(ui_PanelTimeline, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+    lv_obj_set_style_bg_color(ui_PanelTimeline, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_PanelTimeline, 200, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_PanelTimeline, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_DoughMachine = lv_switch_create(ui_Timeline);
     lv_obj_set_width(ui_DoughMachine, 50);
@@ -49,6 +53,8 @@ void ui_Timeline_screen_init(void)
     lv_obj_set_y(ui_Label1, 201);
     lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
     lv_label_set_text(ui_Label1, "I have a dough machine");
+    lv_obj_set_style_text_color(ui_Label1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui_Label1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_add_event_cb(ui_BtnPrev3, ui_event_BtnPrev3, LV_EVENT_ALL, NULL);
 

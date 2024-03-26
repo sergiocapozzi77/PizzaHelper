@@ -7,6 +7,7 @@ Some more explanation you can find on https://www.haraldkreuzer.net/en/news/gett
 del .\src\ui\ui_main\screens\ui_Ingredients.c
 del .\src\ui\ui_main\screens\ui_PreIngredients.c
 del .\src\ui\ui_ingr\ui_helpers.c
+dev .\src\ui\ui_ingr\images\ui_img_pizza_back01_png.c
 
 uint32_t LV_EVENT_GET_COMP_CHILD;
 void ui_init(void)

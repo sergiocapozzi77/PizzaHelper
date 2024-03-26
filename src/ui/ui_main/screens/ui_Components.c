@@ -26,7 +26,7 @@ void ui_Components_screen_init(void)
     lv_obj_set_width(ui_TimelineCnt, lv_pct(100));
     lv_obj_set_align(ui_TimelineCnt, LV_ALIGN_CENTER);
     lv_obj_set_flex_flow(ui_TimelineCnt, LV_FLEX_FLOW_ROW);
-    lv_obj_set_flex_align(ui_TimelineCnt, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER);
+    lv_obj_set_flex_align(ui_TimelineCnt, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_clear_flag(ui_TimelineCnt, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_pad_left(ui_TimelineCnt, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(ui_TimelineCnt, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -34,11 +34,16 @@ void ui_Components_screen_init(void)
     lv_obj_set_style_pad_bottom(ui_TimelineCnt, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_TimelineCbx = lv_checkbox_create(ui_TimelineCnt);
-    lv_checkbox_set_text(ui_TimelineCbx, "test");
-    lv_obj_set_width(ui_TimelineCbx, lv_pct(100));
+    lv_checkbox_set_text(ui_TimelineCbx, "");
+    lv_obj_set_width(ui_TimelineCbx, LV_SIZE_CONTENT);   /// 670
     lv_obj_set_height(ui_TimelineCbx, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_TimelineCbx, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_TimelineCbx, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
 
+    ui_TimelineTxt = lv_label_create(ui_TimelineCnt);
+    lv_obj_set_width(ui_TimelineTxt, lv_pct(95));
+    lv_obj_set_height(ui_TimelineTxt, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_TimelineTxt, LV_ALIGN_CENTER);
+    lv_label_set_text(ui_TimelineTxt, "");
 
 }
