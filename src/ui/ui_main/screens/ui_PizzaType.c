@@ -152,4 +152,14 @@ void ui_PizzaType_screen_init(void)
     lv_obj_set_align(ui_PizzaTypeLbl4, LV_ALIGN_CENTER);
     lv_label_set_text(ui_PizzaTypeLbl4, "Bread");
 
+    ui_PowerOff = lv_img_create(ui_PizzaType);
+    lv_img_set_src(ui_PowerOff, &ui_img_9054774_bx_power_off_icon_png);
+    lv_obj_set_width(ui_PowerOff, 32);
+    lv_obj_set_height(ui_PowerOff, 32);
+    lv_obj_set_x(ui_PowerOff, 370);
+    lv_obj_set_y(ui_PowerOff, -214);
+    lv_obj_set_align(ui_PowerOff, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_PowerOff, LV_OBJ_FLAG_CLICKABLE | LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_PowerOff, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
 }

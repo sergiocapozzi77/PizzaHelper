@@ -46,4 +46,25 @@ void ui_Components_screen_init(void)
     lv_obj_set_align(ui_TimelineTxt, LV_ALIGN_CENTER);
     lv_label_set_text(ui_TimelineTxt, "");
 
+    ui_TabView1 = lv_tabview_create(ui_Components, LV_DIR_BOTTOM, 50);
+    lv_obj_set_width(ui_TabView1, 488);
+    lv_obj_set_height(ui_TabView1, 200);
+    lv_obj_set_x(ui_TabView1, -63);
+    lv_obj_set_y(ui_TabView1, -6);
+    lv_obj_set_align(ui_TabView1, LV_ALIGN_CENTER);
+    lv_obj_clear_flag(ui_TabView1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+
+    ui_TabPage1 = lv_tabview_add_tab(ui_TabView1, "Title 1");
+
+    ui_Button1 = lv_btn_create(ui_TabPage1);
+    lv_obj_set_width(ui_Button1, 100);
+    lv_obj_set_height(ui_Button1, 50);
+    lv_obj_set_align(ui_Button1, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_Button1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_Button1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+    ui_TabPage2 = lv_tabview_add_tab(ui_TabView1, "Title 2");
+
+
 }

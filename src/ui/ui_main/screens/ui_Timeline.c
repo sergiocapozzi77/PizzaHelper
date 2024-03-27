@@ -32,7 +32,7 @@ void ui_Timeline_screen_init(void)
     lv_obj_set_x(ui_PanelTimeline, 0);
     lv_obj_set_y(ui_PanelTimeline, -18);
     lv_obj_set_align(ui_PanelTimeline, LV_ALIGN_CENTER);
-    lv_obj_set_flex_flow(ui_PanelTimeline, LV_FLEX_FLOW_COLUMN_WRAP);
+    lv_obj_set_flex_flow(ui_PanelTimeline, LV_FLEX_FLOW_COLUMN);
     lv_obj_set_flex_align(ui_PanelTimeline, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
     lv_obj_set_style_bg_color(ui_PanelTimeline, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_PanelTimeline, 200, LV_PART_MAIN | LV_STATE_DEFAULT);

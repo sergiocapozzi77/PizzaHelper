@@ -28,7 +28,6 @@ void printLocalTime()
     return;
   }
 
-
   Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
   Serial.print("Day of week: ");
   Serial.println(&timeinfo, "%A");
@@ -65,8 +64,6 @@ void setup()
   Serial.println(F("Tft starting"));
 
   preferences.begin("pizza-helper");
-  gui_start();
-
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED)
@@ -75,8 +72,12 @@ void setup()
     Serial.print(".");
   }
 
+  esp_sleep_enable_ext0_wakeup(GPIO_NUM_19, 1);
+
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
   printLocalTime();
+
+  gui_start();
 }
 
 void loop()

@@ -58,7 +58,7 @@ lv_obj_t * ui_IngredientCmp_create(lv_obj_t * comp_parent)
     lv_obj_t * cui_MiddleContainer;
     cui_MiddleContainer = lv_obj_create(cui_IngredientCmp);
     lv_obj_remove_style_all(cui_MiddleContainer);
-    lv_obj_set_width(cui_MiddleContainer, 333);
+    lv_obj_set_width(cui_MiddleContainer, 354);
     lv_obj_set_height(cui_MiddleContainer, lv_pct(100));
     lv_obj_set_x(cui_MiddleContainer, 1);
     lv_obj_set_y(cui_MiddleContainer, -22);
@@ -108,7 +108,7 @@ lv_obj_t * ui_IngredientCmp_create(lv_obj_t * comp_parent)
     cui_IngredientCmpContainer = lv_obj_create(cui_MiddleContainer);
     lv_obj_remove_style_all(cui_IngredientCmpContainer);
     lv_obj_set_height(cui_IngredientCmpContainer, 38);
-    lv_obj_set_width(cui_IngredientCmpContainer, lv_pct(100));
+    lv_obj_set_width(cui_IngredientCmpContainer, lv_pct(106));
     lv_obj_set_x(cui_IngredientCmpContainer, -194);
     lv_obj_set_y(cui_IngredientCmpContainer, -184);
     lv_obj_set_align(cui_IngredientCmpContainer, LV_ALIGN_CENTER);
@@ -116,10 +116,12 @@ lv_obj_t * ui_IngredientCmp_create(lv_obj_t * comp_parent)
     lv_obj_set_flex_align(cui_IngredientCmpContainer, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_add_flag(cui_IngredientCmpContainer, LV_OBJ_FLAG_OVERFLOW_VISIBLE);     /// Flags
     lv_obj_clear_flag(cui_IngredientCmpContainer, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_pad_left(cui_IngredientCmpContainer, 15, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(cui_IngredientCmpContainer, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_right(cui_IngredientCmpContainer, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(cui_IngredientCmpContainer, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(cui_IngredientCmpContainer, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_row(cui_IngredientCmpContainer, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_column(cui_IngredientCmpContainer, 7, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_t * cui_IngredientCmpSli;
     cui_IngredientCmpSli = lv_slider_create(cui_IngredientCmpContainer);
@@ -128,26 +130,25 @@ lv_obj_t * ui_IngredientCmp_create(lv_obj_t * comp_parent)
     if(lv_slider_get_mode(cui_IngredientCmpSli) == LV_SLIDER_MODE_RANGE) lv_slider_set_left_value(cui_IngredientCmpSli, 0,
                                                                                                       LV_ANIM_OFF);
     lv_obj_set_height(cui_IngredientCmpSli, 12);
-    lv_obj_set_width(cui_IngredientCmpSli, lv_pct(75));
+    lv_obj_set_width(cui_IngredientCmpSli, lv_pct(70));
     lv_obj_set_x(cui_IngredientCmpSli, -242);
     lv_obj_set_y(cui_IngredientCmpSli, -41);
     lv_obj_set_align(cui_IngredientCmpSli, LV_ALIGN_CENTER);
-
-    lv_obj_t * cui_Container5;
-    cui_Container5 = lv_obj_create(cui_IngredientCmpContainer);
-    lv_obj_remove_style_all(cui_Container5);
-    lv_obj_set_width(cui_Container5, 15);
-    lv_obj_set_height(cui_Container5, 50);
-    lv_obj_set_align(cui_Container5, LV_ALIGN_CENTER);
-    lv_obj_clear_flag(cui_Container5, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_pad_left(cui_IngredientCmpSli, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(cui_IngredientCmpSli, 10, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(cui_IngredientCmpSli, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(cui_IngredientCmpSli, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_t * cui_LeftBtn;
     cui_LeftBtn = lv_btn_create(cui_IngredientCmpContainer);
-    lv_obj_set_width(cui_LeftBtn, 30);
-    lv_obj_set_height(cui_LeftBtn, 30);
+    lv_obj_set_width(cui_LeftBtn, 35);
+    lv_obj_set_height(cui_LeftBtn, 35);
     lv_obj_set_align(cui_LeftBtn, LV_ALIGN_CENTER);
     lv_obj_add_flag(cui_LeftBtn, LV_OBJ_FLAG_OVERFLOW_VISIBLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(cui_LeftBtn, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_blend_mode(cui_LeftBtn, LV_BLEND_MODE_NORMAL, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_row(cui_LeftBtn, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_column(cui_LeftBtn, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_t * cui_Label12;
     cui_Label12 = lv_label_create(cui_LeftBtn);
@@ -158,11 +159,13 @@ lv_obj_t * ui_IngredientCmp_create(lv_obj_t * comp_parent)
 
     lv_obj_t * cui_RightBtn;
     cui_RightBtn = lv_btn_create(cui_IngredientCmpContainer);
-    lv_obj_set_width(cui_RightBtn, 30);
-    lv_obj_set_height(cui_RightBtn, 30);
+    lv_obj_set_width(cui_RightBtn, 35);
+    lv_obj_set_height(cui_RightBtn, 35);
     lv_obj_set_align(cui_RightBtn, LV_ALIGN_CENTER);
     lv_obj_add_flag(cui_RightBtn, LV_OBJ_FLAG_OVERFLOW_VISIBLE | LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(cui_RightBtn, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_pad_row(cui_RightBtn, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_column(cui_RightBtn, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_t * cui_Label13;
     cui_Label13 = lv_label_create(cui_RightBtn);
@@ -180,7 +183,6 @@ lv_obj_t * ui_IngredientCmp_create(lv_obj_t * comp_parent)
     children[UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_CONTAINER13_INGREDIENTCMPVALUE] = cui_IngredientCmpValue;
     children[UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER] = cui_IngredientCmpContainer;
     children[UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI] = cui_IngredientCmpSli;
-    children[UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_CONTAINER5] = cui_Container5;
     children[UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_LEFTBTN] = cui_LeftBtn;
     children[UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_LEFTBTN_LABEL12] = cui_Label12;
     children[UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_RIGHTBTN] = cui_RightBtn;

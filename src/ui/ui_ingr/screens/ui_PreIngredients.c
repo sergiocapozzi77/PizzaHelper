@@ -55,7 +55,6 @@ void ui_PreIngredients_screen_init(void)
 
 
 
-
     ui_RoomTempCmp = ui_IngredientCmp_create(ui_Panel1);
     lv_obj_set_x(ui_RoomTempCmp, -172);
     lv_obj_set_y(ui_RoomTempCmp, -81);
@@ -77,7 +76,6 @@ void ui_PreIngredients_screen_init(void)
 
 
 
-
     ui_LeaveningCmp = ui_IngredientCmp_create(ui_Panel1);
     lv_obj_set_x(ui_LeaveningCmp, -170);
     lv_obj_set_y(ui_LeaveningCmp, 10);
@@ -94,7 +92,6 @@ void ui_PreIngredients_screen_init(void)
 
     lv_slider_set_range(ui_comp_get_child(ui_LeaveningCmp,
                                           UI_COMP_INGREDIENTCMP_MIDDLECONTAINER_INGREDIENTCMPCONTAINER_INGREDIENTCMPSLI), 4, 72);
-
 
 
 

@@ -43,6 +43,7 @@ extern lv_obj_t * ui_PizzaTypeLbl3;
 extern lv_obj_t * ui_BreadPnl;
 extern lv_obj_t * ui_PizzaTypeImg4;
 extern lv_obj_t * ui_PizzaTypeLbl4;
+extern lv_obj_t * ui_PowerOff;
 // SCREEN: ui_Method
 void ui_Method_screen_init(void);
 extern lv_obj_t * ui_Method;
@@ -100,6 +101,15 @@ extern lv_obj_t * ui_PanelTimeline2;
 extern lv_obj_t * ui_TimelineCnt;
 extern lv_obj_t * ui_TimelineCbx;
 extern lv_obj_t * ui_TimelineTxt;
+extern lv_obj_t * ui_TabView1;
+extern lv_obj_t * ui_TabPage1;
+extern lv_obj_t * ui_Button1;
+extern lv_obj_t * ui_TabPage2;
+// SCREEN: ui_Oven
+void ui_Oven_screen_init(void);
+extern lv_obj_t * ui_Oven;
+extern lv_obj_t * ui_Arc1;
+extern lv_obj_t * ui_Slider1;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_pizza_back01_png);    // assets\pizza_back01.png
@@ -108,6 +118,7 @@ LV_IMG_DECLARE(ui_img_grandma_png);    // assets\grandma.png
 LV_IMG_DECLARE(ui_img_focaccia_png);    // assets\focaccia.png
 LV_IMG_DECLARE(ui_img_detroit_png);    // assets\detroit.png
 LV_IMG_DECLARE(ui_img_bread_png);    // assets\bread.png
+LV_IMG_DECLARE(ui_img_9054774_bx_power_off_icon_png);    // assets\9054774_bx_power_off_icon.png
 LV_IMG_DECLARE(ui_img_direct_png);    // assets\direct.png
 LV_IMG_DECLARE(ui_img_biga_png);    // assets\biga.png
 LV_IMG_DECLARE(ui_img_poolish_png);    // assets\poolish.png

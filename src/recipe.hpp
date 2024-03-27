@@ -9,12 +9,11 @@ private:
     double AdjustYeast(double yeast);
     int CalculateBigaTimeMinutes();
     String GetPreferenceKey(const char *key);
-
-public:
     String selectedType;
     String selectedMethod;
     String selectedYeast;
 
+public:
     int WaterPerc;
     int TotalLeavening;
     int FridgeLeavening;
@@ -57,6 +56,29 @@ public:
     void AddTimeline();
     void UpdateReadyToBakeTime();
     void SetUseDoughMachine(boolean value);
+    void SetScreen(const char *screen);
+    void GoToScreen();
+
+    void SetSelectedType(String type);
+
+    String GetSelectedType()
+    {
+        return this->selectedType;
+    }
+
+    void SetSelectedMethod(String method);
+
+    String GetSelectedMethod()
+    {
+        return this->selectedMethod;
+    }
+
+    void SetSelectedYeast(String yeast);
+
+    String GetSelectedYeast()
+    {
+        return this->selectedYeast;
+    }
 };
 
 extern Recipe recipe;

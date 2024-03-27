@@ -27,6 +27,7 @@ lv_obj_t *ui_PizzaTypeLbl3;
 lv_obj_t *ui_BreadPnl;
 lv_obj_t *ui_PizzaTypeImg4;
 lv_obj_t *ui_PizzaTypeLbl4;
+lv_obj_t *ui_PowerOff;
 
 // SCREEN: ui_Method
 void ui_Method_screen_init(void);
@@ -90,6 +91,16 @@ lv_obj_t *ui_PanelTimeline2;
 lv_obj_t *ui_TimelineCnt;
 lv_obj_t *ui_TimelineCbx;
 lv_obj_t *ui_TimelineTxt;
+lv_obj_t *ui_TabView1;
+lv_obj_t *ui_TabPage1;
+lv_obj_t *ui_Button1;
+lv_obj_t *ui_TabPage2;
+
+// SCREEN: ui_Oven
+void ui_Oven_screen_init(void);
+lv_obj_t *ui_Oven;
+lv_obj_t *ui_Arc1;
+lv_obj_t *ui_Slider1;
 lv_obj_t *ui____initial_actions0;
 const lv_img_dsc_t *ui_imgset_pizza_back[1] = {&ui_img_pizza_back01_png};
 
@@ -110,7 +121,7 @@ void ui_event_BtnPrev(lv_event_t *e)
     lv_obj_t *target = lv_event_get_target(e);
     if (event_code == LV_EVENT_CLICKED)
     {
-        _ui_screen_change(&ui_PizzaType, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 300, 0, &ui_PizzaType_screen_init);
+        _ui_screen_change(&ui_PizzaType, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, &ui_PizzaType_screen_init);
     }
 }
 void ui_event_BtnPrev2(lv_event_t *e)
@@ -119,7 +130,7 @@ void ui_event_BtnPrev2(lv_event_t *e)
     lv_obj_t *target = lv_event_get_target(e);
     if (event_code == LV_EVENT_CLICKED)
     {
-        _ui_screen_change(&ui_Method, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 300, 0, &ui_Method_screen_init);
+        _ui_screen_change(&ui_Method, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, &ui_Method_screen_init);
     }
 }
 void ui_event_BtnPrev3(lv_event_t *e)
@@ -128,7 +139,7 @@ void ui_event_BtnPrev3(lv_event_t *e)
     lv_obj_t *target = lv_event_get_target(e);
     if (event_code == LV_EVENT_CLICKED)
     {
-        _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 300, 0, &ui_Ingredients_screen_init);
+        _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, &ui_Ingredients_screen_init);
     }
 }
 
@@ -150,6 +161,7 @@ void ui_init(void)
     ui_Ingredients_screen_init();
     ui_Timeline_screen_init();
     ui_Components_screen_init();
+    ui_Oven_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_PizzaType);
 }
