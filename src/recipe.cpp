@@ -128,10 +128,10 @@ void Recipe::SetSelectedMethod(String method)
 }
 
 void Recipe::SetSelectedYeast(String yeast)
-    {
-        this->selectedYeast = yeast;
-        preferences.putString(GetPreferenceKey("selYeast").c_str(), yeast);
-    }
+{
+    this->selectedYeast = yeast;
+    preferences.putString(GetPreferenceKey("selYeast").c_str(), yeast);
+}
 
 void Recipe::GoToScreen()
 {
@@ -145,34 +145,33 @@ void Recipe::GoToScreen()
     this->selectedMethod = preferences.getString(GetPreferenceKey("selMethod").c_str(), "");
     this->selectedYeast = preferences.getString(GetPreferenceKey("selYeast").c_str(), "");
 
-    if (activeScreen == "Timeline")
+    recipe.IntializeIngredients();
+    if (activeScreen == "Home")
     {
-        recipe.IntializeIngredients();
+        _ui_screen_change(&ui_Home, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_Home_screen_init);
+    }
+    else if (activeScreen == "Timeline")
+    {
         _ui_screen_change(&ui_Timeline, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_Timeline_screen_init);
     }
     else if (activeScreen == "PizzaType")
     {
-        recipe.IntializeIngredients();
         _ui_screen_change(&ui_PizzaType, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_PizzaType_screen_init);
     }
     else if (activeScreen == "Method")
     {
-        recipe.IntializeIngredients();
         _ui_screen_change(&ui_Method, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_Method_screen_init);
     }
     else if (activeScreen == "Yeast")
     {
-        recipe.IntializeIngredients();
         _ui_screen_change(&ui_Yeast, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_Yeast_screen_init);
     }
     else if (activeScreen == "PreIngredients")
     {
-        recipe.IntializeIngredients();
         _ui_screen_change(&ui_PreIngredients, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_PreIngredients_screen_init);
     }
     else if (activeScreen == "Ingredients")
     {
-        recipe.IntializeIngredients();
         _ui_screen_change(&ui_Ingredients, LV_SCR_LOAD_ANIM_NONE, 0, 0, &ui_Ingredients_screen_init);
     }
 }

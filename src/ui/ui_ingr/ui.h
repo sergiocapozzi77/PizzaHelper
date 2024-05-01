@@ -44,6 +44,8 @@ extern lv_obj_t * ui_BtnNext;
 extern lv_obj_t * ui_Label1;
 extern lv_obj_t * ui_BtnPrev;
 extern lv_obj_t * ui_Label14;
+extern lv_obj_t * ui_TopBar;
+extern lv_obj_t * ui_HomeImg;
 // SCREEN: ui_Ingredients
 void ui_Ingredients_screen_init(void);
 extern lv_obj_t * ui_Ingredients;
@@ -93,6 +95,8 @@ extern lv_obj_t * ui_BtnPrev2;
 extern lv_obj_t * ui_Label22;
 extern lv_obj_t * ui_BtnNextIngredients;
 extern lv_obj_t * ui_Label24;
+extern lv_obj_t * ui_TopBar2;
+extern lv_obj_t * ui_HomeImg2;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_pizza_back01_png);    // assets\pizza_back01.png
@@ -106,6 +110,7 @@ LV_IMG_DECLARE(
     ui_img_2824441_clock_stopwatch_time_timer_icon_png);    // assets\2824441_clock_stopwatch_time_timer_icon.png
 LV_IMG_DECLARE(
     ui_img_10673486_fridge_kitchen_refrigerator_food_and_icon_png);    // assets\10673486_fridge_kitchen_refrigerator_food_and_icon.png
+LV_IMG_DECLARE(ui_img_8726048_home_icon_png);    // assets\8726048_home_icon.png
 LV_IMG_DECLARE(
     ui_img_7450398_kitchen_utensils_scale_appliance_weight_icon_png);    // assets\7450398_kitchen_utensils_scale_appliance_weight_icon.png
 

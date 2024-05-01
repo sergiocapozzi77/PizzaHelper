@@ -49,8 +49,8 @@ void ui_Components_screen_init(void)
     ui_TabView1 = lv_tabview_create(ui_Components, LV_DIR_BOTTOM, 50);
     lv_obj_set_width(ui_TabView1, 488);
     lv_obj_set_height(ui_TabView1, 200);
-    lv_obj_set_x(ui_TabView1, -63);
-    lv_obj_set_y(ui_TabView1, -6);
+    lv_obj_set_x(ui_TabView1, 18);
+    lv_obj_set_y(ui_TabView1, 44);
     lv_obj_set_align(ui_TabView1, LV_ALIGN_CENTER);
     lv_obj_clear_flag(ui_TabView1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 

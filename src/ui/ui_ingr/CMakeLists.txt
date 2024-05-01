@@ -12,6 +12,7 @@ SET(SOURCES components/ui_comp_ingredientcmp.c
     images/ui_img_3856401_celsius_degrees_temperature_thermometer_weather_icon_png.c
     images/ui_img_2824441_clock_stopwatch_time_timer_icon_png.c
     images/ui_img_10673486_fridge_kitchen_refrigerator_food_and_icon_png.c
+    images/ui_img_8726048_home_icon_png.c
     images/ui_img_7450398_kitchen_utensils_scale_appliance_weight_icon_png.c)
 
 add_library(ui ${SOURCES})

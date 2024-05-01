@@ -72,7 +72,7 @@ void setup()
     Serial.print(".");
   }
 
-  esp_sleep_enable_ext0_wakeup(GPIO_NUM_19, 1);
+  esp_sleep_enable_touchpad_wakeup();
 
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
   printLocalTime();

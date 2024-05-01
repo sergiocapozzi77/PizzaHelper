@@ -16,5 +16,6 @@
         "arduino.h": "c",
         "chrono": "cpp",
         "string_view": "cpp"
-    }
+    },
+    "cmake.configureOnOpen": false
 }

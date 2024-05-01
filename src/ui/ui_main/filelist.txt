@@ -1,3 +1,4 @@
+screens/ui_Home.c
 screens/ui_PizzaType.c
 screens/ui_Method.c
 screens/ui_Yeast.c
@@ -5,7 +6,6 @@ screens/ui_PreIngredients.c
 screens/ui_Ingredients.c
 screens/ui_Timeline.c
 screens/ui_Components.c
-screens/ui_Oven.c
 ui.c
 components/ui_comp_hook.c
 ui_helpers.c
@@ -16,7 +16,7 @@ images/ui_img_grandma_png.c
 images/ui_img_focaccia_png.c
 images/ui_img_detroit_png.c
 images/ui_img_bread_png.c
-images/ui_img_9054774_bx_power_off_icon_png.c
+images/ui_img_8726048_home_icon_png.c
 images/ui_img_direct_png.c
 images/ui_img_biga_png.c
 images/ui_img_poolish_png.c

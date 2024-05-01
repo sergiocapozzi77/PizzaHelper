@@ -8,6 +8,7 @@ del .\src\ui\ui_main\screens\ui_Ingredients.c
 del .\src\ui\ui_main\screens\ui_PreIngredients.c
 del .\src\ui\ui_ingr\ui_helpers.c
 del .\src\ui\ui_ingr\images\ui_img_pizza_back01_png.c
+del .\src\ui\ui_ingr\images\ui_img_8726048_home_icon_png.c
 
 uint32_t LV_EVENT_GET_COMP_CHILD;
 void ui_init(void)

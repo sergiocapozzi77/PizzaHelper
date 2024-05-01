@@ -260,6 +260,11 @@ void ui_event_PizzaTypeScreenLoaded(lv_event_t *e)
   recipe.SetScreen("PizzaType");
 }
 
+void ui_event_HomeScreenLoaded(lv_event_t *e)
+{
+  recipe.SetScreen("Home");
+}
+
 void ui_event_MethodScreenLoaded(lv_event_t *e)
 {
   recipe.SetScreen("Method");
@@ -337,13 +342,17 @@ void gui_start()
   lv_obj_add_event_cb(ui_BtnPrev, ui_event_Prev, LV_EVENT_CLICKED, NULL);
   lv_obj_add_event_cb(ui_BtnPrev2, ui_event_Prev2, LV_EVENT_CLICKED, NULL);
   lv_obj_add_event_cb(ui_BtnNextIngredients, ui_event_BtnNextIngredients, LV_EVENT_CLICKED, NULL);
-  lv_obj_add_event_cb(ui_PowerOff, ui_event_PowerOff, LV_EVENT_CLICKED, NULL);
+  // lv_obj_add_event_cb(ui_PowerOff, ui_event_PowerOff, LV_EVENT_CLICKED, NULL);
 
   lv_obj_add_event_cb(ui_UseTheFridgeSw, ui_event_UseFridge, LV_EVENT_CLICKED, NULL);
 
   lv_obj_add_event_cb(ui_DoughMachine, ui_event_DoughMachine, LV_EVENT_CLICKED, NULL);
 
+  lv_obj_add_event_cb(ui_HomeImg, ui_event_HomeBtn, LV_EVENT_CLICKED, NULL);
+  lv_obj_add_event_cb(ui_HomeImg2, ui_event_HomeBtn, LV_EVENT_CLICKED, NULL);
+
   // screen loaded
+  lv_obj_add_event_cb(ui_Home, ui_event_HomeScreenLoaded, LV_EVENT_SCREEN_LOADED, NULL);
   lv_obj_add_event_cb(ui_Timeline, ui_event_TimelineScreenLoaded, LV_EVENT_SCREEN_LOADED, NULL);
   lv_obj_add_event_cb(ui_PizzaType, ui_event_PizzaTypeScreenLoaded, LV_EVENT_SCREEN_LOADED, NULL);
   lv_obj_add_event_cb(ui_Method, ui_event_MethodScreenLoaded, LV_EVENT_SCREEN_LOADED, NULL);

@@ -26,6 +26,8 @@ lv_obj_t *ui_BtnNext;
 lv_obj_t *ui_Label1;
 lv_obj_t *ui_BtnPrev;
 lv_obj_t *ui_Label14;
+lv_obj_t *ui_TopBar;
+lv_obj_t *ui_HomeImg;
 
 // SCREEN: ui_Ingredients
 void ui_Ingredients_screen_init(void);
@@ -76,6 +78,8 @@ lv_obj_t *ui_BtnPrev2;
 lv_obj_t *ui_Label22;
 lv_obj_t *ui_BtnNextIngredients;
 lv_obj_t *ui_Label24;
+lv_obj_t *ui_TopBar2;
+lv_obj_t *ui_HomeImg2;
 lv_obj_t *ui____initial_actions0;
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
