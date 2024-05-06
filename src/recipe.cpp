@@ -17,7 +17,7 @@ int Recipe::GetPrefWaterPercentage()
     {
         return 0;
     }
-    else if (this->selectedMethod == "Biga")
+    else if (this->selectedMethod == "Biga" || this->selectedMethod == "BigaPoolish")
     {
         return this->BigaWaterPerc;
     }
@@ -35,7 +35,7 @@ void Recipe::SetPrefWaterPercentage(int value)
     {
         return;
     }
-    else if (this->selectedMethod == "Biga")
+    else if (this->selectedMethod || this->selectedMethod == "BigaPoolish")
     {
         this->BigaWaterPerc = value;
     }
@@ -51,7 +51,7 @@ int Recipe::GetPrefPercentage()
     {
         return 0;
     }
-    else if (this->selectedMethod == "Biga")
+    else if (this->selectedMethod == "Biga" || this->selectedMethod == "BigaPoolish")
     {
         return this->BigaPercentage;
     }
@@ -68,7 +68,7 @@ void Recipe::SetPrefPercentage(int value)
     {
         return;
     }
-    else if (this->selectedMethod == "Biga")
+    else if (this->selectedMethod == "Biga" || this->selectedMethod == "BigaPoolish")
     {
         this->BigaPercentage = value;
     }
@@ -490,29 +490,29 @@ void Recipe::Recalculate()
     float C = t * (l + d) + 1e3 * (t + 100);
 
     float f = u * v / 100;
-    float k = 1e5 * (u - f) / C;
-    float S = (1e3 * t * (u - f) / C);
-    float x = (l * t * (u - f) / C);
-    float w = (d * t * (u - f) / C);
-    float b = (k * h - g * f);
+    float flour = 1e5 * (u - f) / C;
+    float water = (1e3 * t * (u - f) / C);
+    float salt = (l * t * (u - f) / C);
+    float fat = (d * t * (u - f) / C);
+    float yeast = (flour * h - g * f);
 
     if (this->selectedMethod == "Direct")
     {
-        this->Flour = k;
-        this->Water = S;
-        this->Yeast = AdjustYeast(b);
-        this->Salt = x;
-        this->Fat = w;
+        this->Flour = flour;
+        this->Water = water;
+        this->Yeast = AdjustYeast(yeast);
+        this->Salt = salt;
+        this->Fat = fat;
     }
     else if (this->selectedMethod == "Biga")
     {
-        this->FlourBiga = k * (this->BigaPercentage / 100.0F);
+        this->FlourBiga = flour * (this->BigaPercentage / 100.0F);
         this->WaterBiga = this->FlourBiga * this->BigaWaterPerc / 100.0F;
-        this->Water = S - this->WaterBiga;
+        this->Water = water - this->WaterBiga;
         this->YeastBiga = AdjustYeast(this->FlourBiga * 0.01);
-        this->Flour = k - this->FlourBiga;
-        this->Salt = x;
-        this->Fat = w;
+        this->Flour = flour - this->FlourBiga;
+        this->Salt = salt;
+        this->Fat = fat;
         this->Yeast = 0;
 
         lv_label_set_text(ui_WaterB, String(WaterBiga).c_str());
@@ -521,18 +521,39 @@ void Recipe::Recalculate()
     }
     else if (this->selectedMethod == "Poolish")
     {
-        this->WaterPool = S * (this->PoolPercentage / 100.0F);
+        this->WaterPool = water * (this->PoolPercentage / 100.0F);
         this->FlourPool = this->WaterPool;
-        this->Water = S - this->WaterPool;
+        this->Water = water - this->WaterPool;
         this->YeastPool = AdjustYeast(this->FlourPool * 0.02);
-        this->Flour = k - this->FlourPool;
-        this->Salt = x;
-        this->Fat = w;
+        this->Flour = flour - this->FlourPool;
+        this->Salt = salt;
+        this->Fat = fat;
         this->Yeast = 0;
 
         lv_label_set_text(ui_WaterB, String(WaterPool).c_str());
         lv_label_set_text(ui_FlourB, String(FlourPool).c_str());
         lv_label_set_text(ui_YeastB, String(YeastPool).c_str());
+    }
+    else if (this->selectedMethod == "BigaPoolish")
+    {
+        float prefPerc = this->BigaPercentage / 2.0;
+        this->FlourBiga = flour * (prefPerc / 100.0F);
+        this->YeastBiga = AdjustYeast(this->FlourBiga * 0.01);
+
+        this->WaterBiga = this->FlourBiga * prefPerc / 100.0F;
+        this->WaterPool = water * (prefPerc / 100.0F);
+        this->FlourPool = this->WaterPool;
+        this->YeastPool = AdjustYeast(this->FlourPool * 0.02);
+
+        this->Water = water - this->WaterBiga - this->WaterPool;
+        this->Flour = flour - this->FlourBiga - this->FlourPool;
+        this->Salt = salt;
+        this->Fat = fat;
+        this->Yeast = 0;
+
+        lv_label_set_text(ui_WaterB, (String(WaterBiga) + " - " + String(WaterPool)).c_str());
+        lv_label_set_text(ui_FlourB, (String(FlourBiga) + " - " + String(FlourPool)).c_str());
+        lv_label_set_text(ui_YeastB, (String(YeastBiga) + " - " + String(YeastPool)).c_str());
     }
 
     SaveToPreferences();

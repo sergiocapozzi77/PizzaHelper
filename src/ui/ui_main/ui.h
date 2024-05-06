@@ -32,6 +32,7 @@ void ui_event_RoundPnl2(lv_event_t * e);
 extern lv_obj_t * ui_RoundPnl2;
 extern lv_obj_t * ui_PizzaTypeImg10;
 extern lv_obj_t * ui_PizzaTypeLbl10;
+void ui_event_RoundPnl3(lv_event_t * e);
 extern lv_obj_t * ui_RoundPnl3;
 extern lv_obj_t * ui_PizzaTypeImg11;
 extern lv_obj_t * ui_PizzaTypeLbl11;
@@ -130,6 +131,23 @@ extern lv_obj_t * ui_TabView1;
 extern lv_obj_t * ui_TabPage1;
 extern lv_obj_t * ui_Button1;
 extern lv_obj_t * ui_TabPage2;
+// SCREEN: ui_ToppingHelper
+void ui_ToppingHelper_screen_init(void);
+extern lv_obj_t * ui_ToppingHelper;
+extern lv_obj_t * ui_ToppingCnt;
+extern lv_obj_t * ui_TopContainer;
+void ui_event_IngredientText(lv_event_t * e);
+extern lv_obj_t * ui_IngredientText;
+extern lv_obj_t * ui_Image1;
+extern lv_obj_t * ui_AvailableIngredientsPanel;
+extern lv_obj_t * ui_IngredientsKeyboard;
+extern lv_obj_t * ui_IngredientsSuggestionPanel;
+void ui_event_BtnRecipes(lv_event_t * e);
+extern lv_obj_t * ui_BtnRecipes;
+extern lv_obj_t * ui_PrevLbl4;
+// SCREEN: ui_Recipes
+void ui_Recipes_screen_init(void);
+extern lv_obj_t * ui_Recipes;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_pizza_back01_png);    // assets\pizza_back01.png
@@ -146,6 +164,8 @@ LV_IMG_DECLARE(ui_img_bigapool_png);    // assets\bigapool.png
 LV_IMG_DECLARE(ui_img_fresh_png);    // assets\fresh.png
 LV_IMG_DECLARE(ui_img_dry_png);    // assets\dry.png
 LV_IMG_DECLARE(ui_img_sourdough_png);    // assets\sourdough.png
+LV_IMG_DECLARE(
+    ui_img_9921876_spoon_fork_kitchen_restaurant_utensil_icon_png);    // assets\9921876_spoon_fork_kitchen_restaurant_utensil_icon.png
 
 
 

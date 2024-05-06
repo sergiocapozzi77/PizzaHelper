@@ -75,5 +75,6 @@ void ui_Home_screen_init(void)
     lv_label_set_text(ui_PizzaTypeLbl11, "Topping Helper");
 
     lv_obj_add_event_cb(ui_RoundPnl2, ui_event_RoundPnl2, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(ui_RoundPnl3, ui_event_RoundPnl3, LV_EVENT_ALL, NULL);
 
 }

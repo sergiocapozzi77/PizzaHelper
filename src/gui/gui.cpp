@@ -300,7 +300,7 @@ void gui_start()
   // ----------- GFX -------------
   gfx.begin();
   //  gfx.setColorDepth(16);
-  gfx.setBrightness(127);
+  gfx.setBrightness(200);
 
   lv_init();
   lv_disp_draw_buf_init(&draw_buf, buf[0], buf[1], screenWidth * 10);

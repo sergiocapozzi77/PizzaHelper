@@ -3,6 +3,7 @@
 #include <lvgl.h>
 #include <WiFi.h>
 #include "gui/gui.h"
+#include "gui/gui_toppings.h"
 #include <Preferences.h>
 #include <Timezone.h>
 #include "time.h"
@@ -78,6 +79,7 @@ void setup()
   printLocalTime();
 
   gui_start();
+  init_toppings();
 }
 
 void loop()

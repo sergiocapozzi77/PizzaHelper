@@ -6,6 +6,8 @@ SET(SOURCES screens/ui_Home.c
     screens/ui_Ingredients.c
     screens/ui_Timeline.c
     screens/ui_Components.c
+    screens/ui_ToppingHelper.c
+    screens/ui_Recipes.c
     ui.c
     components/ui_comp_hook.c
     ui_helpers.c
@@ -23,6 +25,7 @@ SET(SOURCES screens/ui_Home.c
     images/ui_img_bigapool_png.c
     images/ui_img_fresh_png.c
     images/ui_img_dry_png.c
-    images/ui_img_sourdough_png.c)
+    images/ui_img_sourdough_png.c
+    images/ui_img_9921876_spoon_fork_kitchen_restaurant_utensil_icon_png.c)
 
 add_library(ui ${SOURCES})
