@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include "models/recipe.hpp"
 #include "uicomponents.h"
+#include "recipes_screen.hpp"
 
 Toppings toppings;
 
@@ -22,11 +23,6 @@ void IngredientsTextReady(lv_event_t *e)
     }
 }
 
-void GetRecipeButtonClicked(lv_event_t *e)
-{
-    Serial.println("Getting recipe button click");
-}
-
 void IngredientsTextValueChanged(lv_event_t *e)
 {
     toppings.IngredientsTextValueChanged(e);
@@ -34,7 +30,9 @@ void IngredientsTextValueChanged(lv_event_t *e)
 
 void GetRecipesClicked(lv_event_t *e)
 {
-    Recipe *recipes = chatGpt.GetRecipes(toppings.GetAvailableIngredients());
+    recipesScreen.recipes = chatGpt.GetRecipes(toppings.GetAvailableIngredients());
+
+    _ui_screen_change(&ui_Recipes, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, &ui_Ingredients_screen_init);
 }
 
 void suggestedIngredientClicked(lv_event_t *e)

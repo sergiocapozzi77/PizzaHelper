@@ -1,11 +1,45 @@
-// #include "recipes_screen.hpp"
-// #include "chatgpt.hpp"
-// #include "../ingredients.hpp"
-// #include <Arduino.h>
-// #include "models/recipe.hpp"
+#include "recipes_screen.hpp"
+#include "chatgpt.hpp"
+#include "../ingredients.hpp"
+#include <Arduino.h>
+#include "models/recipe.hpp"
 // #include "stepbystep_screen.hpp"
 
-// RecipesScreen recipesScreen;
+RecipesScreen recipesScreen;
+
+void init_toppings()
+{
+    lv_obj_add_event_cb(ui_Recipes, RecipesScreenLoaded, LV_EVENT_SCREEN_LOADED, NULL);
+}
+
+void RecipesScreenLoaded(lv_event_t *e)
+{
+    loadRecipes();
+}
+
+void loadRecipes()
+{
+}
+
+void RecipesScreen::SetRecipe(Recipe *recipe, lv_obj_t *recipePanel)
+{
+    // lv_label_set_text(ui_comp_get_child(recipePanel, UI_COMP_PANELRECIPE_RECIPETITLE0), recipe->title.c_str());
+
+    String allIngredients = recipe->GetIngredients();
+
+    // allIngredients += "\n\nMethod:\n\n";
+
+    // for (int i = 0; i < recipe->method.size(); i++)
+    // {
+    //     allIngredients = allIngredients + recipe->method[i] + String("\n");
+    // }
+
+    // Serial.println("------ all ingredients ----");
+    // Serial.println(allIngredients);
+
+    // lv_label_set_text(ui_comp_get_child(recipePanel, UI_COMP_PANELRECIPE_PANELINGREDIENTS_RECIPEINGREDIENTS0), allIngredients.c_str());
+    // lv_obj_set_user_data(ui_comp_get_child(recipePanel, UI_COMP_PANELRECIPE_PANELINGREDIENTSBUTTON_RECIPESELECTBTN), recipe);
+}
 
 // void RecipeSelectClicked(lv_event_t *e)
 // {
@@ -80,24 +114,4 @@
 //     // lv_async_call(loadRecipes, NULL);
 //     app.onDelay(0, []()
 //                 { loadRecipes(); });
-// }
-
-// void RecipesScreen::SetRecipe(Recipe *recipe, lv_obj_t *recipePanel)
-// {
-//     lv_label_set_text(ui_comp_get_child(recipePanel, UI_COMP_PANELRECIPE_RECIPETITLE0), recipe->title.c_str());
-
-//     String allIngredients = recipe->GetIngredients();
-
-//     // allIngredients += "\n\nMethod:\n\n";
-
-//     // for (int i = 0; i < recipe->method.size(); i++)
-//     // {
-//     //     allIngredients = allIngredients + recipe->method[i] + String("\n");
-//     // }
-
-//     // Serial.println("------ all ingredients ----");
-//     // Serial.println(allIngredients);
-
-//     lv_label_set_text(ui_comp_get_child(recipePanel, UI_COMP_PANELRECIPE_PANELINGREDIENTS_RECIPEINGREDIENTS0), allIngredients.c_str());
-//     lv_obj_set_user_data(ui_comp_get_child(recipePanel, UI_COMP_PANELRECIPE_PANELINGREDIENTSBUTTON_RECIPESELECTBTN), recipe);
 // }
