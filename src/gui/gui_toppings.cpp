@@ -1,11 +1,17 @@
 #include "gui_toppings.h"
-// #include "chatgpt.hpp"
+#include "chatgpt.hpp"
 #include "../ingredients.hpp"
 #include <Arduino.h>
 #include "models/recipe.hpp"
 #include "uicomponents.h"
 
 Toppings toppings;
+
+void init_toppings()
+{
+    lv_obj_add_event_cb(ui_IngredientText, IngredientsTextValueChanged, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_obj_add_event_cb(ui_BtnGetRecipes, GetRecipesClicked, LV_EVENT_CLICKED, NULL);
+}
 
 void IngredientsTextReady(lv_event_t *e)
 {
@@ -28,12 +34,7 @@ void IngredientsTextValueChanged(lv_event_t *e)
 
 void GetRecipesClicked(lv_event_t *e)
 {
-}
-
-void init_toppings()
-{
-    lv_obj_add_event_cb(ui_IngredientText, IngredientsTextValueChanged, LV_EVENT_VALUE_CHANGED, NULL);
-    lv_obj_add_event_cb(ui_BtnRecipes, GetRecipesClicked, LV_EVENT_CLICKED, NULL);
+    Recipe *recipes = chatGpt.GetRecipes(toppings.GetAvailableIngredients());
 }
 
 void suggestedIngredientClicked(lv_event_t *e)

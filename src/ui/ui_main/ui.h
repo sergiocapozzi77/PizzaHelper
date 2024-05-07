@@ -142,8 +142,7 @@ extern lv_obj_t * ui_Image1;
 extern lv_obj_t * ui_AvailableIngredientsPanel;
 extern lv_obj_t * ui_IngredientsKeyboard;
 extern lv_obj_t * ui_IngredientsSuggestionPanel;
-void ui_event_BtnRecipes(lv_event_t * e);
-extern lv_obj_t * ui_BtnRecipes;
+extern lv_obj_t * ui_BtnGetRecipes;
 extern lv_obj_t * ui_PrevLbl4;
 // SCREEN: ui_Recipes
 void ui_Recipes_screen_init(void);

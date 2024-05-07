@@ -78,16 +78,16 @@ void ui_ToppingHelper_screen_init(void)
     lv_obj_set_flex_align(ui_IngredientsSuggestionPanel, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
     lv_obj_add_flag(ui_IngredientsSuggestionPanel, LV_OBJ_FLAG_HIDDEN);     /// Flags
 
-    ui_BtnRecipes = lv_btn_create(ui_ToppingHelper);
-    lv_obj_set_width(ui_BtnRecipes, 109);
-    lv_obj_set_height(ui_BtnRecipes, 50);
-    lv_obj_set_x(ui_BtnRecipes, 334);
-    lv_obj_set_y(ui_BtnRecipes, 205);
-    lv_obj_set_align(ui_BtnRecipes, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_BtnRecipes, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_clear_flag(ui_BtnRecipes, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    ui_BtnGetRecipes = lv_btn_create(ui_ToppingHelper);
+    lv_obj_set_width(ui_BtnGetRecipes, 109);
+    lv_obj_set_height(ui_BtnGetRecipes, 50);
+    lv_obj_set_x(ui_BtnGetRecipes, 334);
+    lv_obj_set_y(ui_BtnGetRecipes, 205);
+    lv_obj_set_align(ui_BtnGetRecipes, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_BtnGetRecipes, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
+    lv_obj_clear_flag(ui_BtnGetRecipes, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
-    ui_PrevLbl4 = lv_label_create(ui_BtnRecipes);
+    ui_PrevLbl4 = lv_label_create(ui_BtnGetRecipes);
     lv_obj_set_width(ui_PrevLbl4, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_PrevLbl4, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_PrevLbl4, LV_ALIGN_CENTER);
@@ -95,6 +95,5 @@ void ui_ToppingHelper_screen_init(void)
 
     lv_obj_add_event_cb(ui_IngredientText, ui_event_IngredientText, LV_EVENT_ALL, NULL);
     lv_keyboard_set_textarea(ui_IngredientsKeyboard, ui_IngredientText);
-    lv_obj_add_event_cb(ui_BtnRecipes, ui_event_BtnRecipes, LV_EVENT_ALL, NULL);
 
 }
