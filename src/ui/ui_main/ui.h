@@ -147,6 +147,16 @@ extern lv_obj_t * ui_PrevLbl4;
 // SCREEN: ui_Recipes
 void ui_Recipes_screen_init(void);
 extern lv_obj_t * ui_Recipes;
+extern lv_obj_t * ui_Container2;
+extern lv_obj_t * ui_Panel1;
+extern lv_obj_t * ui_Title1;
+extern lv_obj_t * ui_Ingredients1;
+extern lv_obj_t * ui_Panel2;
+extern lv_obj_t * ui_Title2;
+extern lv_obj_t * ui_Ingredients2;
+extern lv_obj_t * ui_Panel3;
+extern lv_obj_t * ui_Title3;
+extern lv_obj_t * ui_Ingredients3;
 extern lv_obj_t * ui____initial_actions0;
 
 LV_IMG_DECLARE(ui_img_pizza_back01_png);    // assets\pizza_back01.png

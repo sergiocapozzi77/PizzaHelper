@@ -27164,7 +27164,7 @@
                     "strtype": "OBJECT/Size",
                     "intarray": [
                       30,
-                      70
+                      85
                     ],
                     "InheritedType": 7
                   },
@@ -28023,7 +28023,7 @@
                     "strtype": "OBJECT/Size",
                     "intarray": [
                       30,
-                      70
+                      85
                     ],
                     "InheritedType": 7
                   },
@@ -28882,7 +28882,7 @@
                     "strtype": "OBJECT/Size",
                     "intarray": [
                       30,
-                      70
+                      85
                     ],
                     "InheritedType": 7
                   },
@@ -29645,7 +29645,7 @@
     "theme_color2": 0,
     "uiExportFolderPath": "C:\\Users\\sergi\\source\\repos\\PizzaHelper\\src\\ui\\ui_main",
     "projectExportFolderPath": "C:\\Users\\sergi\\source\\repos\\PizzaHelper\\",
-    "backup_cnt": 570,
+    "backup_cnt": 582,
     "autosave_cnt": 0,
     "lvgl_version": "8.2.0",
     "callfuncsexport": "C_FILE",

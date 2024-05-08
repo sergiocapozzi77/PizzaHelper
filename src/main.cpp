@@ -4,6 +4,7 @@
 #include <WiFi.h>
 #include "gui/gui.h"
 #include "gui/gui_toppings.h"
+#include "gui/recipes_screen.hpp"
 #include <Preferences.h>
 #include <Timezone.h>
 #include "time.h"
@@ -80,6 +81,7 @@ void setup()
 
   gui_start();
   init_toppings();
+  init_recipes();
 }
 
 void loop()

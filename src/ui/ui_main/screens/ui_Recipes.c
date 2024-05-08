@@ -10,5 +10,76 @@ void ui_Recipes_screen_init(void)
     ui_Recipes = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_Recipes, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
+    ui_Container2 = lv_obj_create(ui_Recipes);
+    lv_obj_remove_style_all(ui_Container2);
+    lv_obj_set_width(ui_Container2, lv_pct(100));
+    lv_obj_set_height(ui_Container2, lv_pct(100));
+    lv_obj_set_align(ui_Container2, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Container2, LV_FLEX_FLOW_ROW);
+    lv_obj_set_flex_align(ui_Container2, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
+    lv_obj_clear_flag(ui_Container2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+    lv_obj_set_style_bg_img_src(ui_Container2, &ui_img_pizza_back01_png, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_row(ui_Container2, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_column(ui_Container2, 20, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Panel1 = lv_obj_create(ui_Container2);
+    lv_obj_set_width(ui_Panel1, lv_pct(30));
+    lv_obj_set_height(ui_Panel1, lv_pct(70));
+    lv_obj_set_x(ui_Panel1, -248);
+    lv_obj_set_y(ui_Panel1, -40);
+    lv_obj_set_align(ui_Panel1, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Panel1, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_flex_align(ui_Panel1, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+
+    ui_Title1 = lv_label_create(ui_Panel1);
+    lv_obj_set_width(ui_Title1, lv_pct(100));
+    lv_obj_set_height(ui_Title1, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Title1, LV_ALIGN_CENTER);
+    lv_obj_set_style_text_font(ui_Title1, &lv_font_montserrat_16, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Ingredients1 = lv_label_create(ui_Panel1);
+    lv_obj_set_width(ui_Ingredients1, lv_pct(100));
+    lv_obj_set_height(ui_Ingredients1, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Ingredients1, LV_ALIGN_CENTER);
+
+    ui_Panel2 = lv_obj_create(ui_Container2);
+    lv_obj_set_width(ui_Panel2, lv_pct(30));
+    lv_obj_set_height(ui_Panel2, lv_pct(70));
+    lv_obj_set_x(ui_Panel2, -248);
+    lv_obj_set_y(ui_Panel2, -40);
+    lv_obj_set_align(ui_Panel2, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Panel2, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_flex_align(ui_Panel2, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+
+    ui_Title2 = lv_label_create(ui_Panel2);
+    lv_obj_set_width(ui_Title2, lv_pct(100));
+    lv_obj_set_height(ui_Title2, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Title2, LV_ALIGN_CENTER);
+    lv_obj_set_style_text_font(ui_Title2, &lv_font_montserrat_16, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Ingredients2 = lv_label_create(ui_Panel2);
+    lv_obj_set_width(ui_Ingredients2, lv_pct(100));
+    lv_obj_set_height(ui_Ingredients2, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Ingredients2, LV_ALIGN_CENTER);
+
+    ui_Panel3 = lv_obj_create(ui_Container2);
+    lv_obj_set_width(ui_Panel3, lv_pct(30));
+    lv_obj_set_height(ui_Panel3, lv_pct(70));
+    lv_obj_set_x(ui_Panel3, -248);
+    lv_obj_set_y(ui_Panel3, -40);
+    lv_obj_set_align(ui_Panel3, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(ui_Panel3, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_flex_align(ui_Panel3, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START, LV_FLEX_ALIGN_START);
+
+    ui_Title3 = lv_label_create(ui_Panel3);
+    lv_obj_set_width(ui_Title3, lv_pct(100));
+    lv_obj_set_height(ui_Title3, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Title3, LV_ALIGN_CENTER);
+    lv_obj_set_style_text_font(ui_Title3, &lv_font_montserrat_16, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+    ui_Ingredients3 = lv_label_create(ui_Panel3);
+    lv_obj_set_width(ui_Ingredients3, lv_pct(100));
+    lv_obj_set_height(ui_Ingredients3, LV_SIZE_CONTENT);    /// 1
+    lv_obj_set_align(ui_Ingredients3, LV_ALIGN_CENTER);
 
 }

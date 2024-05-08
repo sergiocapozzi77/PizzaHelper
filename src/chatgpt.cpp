@@ -29,7 +29,7 @@ Recipe *ChatGpt::GetRecipes(std::vector<String> ingredients)
   String availableIngredients = "";
   if (ingredients.size() == 0)
   {
-    availableIngredients = "pancetta,passata,pasta";
+    availableIngredients = "pancetta,onion";
   }
   else
   {
@@ -55,11 +55,11 @@ Recipe *ChatGpt::GetRecipes(std::vector<String> ingredients)
   // int httpCode = http.POST("{\"model\": \"gpt-3.5-turbo\",\"messages\": [{\"role\": \"user\", \"content\": \"Can you give me a recipe if I have pasta and plum tomato ingredients? And can you format the recipe in ingredients and method?\"}],\"temperature\": 0.7}");
   int httpCode = http.POST(json_string);
   delete json_string;
+  Serial.printf("[HTTP] POST... code: %d\n", httpCode);
   // httpCode will be negative on error
   if (httpCode > 0)
   {
     // HTTP header has been send and Server response header has been handled
-    Serial.printf("[HTTP] POST... code: %d\n", httpCode);
 
     // file found at server
     if (httpCode == HTTP_CODE_OK)

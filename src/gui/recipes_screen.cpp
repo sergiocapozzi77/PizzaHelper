@@ -5,9 +5,11 @@
 #include "models/recipe.hpp"
 // #include "stepbystep_screen.hpp"
 
+void RecipesScreenLoaded(lv_event_t *e);
+void loadRecipes();
 RecipesScreen recipesScreen;
 
-void init_toppings()
+void init_recipes()
 {
     lv_obj_add_event_cb(ui_Recipes, RecipesScreenLoaded, LV_EVENT_SCREEN_LOADED, NULL);
 }
@@ -19,25 +21,29 @@ void RecipesScreenLoaded(lv_event_t *e)
 
 void loadRecipes()
 {
+    recipesScreen.SetRecipe(recipesScreen.recipes[0], ui_Ingredients1, ui_Title1);
+    recipesScreen.SetRecipe(recipesScreen.recipes[1], ui_Ingredients2, ui_Title2);
+    recipesScreen.SetRecipe(recipesScreen.recipes[2], ui_Ingredients3, ui_Title3);
 }
 
-void RecipesScreen::SetRecipe(Recipe *recipe, lv_obj_t *recipePanel)
+void RecipesScreen::SetRecipe(Recipe recipe, lv_obj_t *ingredients, lv_obj_t *title)
 {
     // lv_label_set_text(ui_comp_get_child(recipePanel, UI_COMP_PANELRECIPE_RECIPETITLE0), recipe->title.c_str());
 
-    String allIngredients = recipe->GetIngredients();
+    String allIngredients = recipe.GetIngredients();
 
-    // allIngredients += "\n\nMethod:\n\n";
+    allIngredients += "\n\nMethod:\n\n";
 
-    // for (int i = 0; i < recipe->method.size(); i++)
-    // {
-    //     allIngredients = allIngredients + recipe->method[i] + String("\n");
-    // }
+    for (int i = 0; i < recipe.method.size(); i++)
+    {
+        allIngredients = allIngredients + recipe.method[i] + String("\n");
+    }
 
     // Serial.println("------ all ingredients ----");
     // Serial.println(allIngredients);
 
-    // lv_label_set_text(ui_comp_get_child(recipePanel, UI_COMP_PANELRECIPE_PANELINGREDIENTS_RECIPEINGREDIENTS0), allIngredients.c_str());
+    lv_label_set_text(title, recipe.title.c_str());
+    lv_label_set_text(ingredients, allIngredients.c_str());
     // lv_obj_set_user_data(ui_comp_get_child(recipePanel, UI_COMP_PANELRECIPE_PANELINGREDIENTSBUTTON_RECIPESELECTBTN), recipe);
 }
 

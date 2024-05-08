@@ -8,8 +8,12 @@
 
 Toppings toppings;
 
+void IngredientsTextValueChanged(lv_event_t *e);
+void GetRecipesClicked(lv_event_t *e);
+
 void init_toppings()
 {
+    Serial.println("Init toppings");
     lv_obj_add_event_cb(ui_IngredientText, IngredientsTextValueChanged, LV_EVENT_VALUE_CHANGED, NULL);
     lv_obj_add_event_cb(ui_BtnGetRecipes, GetRecipesClicked, LV_EVENT_CLICKED, NULL);
 }
@@ -30,9 +34,16 @@ void IngredientsTextValueChanged(lv_event_t *e)
 
 void GetRecipesClicked(lv_event_t *e)
 {
-    recipesScreen.recipes = chatGpt.GetRecipes(toppings.GetAvailableIngredients());
+    Serial.println("GetRecipesClicked");
+    std::vector<String> ingr = toppings.GetAvailableIngredients();
+    Serial.printf("Aval ingredients %d", ingr.size());
+    recipesScreen.recipes = chatGpt.GetRecipes(ingr);
+    if (recipesScreen.recipes == NULL)
+    {
+        Serial.println("Error getting recipes");
+    }
 
-    _ui_screen_change(&ui_Recipes, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, &ui_Ingredients_screen_init);
+    _ui_screen_change(&ui_Recipes, LV_SCR_LOAD_ANIM_FADE_ON, 200, 0, &ui_Recipes_screen_init);
 }
 
 void suggestedIngredientClicked(lv_event_t *e)
