@@ -9,7 +9,7 @@
 
 Recipe recipe;
 
-#define WATERPERCMACHINE 0.65F
+#define WATERPERCMACHINE 0.60F
 
 int Recipe::GetPrefWaterPercentage()
 {
@@ -333,6 +333,46 @@ void Recipe::AddTimeline()
         else
         {
             strftime(buf, 100, "%A, %H:%M Poolish is ready, add the other ingredients and make the dough", gmtime(&poolReady));
+            addTimeline(buf);
+        }
+
+        time_t ready = AddHours(poolReady, 4);
+        strftime(buf, 50, "Pizza ready to bake on: %A, %H:%M", gmtime(&ready));
+    }
+    else if (this->selectedMethod == "BigaPoolish")
+    {
+        strftime(buf, 100, "%A, %H:%M Start making the biga and the poolish", localTmNow);
+        addTimeline(buf);
+
+        int minutesBiga = CalculateBigaTimeMinutes();
+        time_t poolReady = AddMinutes(localTimeNow, minutesBiga);
+        if (this->UseDoughMachine)
+        {
+            strftime(buf, 100, "%A, %H:%M Start kneading the dough", gmtime(&poolReady));
+            addTimeline(buf);
+
+            int allFlour = this->Flour + this->FlourPool + this->FlourBiga;
+            int allWater = this->Water + this->WaterPool + this->WaterBiga;
+            int waterForZucca = allFlour * WATERPERCMACHINE;
+
+            if (waterForZucca < (this->WaterPool + this->WaterBiga))
+            {
+                addTimeline((String("Add all the poolish and biga and all the flour in the machine and knead until the \"pumpkin\" is formed").c_str()));
+            }
+            else
+            {
+                addTimeline((String("Add all the poolish and biga, all the flour and ") + String(waterForZucca - this->WaterPool) + "gr of water and start the machine").c_str());
+            }
+
+            int remainingWater = allWater - waterForZucca;
+            if (remainingWater > 0)
+            {
+                addTimeline((String("When the \"pumpkin\" is formed, add the remaining ") + String(remainingWater) + "gr of water slowly").c_str());
+            }
+        }
+        else
+        {
+            strftime(buf, 100, "%A, %H:%M Poolish and Biga is ready, add the other ingredients and make the dough", gmtime(&poolReady));
             addTimeline(buf);
         }
 
