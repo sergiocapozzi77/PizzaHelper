@@ -1,4 +1,3 @@
-
 #ifndef RECIPESSCREEN_H
 #define RECIPESSCREEN_H
 
@@ -12,9 +11,10 @@ void init_recipes();
 
 class RecipesScreen
 {
+    void SetRecipe(Recipe recipe, lv_obj_t *recipePanel, lv_obj_t *title);
 public:
     Recipe *recipes;
-    void SetRecipe(Recipe recipe, lv_obj_t *recipePanel, lv_obj_t *title);
+    void LoadRecipes();
 };
 
 extern RecipesScreen recipesScreen;
