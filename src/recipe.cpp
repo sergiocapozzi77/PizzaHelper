@@ -361,13 +361,13 @@ void Recipe::AddTimeline()
             }
             else
             {
-                addTimeline((String("Add all the poolish and biga, all the flour and ") + String(waterForZucca - this->WaterPool) + "gr of water and start the machine").c_str());
+                addTimeline((String("Add all the poolish and biga, all the flour and ") + String(waterForZucca - this->WaterPool - this->WaterBiga) + "gr of water and start the machine").c_str());
             }
 
             int remainingWater = allWater - waterForZucca;
             if (remainingWater > 0)
             {
-                addTimeline((String("When the \"pumpkin\" is formed, add the remaining ") + String(remainingWater) + "gr of water slowly").c_str());
+                addTimeline((String("When the \"pumpkin\" is formed, add the remaining ") + String(min(this->Water, remainingWater)) + "gr of water slowly").c_str());
             }
         }
         else
