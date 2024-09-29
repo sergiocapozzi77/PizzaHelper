@@ -192,7 +192,7 @@ void ui_event_PizzaYeast(lv_event_t *e)
   lv_event_code_t event_code = lv_event_get_code(e);
   lv_obj_t *target = lv_event_get_target(e);
 
-  recipe.GetSelectedYeast() = String((char *)lv_event_get_user_data(e));
+  recipe.SetSelectedYeast(String((char *)lv_event_get_user_data(e)));
 
   if (event_code == LV_EVENT_CLICKED)
   {

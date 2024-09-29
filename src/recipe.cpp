@@ -577,12 +577,13 @@ void Recipe::Recalculate()
     else if (this->selectedMethod == "BigaPoolish")
     {
         float prefPerc = this->BigaPercentage / 2.0;
+
         this->FlourBiga = flour * (prefPerc / 100.0F);
+        this->WaterBiga = this->FlourBiga * (this->BigaWaterPerc / 100.0F);
         this->YeastBiga = AdjustYeast(this->FlourBiga * 0.01);
 
-        this->WaterBiga = this->FlourBiga * prefPerc / 100.0F;
-        this->WaterPool = water * (prefPerc / 100.0F);
-        this->FlourPool = this->WaterPool;
+        this->FlourPool = flour * (prefPerc / 100.0F);
+        this->WaterPool = this->FlourPool;
         this->YeastPool = AdjustYeast(this->FlourPool * 0.02);
 
         this->Water = water - this->WaterBiga - this->WaterPool;
