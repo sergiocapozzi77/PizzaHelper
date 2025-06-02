@@ -9,8 +9,8 @@
 #include <Timezone.h>
 #include "time.h"
 
-const char *ssid = "TP-Link_8724";
-const char *password = "40950211";
+const char *ssid = "CommunityFibre10Gb_1206C";
+const char *password = "4kF3zadv5@";
 
 const char *ntpServer = "uk.pool.ntp.org";
 const long gmtOffset_sec = 0;
