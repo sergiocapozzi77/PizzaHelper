@@ -8,9 +8,10 @@
 #include <Preferences.h>
 #include <Timezone.h>
 #include "time.h"
+#include "secret.h"
 
-const char *ssid = "CommunityFibre10Gb_1206C";
-const char *password = "4kF3zadv5@";
+const char *ssid = WIFI_SSID;
+const char *password = WIFI_PASSWORD;
 
 const char *ntpServer = "uk.pool.ntp.org";
 const long gmtOffset_sec = 0;

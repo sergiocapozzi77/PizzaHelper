@@ -9,7 +9,7 @@
 
 Recipe recipe;
 
-#define WATERPERCMACHINE 0.60F
+#define WATERPERCMACHINE 0.63F
 
 int Recipe::GetPrefWaterPercentage()
 {
